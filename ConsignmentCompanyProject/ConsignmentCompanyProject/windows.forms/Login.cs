@@ -37,7 +37,7 @@ namespace ConsignmentCompanyProject
 
         private void buttonLogin_Click(object sender, EventArgs e)
         {
-            UserDataObject logindata = new UserDataObject();
+            LoginDataObjects logindata = new LoginDataObjects();
             logindata.username = textBoxUserName.Text;
             logindata.password = textBoxPassword.Text;
             LoginHandler loginhandler = new LoginHandler(logindata);

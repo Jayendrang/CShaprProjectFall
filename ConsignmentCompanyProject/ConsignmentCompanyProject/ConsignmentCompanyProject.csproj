@@ -53,7 +53,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="com.app.business\LoginHandler.cs" />
-    <Compile Include="com.app.dataobjects\UserDataObject.cs" />
+    <Compile Include="com.app.dataobjects\DiscountDataObjects.cs" />
+    <Compile Include="com.app.dataobjects\LoginDataObjects.cs" />
+    <Compile Include="com.app.dataobjects\ManufacturerDataObjects.cs" />
+    <Compile Include="com.app.dataobjects\ProductDataObject.cs" />
+    <Compile Include="com.app.dataobjects\UserTableDataObjects.cs" />
+    <Compile Include="com.app.dataobjects\VendorDataObjects.cs" />
     <Compile Include="windows.forms\NewUser.cs">
       <SubType>Form</SubType>
     </Compile>
