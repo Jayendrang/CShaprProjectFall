@@ -37,11 +37,11 @@ namespace ConsignmentCompanyProject
 
         private void buttonLogin_Click(object sender, EventArgs e)
         {
-            LoginDataObjects logindata = new LoginDataObjects();
-            logindata.username = textBoxUserName.Text;
-            logindata.password = textBoxPassword.Text;
+            LoginProperties logindata = new LoginProperties();
+            logindata.Username = textBoxUserName.Text;
+            logindata.Password = textBoxPassword.Text;
             LoginHandler loginhandler = new LoginHandler(logindata);
-            bool val = loginhandler.validateUser(logindata.username, logindata.password);
+            bool val = loginhandler.validateUser(logindata.Username, logindata.Password);
             if (val)
             {
                 splashscreen.Hide();

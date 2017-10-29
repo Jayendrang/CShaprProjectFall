@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace ConsignmentCompanyProject.com.app.dataobjects
 {
-    class LoginDataObjects 
+    class LoginProperties 
     {
        
-        public string username { get; set; }
-        public string password { get; set; }
+        public string Username { get; set; }
+        public string Password { get; set; }
 
-        public UserTableDataObjects getUserData { protected set; get; }
+        public UserInformationProperties getUserData { protected set; get; }
          
     }
 }

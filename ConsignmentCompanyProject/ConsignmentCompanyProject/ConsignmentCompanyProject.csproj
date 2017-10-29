@@ -33,10 +33,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -53,23 +56,37 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="com.app.business\LoginHandler.cs" />
-    <Compile Include="com.app.dataobjects\DiscountDataObjects.cs" />
-    <Compile Include="com.app.dataobjects\LoginDataObjects.cs" />
-    <Compile Include="com.app.dataobjects\ManufacturerDataObjects.cs" />
-    <Compile Include="com.app.dataobjects\ProductDataObject.cs" />
-    <Compile Include="com.app.dataobjects\UserTableDataObjects.cs" />
-    <Compile Include="com.app.dataobjects\VendorDataObjects.cs" />
-    <Compile Include="windows.forms\NewUser.cs">
+    <Compile Include="com.app.dataobjects\DiscountProperties.cs" />
+    <Compile Include="com.app.dataobjects\LoginProperties.cs" />
+    <Compile Include="com.app.dataobjects\ManufacturerProperties.cs" />
+    <Compile Include="com.app.dataobjects\OrderProperties.cs" />
+    <Compile Include="com.app.dataobjects\OrderReturnProperties.cs" />
+    <Compile Include="com.app.dataobjects\ProductProperties.cs" />
+    <Compile Include="com.app.dataobjects\UserInformationProperties.cs" />
+    <Compile Include="com.app.dataobjects\VendorProperties.cs" />
+    <Compile Include="windows.forms\InventoryManagementForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="windows.forms\NewUser.Designer.cs">
-      <DependentUpon>NewUser.cs</DependentUpon>
+    <Compile Include="windows.forms\InventoryManagementForm.designer.cs">
+      <DependentUpon>InventoryManagementForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="windows.forms\OrderReturn.cs">
+    <Compile Include="windows.forms\NewUserRegistrationForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="windows.forms\OrderReturn.Designer.cs">
-      <DependentUpon>OrderReturn.cs</DependentUpon>
+    <Compile Include="windows.forms\NewUserRegistrationForm.Designer.cs">
+      <DependentUpon>NewUserRegistrationForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="windows.forms\OrderReturnForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="windows.forms\OrderReturnForm.Designer.cs">
+      <DependentUpon>OrderReturnForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="windows.forms\OrdersForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="windows.forms\OrdersForm.designer.cs">
+      <DependentUpon>OrdersForm.cs</DependentUpon>
     </Compile>
     <Compile Include="windows.forms\SplashScreen.cs">
       <SubType>Form</SubType>
@@ -77,25 +94,31 @@
     <Compile Include="windows.forms\SplashScreen.Designer.cs">
       <DependentUpon>SplashScreen.cs</DependentUpon>
     </Compile>
-    <Compile Include="windows.forms\Login.cs">
+    <Compile Include="windows.forms\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="windows.forms\Login.Designer.cs">
-      <DependentUpon>Login.cs</DependentUpon>
+    <Compile Include="windows.forms\LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="windows.forms\ManagerMainWindow.cs">
+    <Compile Include="windows.forms\ManagerMainWindowForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="windows.forms\ManagerMainWindow.Designer.cs">
-      <DependentUpon>ManagerMainWindow.cs</DependentUpon>
+    <Compile Include="windows.forms\ManagerMainWindowForm.Designer.cs">
+      <DependentUpon>ManagerMainWindowForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="windows.forms\Login.resx">
-      <DependentUpon>Login.cs</DependentUpon>
+    <Compile Include="windows.forms\Vendor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="windows.forms\Vendor.designer.cs">
+      <DependentUpon>Vendor.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="windows.forms\LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="windows.forms\ManagerMainWindow.resx">
-      <DependentUpon>ManagerMainWindow.cs</DependentUpon>
+    <EmbeddedResource Include="windows.forms\ManagerMainWindowForm.resx">
+      <DependentUpon>ManagerMainWindowForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -106,14 +129,23 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="windows.forms\NewUser.resx">
-      <DependentUpon>NewUser.cs</DependentUpon>
+    <EmbeddedResource Include="windows.forms\InventoryManagementForm.resx">
+      <DependentUpon>InventoryManagementForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="windows.forms\OrderReturn.resx">
-      <DependentUpon>OrderReturn.cs</DependentUpon>
+    <EmbeddedResource Include="windows.forms\NewUserRegistrationForm.resx">
+      <DependentUpon>NewUserRegistrationForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="windows.forms\OrderReturnForm.resx">
+      <DependentUpon>OrderReturnForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="windows.forms\OrdersForm.resx">
+      <DependentUpon>OrdersForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="windows.forms\SplashScreen.resx">
       <DependentUpon>SplashScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="windows.forms\Vendor.resx">
+      <DependentUpon>Vendor.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -127,6 +159,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

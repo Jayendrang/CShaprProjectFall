@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ConsignmentCompanyProject.windows.forms
+namespace ConsignmentCompanyProject
 {
-    public partial class NewUser : Form
+    public partial class Orders : Form
     {
-        public NewUser()
+        public Orders()
         {
             InitializeComponent();
         }

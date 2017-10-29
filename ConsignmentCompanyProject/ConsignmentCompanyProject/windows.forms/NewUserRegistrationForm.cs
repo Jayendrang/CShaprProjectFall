@@ -10,14 +10,14 @@ using System.Windows.Forms;
 
 namespace ConsignmentCompanyProject.windows.forms
 {
-    public partial class OrderReturn : Form
+    public partial class NewUserRegistrationForm : Form
     {
-        public OrderReturn()
+        public NewUserRegistrationForm()
         {
             InitializeComponent();
         }
 
-        private void listBoxReturnOrderItem_SelectedIndexChanged(object sender, EventArgs e)
+        private void groupBoxNewUser_Enter(object sender, EventArgs e)
         {
 
         }

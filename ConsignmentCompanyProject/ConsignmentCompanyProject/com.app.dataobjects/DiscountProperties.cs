@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace ConsignmentCompanyProject.com.app.dataobjects
 {
-    class DiscountDataObjects
+    class DiscountProperties
     {
-        public string discountID { set; get; }
-        public string discountRate { set; get; }
+        public string DiscountId { set; get; }
+        public string DiscountRate { set; get; }
+        
     }
 }

@@ -10,14 +10,14 @@ namespace ConsignmentCompanyProject.com.app.manager
     class LoginHandler
     {
         
-        public LoginHandler(LoginDataObjects logindata)
+        public LoginHandler(LoginProperties logindata)
         {
             this.logindata = logindata;
 
         }
 
         private string[,] tempString = new string[3,2];
-        private LoginDataObjects logindata;
+        private LoginProperties logindata;
 
 
         public bool validateUser(string username, string password)
