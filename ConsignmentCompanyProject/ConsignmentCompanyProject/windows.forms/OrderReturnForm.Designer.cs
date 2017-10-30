@@ -107,7 +107,7 @@
             // 
             // textBoxReturnReason
             // 
-            this.textBoxReturnReason.Location = new System.Drawing.Point(394, 323);
+            this.textBoxReturnReason.Location = new System.Drawing.Point(394, 312);
             this.textBoxReturnReason.Multiline = true;
             this.textBoxReturnReason.Name = "textBoxReturnReason";
             this.textBoxReturnReason.Size = new System.Drawing.Size(232, 62);
@@ -115,7 +115,7 @@
             // 
             // textBoxCount
             // 
-            this.textBoxCount.Location = new System.Drawing.Point(394, 271);
+            this.textBoxCount.Location = new System.Drawing.Point(394, 273);
             this.textBoxCount.Name = "textBoxCount";
             this.textBoxCount.Size = new System.Drawing.Size(100, 22);
             this.textBoxCount.TabIndex = 30;
@@ -175,7 +175,7 @@
             // labelCount
             // 
             this.labelCount.AutoSize = true;
-            this.labelCount.Location = new System.Drawing.Point(173, 271);
+            this.labelCount.Location = new System.Drawing.Point(173, 276);
             this.labelCount.Name = "labelCount";
             this.labelCount.Size = new System.Drawing.Size(57, 17);
             this.labelCount.TabIndex = 23;
@@ -184,7 +184,7 @@
             // labelReason
             // 
             this.labelReason.AutoSize = true;
-            this.labelReason.Location = new System.Drawing.Point(173, 323);
+            this.labelReason.Location = new System.Drawing.Point(173, 312);
             this.labelReason.Name = "labelReason";
             this.labelReason.Size = new System.Drawing.Size(161, 17);
             this.labelReason.TabIndex = 22;

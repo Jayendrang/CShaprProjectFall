@@ -6,19 +6,22 @@ using System.Threading.Tasks;
 
 namespace ConsignmentCompanyProject.com.app.dataobjects
 {
-    class OrderProperties
+    /*
+     * created by Jayendran Gurumoorthy
+     * */
+
+    // class holds order informatioin and used for order transaction data persistance
+    class OrderProperties 
     {
         public int OrderId { set; get; }
         public string OrderVendorId { set; get; }
         public string OrderVendorName { set; get;}
         public string OrderCreatedBy { set; get; }
         public string OrderDate { set; get; }
-        public string OrderProductId { set; get; }
-        public string OrderProductName { set; get; }
-        public string OrderProductType { set;get;}
-        public int OrderProductCount { set; get; }
-        public double PricePerUnit { set; get; }
-        public double TotalProductAmount { set; get; }
+
+        public List<ProductProperties> ProductDetails { set; get; }
+
+        public double PaidAmount { set; get; }
         public double TotalOrderAmount { set; get; }
         public double BalanceAmount { set; get;}
         public string DiscountRate { set; get; }

@@ -55,7 +55,11 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="com.app.business\InvetoryManagement.cs" />
     <Compile Include="com.app.business\LoginHandler.cs" />
+    <Compile Include="com.app.business\OrderHandler.cs" />
+    <Compile Include="com.app.business\OrderReturnHandler.cs" />
+    <Compile Include="com.app.dataobjects\AuditInformationProperties.cs" />
     <Compile Include="com.app.dataobjects\DiscountProperties.cs" />
     <Compile Include="com.app.dataobjects\LoginProperties.cs" />
     <Compile Include="com.app.dataobjects\ManufacturerProperties.cs" />
@@ -64,6 +68,16 @@
     <Compile Include="com.app.dataobjects\ProductProperties.cs" />
     <Compile Include="com.app.dataobjects\UserInformationProperties.cs" />
     <Compile Include="com.app.dataobjects\VendorProperties.cs" />
+    <Compile Include="com.app.interfaces\IAppInventory.cs" />
+    <Compile Include="com.app.interfaces\IAppOrder.cs" />
+    <Compile Include="com.app.interfaces\IAppUser.cs" />
+    <Compile Include="com.app.interfaces\IAppVendor.cs" />
+    <Compile Include="com.app.model\DatabaseConnectionHandler.cs" />
+    <Compile Include="com.app.model\InventoryDBProcessHandler.cs" />
+    <Compile Include="com.app.model\OrderDBProcessHandler.cs" />
+    <Compile Include="com.app.model\UserDBProcessHandler.cs" />
+    <Compile Include="com.app.utlitiy\BusinessUtlities.cs" />
+    <Compile Include="com.app.utlitiy\FormValidationUtility.cs" />
     <Compile Include="windows.forms\InventoryManagementForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -108,11 +122,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="windows.forms\Vendor.cs">
+    <Compile Include="windows.forms\VendorForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="windows.forms\Vendor.designer.cs">
-      <DependentUpon>Vendor.cs</DependentUpon>
+    <Compile Include="windows.forms\VendorForm.designer.cs">
+      <DependentUpon>VendorForm.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="windows.forms\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
@@ -144,8 +158,8 @@
     <EmbeddedResource Include="windows.forms\SplashScreen.resx">
       <DependentUpon>SplashScreen.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="windows.forms\Vendor.resx">
-      <DependentUpon>Vendor.cs</DependentUpon>
+    <EmbeddedResource Include="windows.forms\VendorForm.resx">
+      <DependentUpon>VendorForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -162,6 +176,9 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="com.app.reports\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

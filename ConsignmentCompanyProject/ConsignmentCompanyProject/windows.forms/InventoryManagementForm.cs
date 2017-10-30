@@ -19,11 +19,7 @@ namespace ConsignmentCompanyProject
 
       
 
-        private void label10_Click(object sender, EventArgs e)
-        {
-        
-        }
-
+       
         private void Manufacturer_Load(object sender, EventArgs e)
         {
 

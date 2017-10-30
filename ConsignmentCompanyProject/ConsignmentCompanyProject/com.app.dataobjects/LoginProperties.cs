@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace ConsignmentCompanyProject.com.app.dataobjects
 {
+    /*
+     * created by Jayendran Gurumoorthy
+     * */
+
     class LoginProperties 
     {
        

@@ -6,6 +6,11 @@ using System.Threading.Tasks;
 
 namespace ConsignmentCompanyProject.com.app.dataobjects
 {
+    /*
+     * created by Jayendran Gurumoorthy
+     * */
+
+    //Discount properties used to store and retrive vendor associated discount information
     class DiscountProperties
     {
         public string DiscountId { set; get; }

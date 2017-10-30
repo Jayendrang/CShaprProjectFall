@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace ConsignmentCompanyProject.com.app.dataobjects
 {
-    class OrderReturnProperties
+    /*
+     * created by Jayendran Gurumoorthy
+     * */
+
+    //this class is used as persistant object for order return 
+    class OrderReturnProperties 
     {
         public string OrderReturnId { set; get; }
         public int OrderId { set; get; }

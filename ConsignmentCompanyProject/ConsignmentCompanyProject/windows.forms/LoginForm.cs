@@ -7,13 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ConsignmentCompanyProject.com.app.utlitiy;
 using ConsignmentCompanyProject.com.app.manager;
 using ConsignmentCompanyProject.com.app.dataobjects;
 namespace ConsignmentCompanyProject
 {
     public partial class Login : Form
     {
-
+       
         SplashScreen splashscreen = new SplashScreen();
 
         public Login()
@@ -27,7 +28,7 @@ namespace ConsignmentCompanyProject
             this.ControlBox = false;
             this.TopMost = false;
             this.HelpButton = true;
-
+            this.label1.Text = BusinessUtlities.getCurrentDateTime;
         }
 
         private void button2_Click(object sender, EventArgs e)

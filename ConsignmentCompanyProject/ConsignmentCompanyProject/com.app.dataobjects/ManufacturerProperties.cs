@@ -6,11 +6,19 @@ using System.Threading.Tasks;
 
 namespace ConsignmentCompanyProject.com.app.dataobjects
 {
-    class ManufacturerProperties
+    /*
+     * created by Jayendran Gurumoorthy
+     * */
+
+    // This class holds manufacturer information for inventory managament and order module
+
+    class ManufacturerProperties : ProductProperties
     {
         public string ManufacturerId { get; protected set; }
-        public string ManufacturerName { get;protected set;}
+        public string ManufacturerName { get; protected set; }
         public string ManufacturerDescription { private set; get; }
 
+        public List<ManufacturerProperties> ListOfProducts { get; protected set; }
+        
     }
 }

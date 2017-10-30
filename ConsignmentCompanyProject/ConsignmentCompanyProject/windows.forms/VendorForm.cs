@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace ConsignmentCompanyProject
 {
-    public partial class Vender : Form
+    public partial class VendorForm : Form
     {
-        public Vender()
+        public VendorForm()
         {
             InitializeComponent();
         }

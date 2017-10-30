@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace ConsignmentCompanyProject.com.app.dataobjects
 {
-    class ProductProperties:ManufacturerProperties
+    /*
+     * created by Jayendran Gurumoorthy
+     * */
+
+    //This class holds manufacturer information and product managament; this class holds persistant data transacion persistance
+    class ProductProperties 
     {
         public string ProductId { get; set; }
         public string ProductName { get; set; }
@@ -17,4 +22,5 @@ namespace ConsignmentCompanyProject.com.app.dataobjects
         public double PricePerUnit { get; set; }
         
     }
+    
 }

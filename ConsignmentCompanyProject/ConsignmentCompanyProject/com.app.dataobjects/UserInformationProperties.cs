@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace ConsignmentCompanyProject.com.app.dataobjects
 {
-    //the class holds user table data objects
+    /*
+     * created by Jayendran Gurumoorthy
+     * */
+
+    //this class holds logged in user information for mainitaining user session
     class UserInformationProperties : VendorProperties
     {
         public string Name { get; protected set; }
@@ -17,6 +21,7 @@ namespace ConsignmentCompanyProject.com.app.dataobjects
         public string Role { get; protected set; }
         public bool IsVendor { get; protected set; }
         public string UserStatus { get;protected set;}
+
             
     }
 }
