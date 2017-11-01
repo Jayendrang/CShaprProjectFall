@@ -56,7 +56,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="com.app.business\InvetoryManagement.cs" />
-    <Compile Include="com.app.business\LoginHandler.cs" />
+    <Compile Include="com.app.business\ApplicationUserManagement.cs" />
     <Compile Include="com.app.business\OrderHandler.cs" />
     <Compile Include="com.app.business\OrderReturnHandler.cs" />
     <Compile Include="com.app.dataobjects\AuditInformationProperties.cs" />
@@ -78,6 +78,11 @@
     <Compile Include="com.app.model\UserDBProcessHandler.cs" />
     <Compile Include="com.app.utlitiy\BusinessUtlities.cs" />
     <Compile Include="com.app.utlitiy\FormValidationUtility.cs" />
+    <Compile Include="COSIGNMENT_DATABASE_DataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>COSIGNMENT_DATABASE_DataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="windows.forms\InventoryManagementForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -161,6 +166,17 @@
     <EmbeddedResource Include="windows.forms\VendorForm.resx">
       <DependentUpon>VendorForm.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="COSIGNMENT_DATABASE_DataSet.xsc">
+      <DependentUpon>COSIGNMENT_DATABASE_DataSet.xsd</DependentUpon>
+    </None>
+    <None Include="COSIGNMENT_DATABASE_DataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>COSIGNMENT_DATABASE_DataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="COSIGNMENT_DATABASE_DataSet.xss">
+      <DependentUpon>COSIGNMENT_DATABASE_DataSet.xsd</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

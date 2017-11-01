@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 namespace ConsignmentCompanyProject.com.app.utlitiy
 {
     class BusinessUtlities
@@ -18,6 +17,10 @@ namespace ConsignmentCompanyProject.com.app.utlitiy
             }
 
         }
+
+
+
+        
 
 
     }

@@ -42,7 +42,7 @@ namespace ConsignmentCompanyProject
             logindata.Username = textBoxUserName.Text;
             logindata.Password = textBoxPassword.Text;
             LoginHandler loginhandler = new LoginHandler(logindata);
-            bool val = loginhandler.validateUser(logindata.Username, logindata.Password);
+            bool val = loginhandler.validateUser();
             if (val)
             {
                 splashscreen.Hide();

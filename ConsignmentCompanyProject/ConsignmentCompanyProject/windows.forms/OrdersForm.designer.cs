@@ -30,6 +30,8 @@
         {
             this.panelOrder = new System.Windows.Forms.Panel();
             this.groupBoxOrderDetails = new System.Windows.Forms.GroupBox();
+            this.textBoxOrderDate = new System.Windows.Forms.TextBox();
+            this.labelDate = new System.Windows.Forms.Label();
             this.textBoxOrderId = new System.Windows.Forms.TextBox();
             this.labelOrderID = new System.Windows.Forms.Label();
             this.comboBoxProductName = new System.Windows.Forms.ComboBox();
@@ -63,8 +65,6 @@
             this.buttonAddToOrder = new System.Windows.Forms.Button();
             this.buttonCancelOrder = new System.Windows.Forms.Button();
             this.buttonSubmitOrder = new System.Windows.Forms.Button();
-            this.labelDate = new System.Windows.Forms.Label();
-            this.textBoxOrderDate = new System.Windows.Forms.TextBox();
             this.panelOrder.SuspendLayout();
             this.groupBoxOrderDetails.SuspendLayout();
             this.groupBoxVendor.SuspendLayout();
@@ -82,7 +82,7 @@
             this.panelOrder.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelOrder.Location = new System.Drawing.Point(0, 0);
             this.panelOrder.Name = "panelOrder";
-            this.panelOrder.Size = new System.Drawing.Size(1035, 512);
+            this.panelOrder.Size = new System.Drawing.Size(1035, 652);
             this.panelOrder.TabIndex = 0;
             // 
             // groupBoxOrderDetails
@@ -117,6 +117,23 @@
             this.groupBoxOrderDetails.Size = new System.Drawing.Size(919, 327);
             this.groupBoxOrderDetails.TabIndex = 83;
             this.groupBoxOrderDetails.TabStop = false;
+            // 
+            // textBoxOrderDate
+            // 
+            this.textBoxOrderDate.Location = new System.Drawing.Point(212, 69);
+            this.textBoxOrderDate.Name = "textBoxOrderDate";
+            this.textBoxOrderDate.ReadOnly = true;
+            this.textBoxOrderDate.Size = new System.Drawing.Size(113, 22);
+            this.textBoxOrderDate.TabIndex = 84;
+            // 
+            // labelDate
+            // 
+            this.labelDate.AutoSize = true;
+            this.labelDate.Location = new System.Drawing.Point(45, 74);
+            this.labelDate.Name = "labelDate";
+            this.labelDate.Size = new System.Drawing.Size(45, 17);
+            this.labelDate.TabIndex = 83;
+            this.labelDate.Text = "DATE";
             // 
             // textBoxOrderId
             // 
@@ -429,29 +446,12 @@
             this.buttonSubmitOrder.Text = "SUBMIT &ORDER";
             this.buttonSubmitOrder.UseVisualStyleBackColor = true;
             // 
-            // labelDate
-            // 
-            this.labelDate.AutoSize = true;
-            this.labelDate.Location = new System.Drawing.Point(45, 74);
-            this.labelDate.Name = "labelDate";
-            this.labelDate.Size = new System.Drawing.Size(45, 17);
-            this.labelDate.TabIndex = 83;
-            this.labelDate.Text = "DATE";
-            // 
-            // textBoxOrderDate
-            // 
-            this.textBoxOrderDate.Location = new System.Drawing.Point(212, 69);
-            this.textBoxOrderDate.Name = "textBoxOrderDate";
-            this.textBoxOrderDate.ReadOnly = true;
-            this.textBoxOrderDate.Size = new System.Drawing.Size(113, 22);
-            this.textBoxOrderDate.TabIndex = 84;
-            // 
             // Orders
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(1035, 512);
+            this.ClientSize = new System.Drawing.Size(1035, 652);
             this.Controls.Add(this.panelOrder);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Orders";
