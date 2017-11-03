@@ -7,16 +7,18 @@ using System.Threading.Tasks;
 namespace ConsignmentCompanyProject.com.app.dataobjects
 {
     //This class holds vendor information with their respective discount properties
-    class VendorProperties : DiscountProperties
+    class VendorProperties
     {
-        public string VendorName { get; set; }
-        public string VendorId { get; set; }
-        public string VendorAddress { get;set;}
-        public string VendorContact { get; set;}
-        public string VendorMailId { get; set; }
-        public string VendorStatus { get; set; }
-        public double VendorPaidAmount { get; set;}
-        public double BalanceAmount {get; set;}
+        public string Vendor_Address { get;set;}
+        public string Vendor_Contact { get; set;}
+        public string Vendor_EMail_Id { get; set; }
+        public string Vendor_Status { get; set; }
+        public double Vendor_Balance_Amount {get; set;}
+        public string Vendor_Discount_ID { get; set; }
+        public string Vendor_Balance_amount { get; set; }
+        public string Vendor_Name { get; set; }
+        public string Vendor_Id { get; set; }
+
 
 
     }

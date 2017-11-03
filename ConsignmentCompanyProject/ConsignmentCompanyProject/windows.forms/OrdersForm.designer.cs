@@ -28,7 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panelOrder = new System.Windows.Forms.Panel();
+            this.groupBoxCart = new System.Windows.Forms.GroupBox();
+            this.dataGridViewCart = new System.Windows.Forms.DataGridView();
             this.groupBoxOrderDetails = new System.Windows.Forms.GroupBox();
             this.textBoxOrderDate = new System.Windows.Forms.TextBox();
             this.labelDate = new System.Windows.Forms.Label();
@@ -50,7 +53,7 @@
             this.textBoxRaidAmount = new System.Windows.Forms.TextBox();
             this.textBoxCount = new System.Windows.Forms.TextBox();
             this.labelDiscountId = new System.Windows.Forms.Label();
-            this.labelPaidAmount = new System.Windows.Forms.Label();
+            this.labelAdvancePay = new System.Windows.Forms.Label();
             this.labelBalanceAmount = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.labelCount = new System.Windows.Forms.Label();
@@ -65,14 +68,26 @@
             this.buttonAddToOrder = new System.Windows.Forms.Button();
             this.buttonCancelOrder = new System.Windows.Forms.Button();
             this.buttonSubmitOrder = new System.Windows.Forms.Button();
+            this.orderPropertiesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.orderIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.manufacturerNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.productNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.productTypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.countDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pricePerUnitDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.totalPriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panelOrder.SuspendLayout();
+            this.groupBoxCart.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCart)).BeginInit();
             this.groupBoxOrderDetails.SuspendLayout();
             this.groupBoxVendor.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.orderPropertiesBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // panelOrder
             // 
             this.panelOrder.AutoSize = true;
+            this.panelOrder.Controls.Add(this.groupBoxCart);
             this.panelOrder.Controls.Add(this.groupBoxOrderDetails);
             this.panelOrder.Controls.Add(this.groupBoxVendor);
             this.panelOrder.Controls.Add(this.labelFormTitle);
@@ -82,8 +97,39 @@
             this.panelOrder.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelOrder.Location = new System.Drawing.Point(0, 0);
             this.panelOrder.Name = "panelOrder";
-            this.panelOrder.Size = new System.Drawing.Size(1035, 652);
+            this.panelOrder.Size = new System.Drawing.Size(1086, 706);
             this.panelOrder.TabIndex = 0;
+            this.panelOrder.Paint += new System.Windows.Forms.PaintEventHandler(this.panelOrder_Paint);
+            // 
+            // groupBoxCart
+            // 
+            this.groupBoxCart.Controls.Add(this.dataGridViewCart);
+            this.groupBoxCart.Location = new System.Drawing.Point(169, 508);
+            this.groupBoxCart.Name = "groupBoxCart";
+            this.groupBoxCart.Size = new System.Drawing.Size(749, 162);
+            this.groupBoxCart.TabIndex = 84;
+            this.groupBoxCart.TabStop = false;
+            this.groupBoxCart.Text = "CART";
+            // 
+            // dataGridViewCart
+            // 
+            this.dataGridViewCart.AutoGenerateColumns = false;
+            this.dataGridViewCart.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewCart.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.orderIdDataGridViewTextBoxColumn,
+            this.manufacturerNameDataGridViewTextBoxColumn,
+            this.productNameDataGridViewTextBoxColumn,
+            this.productTypeDataGridViewTextBoxColumn,
+            this.countDataGridViewTextBoxColumn,
+            this.pricePerUnitDataGridViewTextBoxColumn,
+            this.totalPriceDataGridViewTextBoxColumn});
+            this.dataGridViewCart.DataSource = this.orderPropertiesBindingSource;
+            this.dataGridViewCart.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridViewCart.Location = new System.Drawing.Point(3, 18);
+            this.dataGridViewCart.Name = "dataGridViewCart";
+            this.dataGridViewCart.RowTemplate.Height = 24;
+            this.dataGridViewCart.Size = new System.Drawing.Size(743, 141);
+            this.dataGridViewCart.TabIndex = 0;
             // 
             // groupBoxOrderDetails
             // 
@@ -107,16 +153,17 @@
             this.groupBoxOrderDetails.Controls.Add(this.textBoxRaidAmount);
             this.groupBoxOrderDetails.Controls.Add(this.textBoxCount);
             this.groupBoxOrderDetails.Controls.Add(this.labelDiscountId);
-            this.groupBoxOrderDetails.Controls.Add(this.labelPaidAmount);
+            this.groupBoxOrderDetails.Controls.Add(this.labelAdvancePay);
             this.groupBoxOrderDetails.Controls.Add(this.labelBalanceAmount);
             this.groupBoxOrderDetails.Controls.Add(this.label10);
             this.groupBoxOrderDetails.Controls.Add(this.labelCount);
             this.groupBoxOrderDetails.Controls.Add(this.labelPricePerUnit);
-            this.groupBoxOrderDetails.Location = new System.Drawing.Point(66, 118);
+            this.groupBoxOrderDetails.Location = new System.Drawing.Point(66, 115);
             this.groupBoxOrderDetails.Name = "groupBoxOrderDetails";
             this.groupBoxOrderDetails.Size = new System.Drawing.Size(919, 327);
             this.groupBoxOrderDetails.TabIndex = 83;
             this.groupBoxOrderDetails.TabStop = false;
+            this.groupBoxOrderDetails.Enter += new System.EventHandler(this.groupBoxOrderDetails_Enter);
             // 
             // textBoxOrderDate
             // 
@@ -295,15 +342,15 @@
             this.labelDiscountId.TabIndex = 42;
             this.labelDiscountId.Text = "DISCOUNT ID";
             // 
-            // labelPaidAmount
+            // labelAdvancePay
             // 
-            this.labelPaidAmount.AutoSize = true;
-            this.labelPaidAmount.Location = new System.Drawing.Point(548, 114);
-            this.labelPaidAmount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelPaidAmount.Name = "labelPaidAmount";
-            this.labelPaidAmount.Size = new System.Drawing.Size(103, 17);
-            this.labelPaidAmount.TabIndex = 41;
-            this.labelPaidAmount.Text = "PAID AMOUNT";
+            this.labelAdvancePay.AutoSize = true;
+            this.labelAdvancePay.Location = new System.Drawing.Point(548, 114);
+            this.labelAdvancePay.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelAdvancePay.Name = "labelAdvancePay";
+            this.labelAdvancePay.Size = new System.Drawing.Size(143, 17);
+            this.labelAdvancePay.TabIndex = 41;
+            this.labelAdvancePay.Text = "ADVANCE PAYMENT";
             // 
             // labelBalanceAmount
             // 
@@ -338,7 +385,7 @@
             // labelPricePerUnit
             // 
             this.labelPricePerUnit.AutoSize = true;
-            this.labelPricePerUnit.Location = new System.Drawing.Point(548, 30);
+            this.labelPricePerUnit.Location = new System.Drawing.Point(548, 28);
             this.labelPricePerUnit.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelPricePerUnit.Name = "labelPricePerUnit";
             this.labelPricePerUnit.Size = new System.Drawing.Size(116, 17);
@@ -445,23 +492,74 @@
             this.buttonSubmitOrder.TabIndex = 54;
             this.buttonSubmitOrder.Text = "SUBMIT &ORDER";
             this.buttonSubmitOrder.UseVisualStyleBackColor = true;
+            this.buttonSubmitOrder.Click += new System.EventHandler(this.buttonSubmitOrder_Click);
+            // 
+            // orderPropertiesBindingSource
+            // 
+            this.orderPropertiesBindingSource.DataSource = typeof(ConsignmentCompanyProject.com.app.dataobjects.OrderProperties);
+            // 
+            // orderIdDataGridViewTextBoxColumn
+            // 
+            this.orderIdDataGridViewTextBoxColumn.DataPropertyName = "Order_Id";
+            this.orderIdDataGridViewTextBoxColumn.HeaderText = "Order Id";
+            this.orderIdDataGridViewTextBoxColumn.Name = "orderIdDataGridViewTextBoxColumn";
+            // 
+            // manufacturerNameDataGridViewTextBoxColumn
+            // 
+            this.manufacturerNameDataGridViewTextBoxColumn.DataPropertyName = "Manufacturer_Name";
+            this.manufacturerNameDataGridViewTextBoxColumn.HeaderText = "Manufacturer Name";
+            this.manufacturerNameDataGridViewTextBoxColumn.Name = "manufacturerNameDataGridViewTextBoxColumn";
+            // 
+            // productNameDataGridViewTextBoxColumn
+            // 
+            this.productNameDataGridViewTextBoxColumn.DataPropertyName = "Product_Name";
+            this.productNameDataGridViewTextBoxColumn.HeaderText = "Product Name";
+            this.productNameDataGridViewTextBoxColumn.Name = "productNameDataGridViewTextBoxColumn";
+            // 
+            // productTypeDataGridViewTextBoxColumn
+            // 
+            this.productTypeDataGridViewTextBoxColumn.DataPropertyName = "Product_Type";
+            this.productTypeDataGridViewTextBoxColumn.HeaderText = "Product Type";
+            this.productTypeDataGridViewTextBoxColumn.Name = "productTypeDataGridViewTextBoxColumn";
+            // 
+            // countDataGridViewTextBoxColumn
+            // 
+            this.countDataGridViewTextBoxColumn.DataPropertyName = "Count";
+            this.countDataGridViewTextBoxColumn.HeaderText = "Count";
+            this.countDataGridViewTextBoxColumn.Name = "countDataGridViewTextBoxColumn";
+            // 
+            // pricePerUnitDataGridViewTextBoxColumn
+            // 
+            this.pricePerUnitDataGridViewTextBoxColumn.DataPropertyName = "Price_Per_Unit";
+            this.pricePerUnitDataGridViewTextBoxColumn.HeaderText = "Price per unit";
+            this.pricePerUnitDataGridViewTextBoxColumn.Name = "pricePerUnitDataGridViewTextBoxColumn";
+            // 
+            // totalPriceDataGridViewTextBoxColumn
+            // 
+            this.totalPriceDataGridViewTextBoxColumn.DataPropertyName = "Total_Price";
+            this.totalPriceDataGridViewTextBoxColumn.HeaderText = "Total Price";
+            this.totalPriceDataGridViewTextBoxColumn.Name = "totalPriceDataGridViewTextBoxColumn";
             // 
             // Orders
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(1035, 652);
+            this.ClientSize = new System.Drawing.Size(1086, 706);
             this.Controls.Add(this.panelOrder);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Orders";
             this.Text = "PURCHASE ORDER ";
+            this.Load += new System.EventHandler(this.Orders_Load);
             this.panelOrder.ResumeLayout(false);
             this.panelOrder.PerformLayout();
+            this.groupBoxCart.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCart)).EndInit();
             this.groupBoxOrderDetails.ResumeLayout(false);
             this.groupBoxOrderDetails.PerformLayout();
             this.groupBoxVendor.ResumeLayout(false);
             this.groupBoxVendor.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.orderPropertiesBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -482,7 +580,7 @@
         private System.Windows.Forms.TextBox textBoxUser;
         private System.Windows.Forms.TextBox textBoxVendor;
         private System.Windows.Forms.Label labelDiscountId;
-        private System.Windows.Forms.Label labelPaidAmount;
+        private System.Windows.Forms.Label labelAdvancePay;
         private System.Windows.Forms.Label labelBalanceAmount;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label8;
@@ -506,5 +604,15 @@
         private System.Windows.Forms.GroupBox groupBoxVendor;
         private System.Windows.Forms.TextBox textBoxOrderDate;
         private System.Windows.Forms.Label labelDate;
+        private System.Windows.Forms.GroupBox groupBoxCart;
+        private System.Windows.Forms.DataGridView dataGridViewCart;
+        private System.Windows.Forms.BindingSource orderPropertiesBindingSource;
+        private System.Windows.Forms.DataGridViewTextBoxColumn orderIdDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn manufacturerNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn productNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn productTypeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn countDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn pricePerUnitDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn totalPriceDataGridViewTextBoxColumn;
     }
 }

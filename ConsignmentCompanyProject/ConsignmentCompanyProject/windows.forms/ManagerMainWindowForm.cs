@@ -7,15 +7,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ConsignmentCompanyProject.com.app.business;
+using ConsignmentCompanyProject.com.app.dataobjects;
 
 namespace ConsignmentCompanyProject
 {
     public partial class ManagerMainWindow : Form
-    {   
-        public void loadFormData(string name) {
-            labelUserName.Text = name;
-
-        }
+    {
+        UserInformationProperties userSession = UserInformationHandler.userSessionData;
+        public void loadFormData() {
+            labelUserName.Text = userSession.Name;
+            }
 
         public ManagerMainWindow()
         {
@@ -35,6 +37,11 @@ namespace ConsignmentCompanyProject
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void orderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

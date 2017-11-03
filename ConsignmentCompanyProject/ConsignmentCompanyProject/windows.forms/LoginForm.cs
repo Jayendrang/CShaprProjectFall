@@ -8,13 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ConsignmentCompanyProject.com.app.utlitiy;
-using ConsignmentCompanyProject.com.app.manager;
+using ConsignmentCompanyProject.com.app.business;
 using ConsignmentCompanyProject.com.app.dataobjects;
 namespace ConsignmentCompanyProject
 {
     public partial class Login : Form
     {
-       
+        
         SplashScreen splashscreen = new SplashScreen();
 
         public Login()
@@ -38,22 +38,39 @@ namespace ConsignmentCompanyProject
 
         private void buttonLogin_Click(object sender, EventArgs e)
         {
+            UserInformationProperties userSession = new UserInformationProperties();
             LoginProperties logindata = new LoginProperties();
             logindata.Username = textBoxUserName.Text;
             logindata.Password = textBoxPassword.Text;
-            LoginHandler loginhandler = new LoginHandler(logindata);
-            bool val = loginhandler.validateUser();
-            if (val)
+            userSession= UserInformationHandler.validateUser(logindata);
+            
+            
+            if (userSession!=null)
             {
                 splashscreen.Hide();
                 this.Enabled = false;
                 this.Visible = false;
+
+                if (userSession.Role.Equals("MANAGER")) { 
+                ManagerMainWindow managerWindow = new ManagerMainWindow();
+                managerWindow.loadFormData();
+                managerWindow.Show();
+                }else if (userSession.Role.Equals("STAFF"))
+                {
+
+                }else if(userSession.Role.Equals("ADMIN")){
+
+
+                }else if(userSession.Role.Equals("VENDOR"))
+                {
+
+                }
             }
             else
             {
-                MessageBox.Show("Improper Username/Password", "Error", MessageBoxButtons.OK);
+                MessageBox.Show("Invalid Username/Password", "Login failed", MessageBoxButtons.OK);
 
-            }
+            } 
         }
 
         private void buttonCancel_Click(object sender, EventArgs e)

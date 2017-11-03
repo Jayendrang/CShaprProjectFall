@@ -11,17 +11,19 @@ namespace ConsignmentCompanyProject.com.app.dataobjects
      * */
 
     //this class holds logged in user information for mainitaining user session
-    class UserInformationProperties : VendorProperties
+    class UserInformationProperties 
     {
         public string Name { get;  set; }
         public string Contact { get; set; }
         public string Address { get; set; }
-        public string UserMailId { get; set; }
-        public string UserId { get;  set; }
+        public string EMail_Id { get; set; }
+        public string User_Id { get;  set; }
         public string Password { get;  set; }
         public string Role { get; set; }
-        public bool IsVendor { get; set; }
-        public string UserStatus { get;set;}
+        public string Is_Vendor { get; set; }
+        public string Status { get;set;}
+        public string Vendor_Name { get; set; }
+        public string Vendor_ID { get; set; }
         
 
             

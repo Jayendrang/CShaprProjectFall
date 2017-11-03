@@ -12,13 +12,13 @@ namespace ConsignmentCompanyProject.com.app.dataobjects
 
     // This class holds manufacturer information for inventory managament and order module
 
-    class ManufacturerProperties : ProductProperties
+    class ManufacturerProperties
     {
         public string ManufacturerId { get; protected set; }
         public string ManufacturerName { get; protected set; }
         public string ManufacturerDescription { private set; get; }
 
-        public List<ManufacturerProperties> ListOfProducts { get; protected set; }
+        public List<ProductProperties> ListOfProducts { get; protected set; }
         
     }
 }

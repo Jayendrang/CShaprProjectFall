@@ -5,12 +5,14 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Collections.Generic;
+using System.Reflection;
+
 namespace ConsignmentCompanyProject.com.app.model
 {
     class DatabaseConnectionHandler
     {
         private static SqlConnection dbConnection;
+        //private static DataTable schemaTable;
         private const string DB_CONNECTION_STRING = "Data Source=MSI;Initial Catalog=COSIGNMENT_DATABASE;Integrated Security=True";
          
         private static void openDbConnection()
@@ -68,25 +70,46 @@ namespace ConsignmentCompanyProject.com.app.model
             return numberOfRowsAffected <= 0 ? false : true;
           }
 
-        public static T executeSelectDbQuery<T>(string selectQuery, List<KeyValuePair<String, String>> fieldValues, T returnObject) {
-            SqlDataReader reader=null;
+        public static List<object> executeSelectDbQuery<T>(string selectQuery, List<KeyValuePair<string,string>> fieldValues, T dataObject) {
+
+            SqlDataReader reader = null;
+            List<object> resultSet = new List<object>();
+            int readerIndex = 0;
             try
             {
                 openDbConnection();
+
                 SqlCommand command = new SqlCommand(selectQuery, dbConnection);
-                foreach(KeyValuePair<String, String> whereClauseValues in fieldValues)
+                foreach (KeyValuePair<string, string> whereClauseValues in fieldValues)
                 {
                     command.Parameters.AddWithValue(whereClauseValues.Key, whereClauseValues.Value);
-                    
+
                 }
-                 reader = command.ExecuteReader();
-                 reader.Close();
+                reader = command.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        //refelection         
+                        object tableData = dataObject;
+                        PropertyInfo[] classProperties = tableData.GetType().GetProperties();
+                        
+                        foreach (PropertyInfo properties in classProperties)
+                        {   
+                            properties.SetValue(tableData, reader[properties.Name]);
+                            Console.WriteLine("Data storage Object type{0} :", tableData.GetType().Name);
+                            readerIndex++;
+                        }
+                        resultSet.Add(tableData);
+
+                    }
+                }
+                reader.Close();
                 closeDbConnection();
-            }catch(SqlException excep) { Console.WriteLine(excep.StackTrace); }
+            }
+            catch (Exception e) { Console.WriteLine(e.StackTrace); }
 
-            return returnObject;
-            
-
+            return resultSet;
         }
 
         public static void executeUpdateQuery(string updateQuery, List<KeyValuePair<String, String>> tableParamsValues)

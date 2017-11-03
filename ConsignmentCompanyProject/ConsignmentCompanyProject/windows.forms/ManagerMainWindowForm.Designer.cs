@@ -29,41 +29,44 @@
         private void InitializeComponent()
         {
             this.labelUserName = new System.Windows.Forms.Label();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.menuStripManager = new System.Windows.Forms.MenuStrip();
             this.orderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.inventoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.vendorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuStrip1.SuspendLayout();
+            this.menuStripManager.SuspendLayout();
             this.SuspendLayout();
             // 
             // labelUserName
             // 
             this.labelUserName.AutoSize = true;
-            this.labelUserName.Location = new System.Drawing.Point(862, 46);
+            this.labelUserName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelUserName.Location = new System.Drawing.Point(970, 52);
             this.labelUserName.Name = "labelUserName";
-            this.labelUserName.Size = new System.Drawing.Size(0, 17);
+            this.labelUserName.Size = new System.Drawing.Size(0, 25);
             this.labelUserName.TabIndex = 0;
             // 
-            // menuStrip1
+            // menuStripManager
             // 
-            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuStripManager.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.menuStripManager.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.orderToolStripMenuItem,
             this.reportsToolStripMenuItem,
             this.inventoryToolStripMenuItem,
             this.vendorToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1085, 28);
-            this.menuStrip1.TabIndex = 1;
-            this.menuStrip1.Text = "menuStrip1";
+            this.menuStripManager.Location = new System.Drawing.Point(0, 0);
+            this.menuStripManager.Name = "menuStripManager";
+            this.menuStripManager.Padding = new System.Windows.Forms.Padding(7, 2, 0, 2);
+            this.menuStripManager.Size = new System.Drawing.Size(1221, 28);
+            this.menuStripManager.TabIndex = 1;
+            this.menuStripManager.Text = "menuStripManager";
             // 
             // orderToolStripMenuItem
             // 
             this.orderToolStripMenuItem.Name = "orderToolStripMenuItem";
             this.orderToolStripMenuItem.Size = new System.Drawing.Size(63, 24);
             this.orderToolStripMenuItem.Text = "Order ";
+            this.orderToolStripMenuItem.Click += new System.EventHandler(this.orderToolStripMenuItem_Click);
             // 
             // reportsToolStripMenuItem
             // 
@@ -85,18 +88,19 @@
             // 
             // ManagerMainWindow
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1085, 560);
+            this.ClientSize = new System.Drawing.Size(1221, 630);
             this.Controls.Add(this.labelUserName);
-            this.Controls.Add(this.menuStrip1);
-            this.MainMenuStrip = this.menuStrip1;
+            this.Controls.Add(this.menuStripManager);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MainMenuStrip = this.menuStripManager;
             this.Name = "ManagerMainWindow";
             this.Text = "ManagerMainWindow";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ManagerMainWindow_FormClosed);
             this.Load += new System.EventHandler(this.ManagerMainWindow_Load);
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            this.menuStripManager.ResumeLayout(false);
+            this.menuStripManager.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -105,7 +109,7 @@
         #endregion
 
         private System.Windows.Forms.Label labelUserName;
-        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.MenuStrip menuStripManager;
         private System.Windows.Forms.ToolStripMenuItem orderToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem reportsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem inventoryToolStripMenuItem;

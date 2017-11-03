@@ -56,9 +56,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="com.app.business\InvetoryManagement.cs" />
-    <Compile Include="com.app.business\ApplicationUserManagement.cs" />
     <Compile Include="com.app.business\OrderHandler.cs" />
     <Compile Include="com.app.business\OrderReturnHandler.cs" />
+    <Compile Include="com.app.business\UserInformationHandler.cs" />
     <Compile Include="com.app.dataobjects\AuditInformationProperties.cs" />
     <Compile Include="com.app.dataobjects\DiscountProperties.cs" />
     <Compile Include="com.app.dataobjects\LoginProperties.cs" />
@@ -177,6 +177,7 @@
     <None Include="COSIGNMENT_DATABASE_DataSet.xss">
       <DependentUpon>COSIGNMENT_DATABASE_DataSet.xsd</DependentUpon>
     </None>
+    <None Include="Properties\DataSources\ConsignmentCompanyProject.com.app.dataobjects.OrderProperties.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

@@ -13,8 +13,8 @@ namespace ConsignmentCompanyProject.com.app.dataobjects
     //Discount properties used to store and retrive vendor associated discount information
     class DiscountProperties
     {
-        public string DiscountId { set; get; }
-        public string DiscountRate { set; get; }
+        public string Discount_Id { set; get; }
+        public string Discount_Rate { set; get; }
         
     }
 }

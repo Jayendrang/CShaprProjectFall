@@ -30,18 +30,18 @@ namespace ConsignmentCompanyProject.windows.forms
             userInformation.Name = textBoxName.Text;
             userInformation.Contact = textBoxContact.Text;
             userInformation.Address = textBoxAddress.Text;
-            userInformation.UserMailId = textBoxEmailId.Text;
+            userInformation.EMail_Id = textBoxEmailId.Text;
             if (radioButtonIsVendorYes.Checked == true)
             {
                 comboBoxVendorName.Enabled = true;
                 listBoxRoles.Enabled = false;
-                userInformation.IsVendor = true;
+                userInformation.Is_Vendor = "TRUE";
                 userInformation.Role = "VENDOR USER";
 
             }else if(radioButtonIsVendorNo.Checked==true)
             {
                 comboBoxVendorName.Enabled = false;
-                userInformation.IsVendor = false;
+                userInformation.Is_Vendor = "FALSE";
             }else
             {
                 MessageBox.Show("Error","Please provide user role!", MessageBoxButtons.OK);

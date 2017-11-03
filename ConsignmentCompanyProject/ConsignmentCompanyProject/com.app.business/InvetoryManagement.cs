@@ -30,7 +30,7 @@ namespace ConsignmentCompanyProject.com.app.business
         //Retrieve multiple manfactureres information
         public List<ManufacturerProperties> getMultipleProducts(ManufacturerProperties manufacturer)
         {
-            throw new NotImplementedException();
+            
         }
 
         public void reduceProductCount(ProductProperties productInfo, int count)
