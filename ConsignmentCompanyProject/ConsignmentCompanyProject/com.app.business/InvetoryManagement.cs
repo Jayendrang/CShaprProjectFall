@@ -27,10 +27,25 @@ namespace ConsignmentCompanyProject.com.app.business
             throw new NotImplementedException();
         }
 
+        public List<ManufacturerProperties> getManufacturersProductsList(ManufacturerProperties manufacturer)
+        {
+            throw new NotImplementedException();
+        }
+
         //Retrieve multiple manfactureres information
         public List<ManufacturerProperties> getMultipleProducts(ManufacturerProperties manufacturer)
         {
-            
+            return null;
+        }
+
+        public List<KeyValuePair<string, List<ProductProperties>>> getProducts()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void reduceProductCount(ProductProperties[] productInfo)
+        {
+            throw new NotImplementedException();
         }
 
         public void reduceProductCount(ProductProperties productInfo, int count)
@@ -58,6 +73,14 @@ namespace ConsignmentCompanyProject.com.app.business
             throw new NotImplementedException();
         }
 
+        List<ProductProperties> IAppInventory<ManufacturerProperties>.getManufacturersProductsList(ManufacturerProperties manufacturer)
+        {
+            throw new NotImplementedException();
+        }
 
+        Dictionary<string, List<ProductProperties>> IAppInventory<ManufacturerProperties>.getProducts()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

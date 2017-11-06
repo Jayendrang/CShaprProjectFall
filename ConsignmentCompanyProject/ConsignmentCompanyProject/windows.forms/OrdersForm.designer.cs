@@ -30,8 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.panelOrder = new System.Windows.Forms.Panel();
-            this.groupBoxCart = new System.Windows.Forms.GroupBox();
-            this.dataGridViewCart = new System.Windows.Forms.DataGridView();
             this.groupBoxOrderDetails = new System.Windows.Forms.GroupBox();
             this.textBoxOrderDate = new System.Windows.Forms.TextBox();
             this.labelDate = new System.Windows.Forms.Label();
@@ -65,71 +63,38 @@
             this.labelVendorId = new System.Windows.Forms.Label();
             this.labelUserId = new System.Windows.Forms.Label();
             this.labelFormTitle = new System.Windows.Forms.Label();
-            this.buttonAddToOrder = new System.Windows.Forms.Button();
+            this.buttonAddToCart = new System.Windows.Forms.Button();
             this.buttonCancelOrder = new System.Windows.Forms.Button();
             this.buttonSubmitOrder = new System.Windows.Forms.Button();
+            this.groupBoxCart = new System.Windows.Forms.GroupBox();
+            this.dataGridViewCart = new System.Windows.Forms.DataGridView();
+            this.orderDetailsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.orderPropertiesBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.orderIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.manufacturerNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.productNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.productTypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.countDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pricePerUnitDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.totalPriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panelOrder.SuspendLayout();
-            this.groupBoxCart.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCart)).BeginInit();
             this.groupBoxOrderDetails.SuspendLayout();
             this.groupBoxVendor.SuspendLayout();
+            this.groupBoxCart.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCart)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.orderDetailsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.orderPropertiesBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // panelOrder
             // 
             this.panelOrder.AutoSize = true;
-            this.panelOrder.Controls.Add(this.groupBoxCart);
+            this.panelOrder.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panelOrder.Controls.Add(this.groupBoxOrderDetails);
             this.panelOrder.Controls.Add(this.groupBoxVendor);
             this.panelOrder.Controls.Add(this.labelFormTitle);
-            this.panelOrder.Controls.Add(this.buttonAddToOrder);
+            this.panelOrder.Controls.Add(this.buttonAddToCart);
             this.panelOrder.Controls.Add(this.buttonCancelOrder);
             this.panelOrder.Controls.Add(this.buttonSubmitOrder);
+            this.panelOrder.Controls.Add(this.groupBoxCart);
             this.panelOrder.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelOrder.Location = new System.Drawing.Point(0, 0);
             this.panelOrder.Name = "panelOrder";
-            this.panelOrder.Size = new System.Drawing.Size(1086, 706);
+            this.panelOrder.Size = new System.Drawing.Size(1114, 706);
             this.panelOrder.TabIndex = 0;
-            this.panelOrder.Paint += new System.Windows.Forms.PaintEventHandler(this.panelOrder_Paint);
-            // 
-            // groupBoxCart
-            // 
-            this.groupBoxCart.Controls.Add(this.dataGridViewCart);
-            this.groupBoxCart.Location = new System.Drawing.Point(169, 508);
-            this.groupBoxCart.Name = "groupBoxCart";
-            this.groupBoxCart.Size = new System.Drawing.Size(749, 162);
-            this.groupBoxCart.TabIndex = 84;
-            this.groupBoxCart.TabStop = false;
-            this.groupBoxCart.Text = "CART";
-            // 
-            // dataGridViewCart
-            // 
-            this.dataGridViewCart.AutoGenerateColumns = false;
-            this.dataGridViewCart.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewCart.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.orderIdDataGridViewTextBoxColumn,
-            this.manufacturerNameDataGridViewTextBoxColumn,
-            this.productNameDataGridViewTextBoxColumn,
-            this.productTypeDataGridViewTextBoxColumn,
-            this.countDataGridViewTextBoxColumn,
-            this.pricePerUnitDataGridViewTextBoxColumn,
-            this.totalPriceDataGridViewTextBoxColumn});
-            this.dataGridViewCart.DataSource = this.orderPropertiesBindingSource;
-            this.dataGridViewCart.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridViewCart.Location = new System.Drawing.Point(3, 18);
-            this.dataGridViewCart.Name = "dataGridViewCart";
-            this.dataGridViewCart.RowTemplate.Height = 24;
-            this.dataGridViewCart.Size = new System.Drawing.Size(743, 141);
-            this.dataGridViewCart.TabIndex = 0;
             // 
             // groupBoxOrderDetails
             // 
@@ -163,7 +128,6 @@
             this.groupBoxOrderDetails.Size = new System.Drawing.Size(919, 327);
             this.groupBoxOrderDetails.TabIndex = 83;
             this.groupBoxOrderDetails.TabStop = false;
-            this.groupBoxOrderDetails.Enter += new System.EventHandler(this.groupBoxOrderDetails_Enter);
             // 
             // textBoxOrderDate
             // 
@@ -225,6 +189,7 @@
             this.comboBoxManufacturer.Name = "comboBoxManufacturer";
             this.comboBoxManufacturer.Size = new System.Drawing.Size(160, 24);
             this.comboBoxManufacturer.TabIndex = 78;
+            this.comboBoxManufacturer.SelectedIndexChanged += new System.EventHandler(this.comboBoxManufacturer_SelectedIndexChanged);
             // 
             // labelManufacturerName
             // 
@@ -243,6 +208,9 @@
             this.comboBoxProductType.Name = "comboBoxProductType";
             this.comboBoxProductType.Size = new System.Drawing.Size(160, 24);
             this.comboBoxProductType.TabIndex = 76;
+            this.comboBoxProductType.SelectedIndexChanged += new System.EventHandler(this.comboBoxProductType_SelectedIndexChanged);
+            this.comboBoxProductType.SelectedValueChanged += new System.EventHandler(this.comboBoxProductType_SelectedValueChanged);
+            this.comboBoxProductType.Click += new System.EventHandler(this.comboBoxProductType_Click);
             // 
             // textBoxProduct
             // 
@@ -463,15 +431,16 @@
             this.labelFormTitle.TabIndex = 57;
             this.labelFormTitle.Text = "ORDERS\r\n";
             // 
-            // buttonAddToOrder
+            // buttonAddToCart
             // 
-            this.buttonAddToOrder.Location = new System.Drawing.Point(632, 452);
-            this.buttonAddToOrder.Margin = new System.Windows.Forms.Padding(4);
-            this.buttonAddToOrder.Name = "buttonAddToOrder";
-            this.buttonAddToOrder.Size = new System.Drawing.Size(135, 28);
-            this.buttonAddToOrder.TabIndex = 56;
-            this.buttonAddToOrder.Text = "&ADD TO CART";
-            this.buttonAddToOrder.UseVisualStyleBackColor = true;
+            this.buttonAddToCart.Location = new System.Drawing.Point(632, 452);
+            this.buttonAddToCart.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonAddToCart.Name = "buttonAddToCart";
+            this.buttonAddToCart.Size = new System.Drawing.Size(135, 28);
+            this.buttonAddToCart.TabIndex = 56;
+            this.buttonAddToCart.Text = "&ADD TO CART";
+            this.buttonAddToCart.UseVisualStyleBackColor = true;
+            this.buttonAddToCart.Click += new System.EventHandler(this.buttonAddToCart_Click);
             // 
             // buttonCancelOrder
             // 
@@ -482,6 +451,7 @@
             this.buttonCancelOrder.TabIndex = 55;
             this.buttonCancelOrder.Text = "&CANCEL";
             this.buttonCancelOrder.UseVisualStyleBackColor = true;
+            this.buttonCancelOrder.Click += new System.EventHandler(this.buttonCancelOrder_Click);
             // 
             // buttonSubmitOrder
             // 
@@ -494,58 +464,40 @@
             this.buttonSubmitOrder.UseVisualStyleBackColor = true;
             this.buttonSubmitOrder.Click += new System.EventHandler(this.buttonSubmitOrder_Click);
             // 
+            // groupBoxCart
+            // 
+            this.groupBoxCart.Controls.Add(this.dataGridViewCart);
+            this.groupBoxCart.Location = new System.Drawing.Point(97, 508);
+            this.groupBoxCart.Name = "groupBoxCart";
+            this.groupBoxCart.Size = new System.Drawing.Size(847, 162);
+            this.groupBoxCart.TabIndex = 84;
+            this.groupBoxCart.TabStop = false;
+            this.groupBoxCart.Text = "CART";
+            // 
+            // dataGridViewCart
+            // 
+            this.dataGridViewCart.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewCart.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridViewCart.Location = new System.Drawing.Point(3, 18);
+            this.dataGridViewCart.Name = "dataGridViewCart";
+            this.dataGridViewCart.RowTemplate.Height = 24;
+            this.dataGridViewCart.Size = new System.Drawing.Size(841, 141);
+            this.dataGridViewCart.TabIndex = 0;
+            // 
+            // orderDetailsBindingSource
+            // 
+            this.orderDetailsBindingSource.DataMember = "Order_Details";
+            this.orderDetailsBindingSource.DataSource = this.orderPropertiesBindingSource;
+            // 
             // orderPropertiesBindingSource
             // 
             this.orderPropertiesBindingSource.DataSource = typeof(ConsignmentCompanyProject.com.app.dataobjects.OrderProperties);
             // 
-            // orderIdDataGridViewTextBoxColumn
-            // 
-            this.orderIdDataGridViewTextBoxColumn.DataPropertyName = "Order_Id";
-            this.orderIdDataGridViewTextBoxColumn.HeaderText = "Order Id";
-            this.orderIdDataGridViewTextBoxColumn.Name = "orderIdDataGridViewTextBoxColumn";
-            // 
-            // manufacturerNameDataGridViewTextBoxColumn
-            // 
-            this.manufacturerNameDataGridViewTextBoxColumn.DataPropertyName = "Manufacturer_Name";
-            this.manufacturerNameDataGridViewTextBoxColumn.HeaderText = "Manufacturer Name";
-            this.manufacturerNameDataGridViewTextBoxColumn.Name = "manufacturerNameDataGridViewTextBoxColumn";
-            // 
-            // productNameDataGridViewTextBoxColumn
-            // 
-            this.productNameDataGridViewTextBoxColumn.DataPropertyName = "Product_Name";
-            this.productNameDataGridViewTextBoxColumn.HeaderText = "Product Name";
-            this.productNameDataGridViewTextBoxColumn.Name = "productNameDataGridViewTextBoxColumn";
-            // 
-            // productTypeDataGridViewTextBoxColumn
-            // 
-            this.productTypeDataGridViewTextBoxColumn.DataPropertyName = "Product_Type";
-            this.productTypeDataGridViewTextBoxColumn.HeaderText = "Product Type";
-            this.productTypeDataGridViewTextBoxColumn.Name = "productTypeDataGridViewTextBoxColumn";
-            // 
-            // countDataGridViewTextBoxColumn
-            // 
-            this.countDataGridViewTextBoxColumn.DataPropertyName = "Count";
-            this.countDataGridViewTextBoxColumn.HeaderText = "Count";
-            this.countDataGridViewTextBoxColumn.Name = "countDataGridViewTextBoxColumn";
-            // 
-            // pricePerUnitDataGridViewTextBoxColumn
-            // 
-            this.pricePerUnitDataGridViewTextBoxColumn.DataPropertyName = "Price_Per_Unit";
-            this.pricePerUnitDataGridViewTextBoxColumn.HeaderText = "Price per unit";
-            this.pricePerUnitDataGridViewTextBoxColumn.Name = "pricePerUnitDataGridViewTextBoxColumn";
-            // 
-            // totalPriceDataGridViewTextBoxColumn
-            // 
-            this.totalPriceDataGridViewTextBoxColumn.DataPropertyName = "Total_Price";
-            this.totalPriceDataGridViewTextBoxColumn.HeaderText = "Total Price";
-            this.totalPriceDataGridViewTextBoxColumn.Name = "totalPriceDataGridViewTextBoxColumn";
-            // 
             // Orders
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(1086, 706);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.AutoSize = true;
+            this.ClientSize = new System.Drawing.Size(1114, 706);
             this.Controls.Add(this.panelOrder);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Orders";
@@ -553,12 +505,13 @@
             this.Load += new System.EventHandler(this.Orders_Load);
             this.panelOrder.ResumeLayout(false);
             this.panelOrder.PerformLayout();
-            this.groupBoxCart.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCart)).EndInit();
             this.groupBoxOrderDetails.ResumeLayout(false);
             this.groupBoxOrderDetails.PerformLayout();
             this.groupBoxVendor.ResumeLayout(false);
             this.groupBoxVendor.PerformLayout();
+            this.groupBoxCart.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCart)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.orderDetailsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.orderPropertiesBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -569,7 +522,7 @@
 
         private System.Windows.Forms.Panel panelOrder;
         private System.Windows.Forms.Label labelFormTitle;
-        private System.Windows.Forms.Button buttonAddToOrder;
+        private System.Windows.Forms.Button buttonAddToCart;
         private System.Windows.Forms.Button buttonCancelOrder;
         private System.Windows.Forms.Button buttonSubmitOrder;
         private System.Windows.Forms.TextBox textBoxDiscountId;
@@ -607,12 +560,6 @@
         private System.Windows.Forms.GroupBox groupBoxCart;
         private System.Windows.Forms.DataGridView dataGridViewCart;
         private System.Windows.Forms.BindingSource orderPropertiesBindingSource;
-        private System.Windows.Forms.DataGridViewTextBoxColumn orderIdDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn manufacturerNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn productNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn productTypeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn countDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn pricePerUnitDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn totalPriceDataGridViewTextBoxColumn;
+        private System.Windows.Forms.BindingSource orderDetailsBindingSource;
     }
 }

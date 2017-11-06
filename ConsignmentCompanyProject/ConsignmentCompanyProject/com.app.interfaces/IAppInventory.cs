@@ -9,17 +9,17 @@ namespace ConsignmentCompanyProject.com.app.interfaces
 
     //Interface for inventory related operations
 
-    interface IAppInventory<T> where T : ManufacturerProperties
+    interface IAppInventory<T> 
     {
 
-        List<T> getMultipleProducts(T manufacturer);
+        List<ProductProperties> getManufacturersProductsList(T manufacturer);
         T searchProduct(string ProductName);
         List<T> getManufacturersList();
         T searchManufacturer(string manufacturerName);
         string addProduct(ProductProperties productInfo);
         T removeProduct(ProductProperties productId);
-        void reduceProductCount(ProductProperties productInfo, int count);
-
+        void reduceProductCount(ProductProperties[] productInfo);
+        Dictionary<string, List<ProductProperties>> getProducts();
     }
 
     

@@ -15,6 +15,6 @@ namespace ConsignmentCompanyProject.com.app.dataobjects
     {
         public string Discount_Id { set; get; }
         public string Discount_Rate { set; get; }
-        
+        public AuditInformationProperties audit_Information { set; get; }        
     }
 }

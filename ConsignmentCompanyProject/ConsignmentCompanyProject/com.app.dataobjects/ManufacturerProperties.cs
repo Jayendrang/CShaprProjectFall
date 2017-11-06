@@ -14,11 +14,11 @@ namespace ConsignmentCompanyProject.com.app.dataobjects
 
     class ManufacturerProperties
     {
-        public string ManufacturerId { get; protected set; }
-        public string ManufacturerName { get; protected set; }
-        public string ManufacturerDescription { private set; get; }
+        public string Manufacturer_Id { get; set; }
+        public string Manufacturer_Name { get; set; }
+        public string Manufacturer_Detail {  set;  get; }
 
-        public List<ProductProperties> ListOfProducts { get; protected set; }
+       
         
     }
 }

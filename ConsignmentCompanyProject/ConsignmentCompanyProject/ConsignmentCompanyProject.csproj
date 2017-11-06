@@ -12,6 +12,21 @@
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -38,6 +53,7 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Xaml" />
@@ -76,13 +92,8 @@
     <Compile Include="com.app.model\InventoryDBProcessHandler.cs" />
     <Compile Include="com.app.model\OrderDBProcessHandler.cs" />
     <Compile Include="com.app.model\UserDBProcessHandler.cs" />
-    <Compile Include="com.app.utlitiy\BusinessUtlities.cs" />
-    <Compile Include="com.app.utlitiy\FormValidationUtility.cs" />
-    <Compile Include="COSIGNMENT_DATABASE_DataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>COSIGNMENT_DATABASE_DataSet.xsd</DependentUpon>
-    </Compile>
+    <Compile Include="com.app.utilities\BusinessUtlities.cs" />
+    <Compile Include="com.app.utilities\FormValidationUtility.cs" />
     <Compile Include="windows.forms\InventoryManagementForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -166,17 +177,6 @@
     <EmbeddedResource Include="windows.forms\VendorForm.resx">
       <DependentUpon>VendorForm.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="COSIGNMENT_DATABASE_DataSet.xsc">
-      <DependentUpon>COSIGNMENT_DATABASE_DataSet.xsd</DependentUpon>
-    </None>
-    <None Include="COSIGNMENT_DATABASE_DataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>COSIGNMENT_DATABASE_DataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="COSIGNMENT_DATABASE_DataSet.xss">
-      <DependentUpon>COSIGNMENT_DATABASE_DataSet.xsd</DependentUpon>
-    </None>
     <None Include="Properties\DataSources\ConsignmentCompanyProject.com.app.dataobjects.OrderProperties.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -196,6 +196,27 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="com.app.reports\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AppData\ConsignmentStoreDB.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="AppData\ConsignmentStoreDB_log.ldf">
+      <DependentUpon>ConsignmentStoreDB.mdf</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

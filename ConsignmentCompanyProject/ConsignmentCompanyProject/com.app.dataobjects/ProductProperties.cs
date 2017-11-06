@@ -11,15 +11,14 @@ namespace ConsignmentCompanyProject.com.app.dataobjects
      * */
 
     //This class holds manufacturer information and product managament; this class holds persistant data transacion persistance
-    class ProductProperties 
+    class ProductProperties : ManufacturerProperties
     {
-        public string ProductId { get; set; }
-        public string ProductName { get; set; }
-        public string ProductType { get; set; }
-        public string ProductDescription { get; set; }
-        public int ProductCurrentCount { get; set; }
-        public int MinimumCount { get; set; }
-        public double PricePerUnit { get; set; }
+        public string Product_Id { get; set; }
+        public string Product_Name { get; set; }
+        public string Product_Type { get; set; }
+        public int Product_Current_Count { get; set; }
+        public int Minimum_Count { get; set; }
+        public double Price_Per_Unit { get; set; }
         
     }
     

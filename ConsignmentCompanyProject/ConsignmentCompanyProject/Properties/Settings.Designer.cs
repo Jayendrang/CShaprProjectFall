@@ -26,10 +26,11 @@ namespace ConsignmentCompanyProject.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=MSI;Initial Catalog=COSIGNMENT_DATABASE;Integrated Security=True")]
-        public string COSIGNMENT_DATABASE_ConnectionString {
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\AppData\\Consi" +
+            "gnmentStoreDB.mdf;Integrated Security=True;Connect Timeout=30")]
+        public string ConsignmentStoreDBConnection {
             get {
-                return ((string)(this["COSIGNMENT_DATABASE_ConnectionString"]));
+                return ((string)(this["ConsignmentStoreDBConnection"]));
             }
         }
     }

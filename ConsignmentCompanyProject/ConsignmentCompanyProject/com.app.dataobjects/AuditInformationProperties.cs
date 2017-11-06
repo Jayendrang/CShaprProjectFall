@@ -18,5 +18,6 @@ namespace ConsignmentCompanyProject.com.app.dataobjects
         public string createdOn { protected set; get; }
         public string modifiedBy { protected set; get; }
         public string modifiedOn { protected set; get; }
+        
     }
 }
