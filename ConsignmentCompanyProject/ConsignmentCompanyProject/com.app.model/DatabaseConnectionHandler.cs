@@ -73,14 +73,14 @@ namespace ConsignmentCompanyProject.com.app.model
 
 
 
-        public static bool executeUpdateQuery(string updateQuery, List<KeyValuePair<String, String>> tableParamsValues)
+        public static bool executeUpdateQuery(string updateQuery, List<KeyValuePair<string, string>> tableParamsValues)
         {
             int numberofRowsUpdated=0;
             try {
                 openDbConnection();
                 SqlCommand command = new SqlCommand(updateQuery, dbConnection);
 
-                foreach (KeyValuePair<String, String> param in tableParamsValues)
+                foreach (KeyValuePair<string, string> param in tableParamsValues)
                 {
                     command.Parameters.AddWithValue(param.Key, param.Value);
                 }
@@ -91,6 +91,23 @@ namespace ConsignmentCompanyProject.com.app.model
             catch (SqlException exception) { Console.WriteLine(exception.StackTrace); }
 
             return numberofRowsUpdated <= 0 ? false : true; 
+        }
+
+        public static bool executeDeleteQuery(string deleteQuery, List<KeyValuePair<string,string>> tableParamValues)
+        {
+            int numberofRowsDeleted = 0;
+            try {
+                openDbConnection();
+                SqlCommand comman = new SqlCommand(deleteQuery, dbConnection);
+                foreach(KeyValuePair<string,string> param in tableParamValues)
+                {
+                    comman.Parameters.AddWithValue(param.Key, param.Value);
+                }
+                numberofRowsDeleted = comman.ExecuteNonQuery();
+                closeDbConnection();
+            } catch(Exception ex) { Console.WriteLine(ex.StackTrace); }
+            return numberofRowsDeleted <= 0 ? false : true;
+
         }
       
         public static DataSet executeSelectQuery(string queryString, List<KeyValuePair<string,string>> tableParams)

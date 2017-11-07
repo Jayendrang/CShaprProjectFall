@@ -150,7 +150,6 @@ namespace ConsignmentCompanyProject
             man.Manufacturer_Id = "MAN002";
             string selectQueryString = "SELECT PRODUCT.PRODUCT_ID,PRODUCT_TYPE,PRODUCT.PRODUCT_NAME,PRODUCT.PRODUCT_CURRENT_COUNT,PRODUCT.PRICE_PER_UNIT,PRODUCT.MINIMUM_COUNT,MANUFACTURER.MANUFACTURER_ID, MANUFACTURER.MANUFACTURER_NAME,MANUFACTURER_DETAIL FROM PRODUCT INNER JOIN MANUFACTURER ON PRODUCT.MANUFACTURER_ID = MANUFACTURER.MANUFACTURER_ID WHERE MANUFACTURER.MANUFACTURER_ID = @MANFACTURERID ORDER BY MANUFACTURER.MANUFACTURER_NAME;";
 
-            IAppInventory< ManufacturerProperties > sample = new InventoryDBProcessHandler();
             
         }
         private List<string> getproductTypeList()
@@ -252,6 +251,4 @@ namespace ConsignmentCompanyProject
     }
     
 
-    
-    
-
+ 

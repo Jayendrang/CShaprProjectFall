@@ -10,7 +10,7 @@ using ConsignmentCompanyProject.com.app.dataobjects;
 using ConsignmentCompanyProject.com.app.model;
 namespace ConsignmentCompanyProject.com.app.model
 {
-    class InventoryDBProcessHandler : IAppInventory<ManufacturerProperties>
+    class InventoryDBProcessHandler : IAppInventory<ProductProperties>
     {
         public static Dictionary<string, List<ProductProperties>> INVENTORY_LIST = new Dictionary<string, List<ProductProperties>>();
         public static List<string> PRODUCT_TYPE = new List<string>();
@@ -92,29 +92,9 @@ namespace ConsignmentCompanyProject.com.app.model
         }
 
         public void reduceProductCount(ProductProperties[] productInfo)
-        {
-            string updateQueryString = "UPDATE PRODUCT SET PRODUCT_CURRENT_COUNT=PRODUCT_CURRENT_COUNT-@ORDER_COUNT WHERE PRODUCT_ID=@PRODUCTID";
-            List<KeyValuePair<string, string>> tableQueryData = new List<KeyValuePair<string, string>>();
-            bool rt = false;
-            foreach (ProductProperties props in productInfo)
-            {
-                string key = props.Product_Id;
-                int value = props.Product_Current_Count;
-                tableQueryData.Add(new KeyValuePair<string, string>(key, value.ToString()));
-                rt = DatabaseConnectionHandler.executeUpdateQuery(updateQueryString, tableQueryData);
-            }
-            if (rt == true)
-            {
-                Console.WriteLine("Executed"); 
-            }
-            rt = false;
-        }
+        {}
 
-        public ManufacturerProperties removeProduct(ProductProperties productId)
-        {
-
-            throw new NotImplementedException();
-        }
+      
 
         public ManufacturerProperties searchManufacturer(string manufacturerName)
         {
@@ -124,6 +104,68 @@ namespace ConsignmentCompanyProject.com.app.model
         public ManufacturerProperties searchProduct(string ProductName)
         {
             throw new NotImplementedException();
+        }
+
+        public List<ProductProperties> getManufacturersProductsList(ProductProperties manufacturer)
+        {
+            throw new NotImplementedException();
+        }
+
+        ProductProperties IAppInventory<ProductProperties>.searchProduct(string ProductName)
+        {
+            throw new NotImplementedException();
+        }
+
+        List<ProductProperties> IAppInventory<ProductProperties>.getManufacturersList()
+        {
+            throw new NotImplementedException();
+        }
+
+        ProductProperties IAppInventory<ProductProperties>.searchManufacturer(string manufacturerName)
+        {
+            throw new NotImplementedException();
+        }
+
+        ProductProperties IAppInventory<ProductProperties>.addNewProduct(ProductProperties productInfo)
+        {
+            string insertNewProductQuery = "INSERT INTO PRODUCT (PRODUCT_ID,PRODUCT_NAME,PRODUCT_TYPE,MANUFACTURER_ID,PRODUCT_CURRENT_COUNT,MINIMUM_COUNT,PRICE_PER_UNIT,CREATED_BY,CREATED_DATE,MODIFIED_BY,MODIFIED_DATE) VALUES(@PRODUCT_ID,@PRODUCT_NAME,@PRODUCT_TYPE,@MANUFACTURER_ID,@PRODUCT_CURRENT_COUNT,@MINIMUM_COUNT,@PRICE_PER_UNIT,@CREATED_BY,@CREATED_DATE,@MODIFIED_BY,@MODIFIED_DATE)";
+            @PRODUCT_ID,@PRODUCT_NAME,@PRODUCT_TYPE,@MANUFACTURER_ID,@PRODUCT_CURRENT_COUNT,@MINIMUM_COUNT,@PRICE_PER_UNIT,@CREATED_BY,@CREATED_DATE,@MODIFIED_BY,@MODIFIED_DATE
+            List<KeyValuePair<string, string>> tableQueryData = new List<KeyValuePair<string, string>>();
+            tableQueryData.Add(new KeyValuePair<string, string>("@PRODUCTID",productInfo.Product_Id));
+            tableQueryData.Add(new KeyValuePair<string, string>("@PRODUCTNAME",productInfo.Product_Name));
+            tableQueryData.Add(new KeyValuePair<string, string>("@PRODUCTTYPE", productInfo.Product_Name));
+
+
+            return null;
+        }
+        
+        bool IAppInventory<ProductProperties>.reduceProductCount(ProductProperties[] productInfo)
+        {
+
+            string updateQueryString = "UPDATE PRODUCT SET PRODUCT_CURRENT_COUNT=PRODUCT_CURRENT_COUNT-@ORDER_COUNT WHERE PRODUCT_ID=@PRODUCTID";
+            List<KeyValuePair<string, string>> tableQueryData = new List<KeyValuePair<string, string>>();
+            bool result = false;
+            foreach (ProductProperties props in productInfo)
+            {
+                string key = props.Product_Id;
+                int value = props.Product_Current_Count;
+                tableQueryData.Add(new KeyValuePair<string, string>(key, value.ToString()));
+                result = DatabaseConnectionHandler.executeUpdateQuery(updateQueryString, tableQueryData);
+            }
+            return result;
+        }
+
+        public bool removeProduct(ProductProperties productId)
+        {
+            bool result = false;
+
+            try { 
+            string deleteQueryString = "DELETE FROM PRODUCT WHERE PRODUCT_ID=@PRODUCTID";
+            List< KeyValuePair < string, string>> tableQueryData = new List<KeyValuePair<string, string>>();
+            tableQueryData.Add(new KeyValuePair<string, string>("@PRODUCTID", productId.Product_Id));
+            result = DatabaseConnectionHandler.executeDeleteQuery(deleteQueryString, tableQueryData);
+            } catch(Exception ex) { Console.WriteLine(ex.StackTrace); }
+            return result;
         }
     }
 }

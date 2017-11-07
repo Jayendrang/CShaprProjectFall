@@ -16,9 +16,9 @@ namespace ConsignmentCompanyProject.com.app.interfaces
         T searchProduct(string ProductName);
         List<T> getManufacturersList();
         T searchManufacturer(string manufacturerName);
-        string addProduct(ProductProperties productInfo);
-        T removeProduct(ProductProperties productId);
-        void reduceProductCount(ProductProperties[] productInfo);
+        T addNewProduct(ProductProperties productInfo);
+        bool removeProduct(ProductProperties productId);
+        bool reduceProductCount(ProductProperties[] productInfo);
         Dictionary<string, List<ProductProperties>> getProducts();
     }
 
