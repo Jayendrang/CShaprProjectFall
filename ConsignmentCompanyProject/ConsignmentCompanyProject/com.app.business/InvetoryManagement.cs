@@ -68,6 +68,11 @@ namespace ConsignmentCompanyProject.com.app.business
             throw new NotImplementedException();
         }
 
+        ManufacturerProperties IAppInventory<ManufacturerProperties>.addProduct(ProductProperties productInfo)
+        {
+            throw new NotImplementedException();
+        }
+
         string addProduct(ManufacturerProperties manufacturerProperties)
         {
             throw new NotImplementedException();
@@ -82,5 +87,17 @@ namespace ConsignmentCompanyProject.com.app.business
         {
             throw new NotImplementedException();
         }
+
+        bool IAppInventory<ManufacturerProperties>.reduceProductCount(ProductProperties[] productInfo)
+        {
+            throw new NotImplementedException();
+        }
+
+        bool IAppInventory<ManufacturerProperties>.removeProduct(ProductProperties productId)
+        {
+            throw new NotImplementedException();
+        }
+
+        
     }
 }
