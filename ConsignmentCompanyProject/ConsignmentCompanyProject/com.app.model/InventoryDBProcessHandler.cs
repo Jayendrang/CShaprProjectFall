@@ -14,10 +14,7 @@ namespace ConsignmentCompanyProject.com.app.model
     {
         public static Dictionary<string, List<ProductProperties>> INVENTORY_LIST = new Dictionary<string, List<ProductProperties>>();
         public static List<string> PRODUCT_TYPE = new List<string>();
-        public string addProduct(ProductProperties productInfo)
-        {
-            throw new NotImplementedException();
-        }
+        
 
         public List<ManufacturerProperties> getManufacturersList()
         {
@@ -91,25 +88,9 @@ namespace ConsignmentCompanyProject.com.app.model
             return productCollection;
         }
 
-        public void reduceProductCount(ProductProperties[] productInfo)
-        {}
+       
 
       
-
-        public ManufacturerProperties searchManufacturer(string manufacturerName)
-        {
-            throw new NotImplementedException();
-        }
-
-        public ManufacturerProperties searchProduct(string ProductName)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<ProductProperties> getManufacturersProductsList(ProductProperties manufacturer)
-        {
-            throw new NotImplementedException();
-        }
 
         ProductProperties IAppInventory<ProductProperties>.searchProduct(string ProductName)
         {
@@ -126,15 +107,24 @@ namespace ConsignmentCompanyProject.com.app.model
             throw new NotImplementedException();
         }
 
-        ProductProperties IAppInventory<ProductProperties>.addNewProduct(ProductProperties productInfo)
+        ProductProperties IAppInventory<ProductProperties>.addNewProduct(ProductProperties productInfo, UserInformationProperties userInfo)
         {
             string insertNewProductQuery = "INSERT INTO PRODUCT (PRODUCT_ID,PRODUCT_NAME,PRODUCT_TYPE,MANUFACTURER_ID,PRODUCT_CURRENT_COUNT,MINIMUM_COUNT,PRICE_PER_UNIT,CREATED_BY,CREATED_DATE,MODIFIED_BY,MODIFIED_DATE) VALUES(@PRODUCT_ID,@PRODUCT_NAME,@PRODUCT_TYPE,@MANUFACTURER_ID,@PRODUCT_CURRENT_COUNT,@MINIMUM_COUNT,@PRICE_PER_UNIT,@CREATED_BY,@CREATED_DATE,@MODIFIED_BY,@MODIFIED_DATE)";
-            @PRODUCT_ID,@PRODUCT_NAME,@PRODUCT_TYPE,@MANUFACTURER_ID,@PRODUCT_CURRENT_COUNT,@MINIMUM_COUNT,@PRICE_PER_UNIT,@CREATED_BY,@CREATED_DATE,@MODIFIED_BY,@MODIFIED_DATE
-            List<KeyValuePair<string, string>> tableQueryData = new List<KeyValuePair<string, string>>();
-            tableQueryData.Add(new KeyValuePair<string, string>("@PRODUCTID",productInfo.Product_Id));
-            tableQueryData.Add(new KeyValuePair<string, string>("@PRODUCTNAME",productInfo.Product_Name));
-            tableQueryData.Add(new KeyValuePair<string, string>("@PRODUCTTYPE", productInfo.Product_Name));
-
+            
+            List<KeyValuePair<string, string>> tableParamsValues = new List<KeyValuePair<string, string>>();
+            tableParamsValues.Add(new KeyValuePair<string, string>("@PRODUCT_ID",productInfo.Product_Id));
+            tableParamsValues.Add(new KeyValuePair<string, string>("@PRODUCT_NAME", productInfo.Product_Name));
+            tableParamsValues.Add(new KeyValuePair<string, string>("@PRODUCT_TYPE", productInfo.Product_Type));
+            tableParamsValues.Add(new KeyValuePair<string, string>("@MANUFACTURER_ID", productInfo.Manufacturer_Id));
+            tableParamsValues.Add(new KeyValuePair<string, string>("@PRODUCT_CURRENT_COUNT", Convert.ToString(productInfo.Product_Current_Count)));
+            tableParamsValues.Add(new KeyValuePair<string, string>("@MINIMUM_COUNT",Convert.ToString(productInfo.Minimum_Count)));
+            tableParamsValues.Add(new KeyValuePair<string, string>("@PRICE_PER_UNIT", Convert.ToString(productInfo.Price_Per_Unit)));
+            tableParamsValues.Add(new KeyValuePair<string, string>("@CREATED_BY", userInfo.User_Id));
+            tableParamsValues.Add(new KeyValuePair<string, string>("@CREATED_DATE", com.app.utlitiy.BusinessUtlities.getCurrentDateTime));
+            tableParamsValues.Add(new KeyValuePair<string, string>("@MODIFIED_BY", userInfo.User_Id));
+            tableParamsValues.Add(new KeyValuePair<string, string>("@MODIFIED_DATE", com.app.utlitiy.BusinessUtlities.getCurrentDateTime));
+            DatabaseConnectionHandler.executeInsertDbQuery(insertNewProductQuery, tableParamsValues);
+            
 
             return null;
         }
@@ -167,5 +157,33 @@ namespace ConsignmentCompanyProject.com.app.model
             } catch(Exception ex) { Console.WriteLine(ex.StackTrace); }
             return result;
         }
+
+        public List<ProductProperties> getManufacturersProductsList(ProductProperties manufacturer)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool removeProduct(ProductProperties productId, UserInformationProperties userinfo)
+        {
+            throw new NotImplementedException();
+        }
+
+        public  void addNewManufacturer(ManufacturerProperties manufacturerInfo,UserInformationProperties userInfo)
+        {
+            string insertNewManufacturerQuery = "INSERT INTO MANUFACTURER(MANUFACTURER_ID,MANUFACTURER_NAME,MANUFACTURER_DETAIL,CREATED_BY,CREATED_DATE,MODIFIED_BY,MODIFIED_DATE) VALUES(@MANUFACTURER_ID,@MANUFACTURER_NAME,@MANUFACTURER_DETAIL,@CREATED_BY,@CREATED_DATE,@MODIFIED_BY,@MODIFIED_DATE)";
+            List<KeyValuePair<string, string>> tableQueryData = new List<KeyValuePair<string, string>>();
+            tableQueryData.Add(new KeyValuePair<string, string>("@MANUFACTURER_ID", manufacturerInfo.Manufacturer_Id));
+            tableQueryData.Add(new KeyValuePair<string, string>("@MANUFACTURER_NAME", manufacturerInfo.Manufacturer_Name));
+            tableQueryData.Add(new KeyValuePair<string, string>("@MANUFACTURER_DETAIL", manufacturerInfo.Manufacturer_Detail));
+            tableQueryData.Add(new KeyValuePair<string, string>("@CREATED_BY", userInfo.User_Id));
+            tableQueryData.Add(new KeyValuePair<string, string>("@CREATED_DATE", com.app.utlitiy.BusinessUtlities.getCurrentDateTime));
+            tableQueryData.Add(new KeyValuePair<string, string>("@MODIFIED_BY", userInfo.User_Id));
+            tableQueryData.Add(new KeyValuePair<string, string>("@MODIFIED_DATE", com.app.utlitiy.BusinessUtlities.getCurrentDateTime));
+            DatabaseConnectionHandler.executeInsertDbQuery(insertNewManufacturerQuery, tableQueryData);
+            
+        }
+
+
+        
     }
 }

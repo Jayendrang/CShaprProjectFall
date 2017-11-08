@@ -37,7 +37,7 @@
             this.radioButtonSearchManufacturer = new System.Windows.Forms.RadioButton();
             this.radioButtonRemoveManufacturer = new System.Windows.Forms.RadioButton();
             this.radioButtonAddNewManufacturer = new System.Windows.Forms.RadioButton();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBoxManfacturerDescriptions = new System.Windows.Forms.TextBox();
             this.labelManufacturerDescription = new System.Windows.Forms.Label();
             this.buttonAddManufacturer = new System.Windows.Forms.Button();
             this.groupBoxProductInfo = new System.Windows.Forms.GroupBox();
@@ -118,7 +118,7 @@
             this.groupBoxManufacturerInfo.Controls.Add(this.radioButtonSearchManufacturer);
             this.groupBoxManufacturerInfo.Controls.Add(this.radioButtonRemoveManufacturer);
             this.groupBoxManufacturerInfo.Controls.Add(this.radioButtonAddNewManufacturer);
-            this.groupBoxManufacturerInfo.Controls.Add(this.textBox1);
+            this.groupBoxManufacturerInfo.Controls.Add(this.textBoxManfacturerDescriptions);
             this.groupBoxManufacturerInfo.Controls.Add(this.labelManufacturerDescription);
             this.groupBoxManufacturerInfo.Controls.Add(this.buttonAddManufacturer);
             this.groupBoxManufacturerInfo.Controls.Add(this.labelManufacturerId);
@@ -167,13 +167,13 @@
             this.radioButtonAddNewManufacturer.Text = "ADD NEW MANUFACTURER";
             this.radioButtonAddNewManufacturer.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // textBoxManfacturerDescriptions
             // 
-            this.textBox1.Location = new System.Drawing.Point(272, 155);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(250, 45);
-            this.textBox1.TabIndex = 7;
+            this.textBoxManfacturerDescriptions.Location = new System.Drawing.Point(272, 155);
+            this.textBoxManfacturerDescriptions.Multiline = true;
+            this.textBoxManfacturerDescriptions.Name = "textBoxManfacturerDescriptions";
+            this.textBoxManfacturerDescriptions.Size = new System.Drawing.Size(250, 45);
+            this.textBoxManfacturerDescriptions.TabIndex = 7;
             // 
             // labelManufacturerDescription
             // 
@@ -193,6 +193,7 @@
             this.buttonAddManufacturer.TabIndex = 5;
             this.buttonAddManufacturer.Text = "ADD &MANUFACTURER";
             this.buttonAddManufacturer.UseVisualStyleBackColor = true;
+            this.buttonAddManufacturer.Click += new System.EventHandler(this.buttonAddManufacturer_Click);
             // 
             // groupBoxProductInfo
             // 
@@ -448,7 +449,7 @@
         private System.Windows.Forms.TextBox textBoxDescription;
         private System.Windows.Forms.RadioButton radioButtonRemoveManufacturer;
         private System.Windows.Forms.RadioButton radioButtonAddNewManufacturer;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBoxManfacturerDescriptions;
         private System.Windows.Forms.Label labelManufacturerDescription;
         private System.Windows.Forms.RadioButton radioButtonRemoveProduct;
         private System.Windows.Forms.RadioButton radioButtonUpdateProductUnit;

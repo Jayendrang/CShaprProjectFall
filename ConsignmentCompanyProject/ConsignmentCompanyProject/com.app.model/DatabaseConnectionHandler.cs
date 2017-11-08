@@ -16,11 +16,9 @@ namespace ConsignmentCompanyProject.com.app.model
     class DatabaseConnectionHandler
     {
         private static SqlConnection dbConnection;
-        //private static DataTable schemaTable;
-        //private const string DB_CONNECTION_STRING = "Data Source=MSI;Initial Catalog=COSIGNMENT_DATABASE;Integrated Security=True";
-
+        
         //Reading Connection properties from App.Config file
-        private static string _CONSIGNMENT_DB_STRING = ConfigurationManager.ConnectionStrings["ConsignmentCompanyProject.Properties.Settings.ConsignmentStoreDBConnection"].ConnectionString;  
+        private static string _CONSIGNMENT_DB_STRING = ConfigurationManager.ConnectionStrings["ConsignmentCompanyProject.Properties.Settings.CONSIGNMENTDB"].ConnectionString;  
         // this method open the database connectivity with the mysql server .
         private static void openDbConnection()
         {
@@ -103,6 +101,7 @@ namespace ConsignmentCompanyProject.com.app.model
                 {
                     comman.Parameters.AddWithValue(param.Key, param.Value);
                 }
+
                 numberofRowsDeleted = comman.ExecuteNonQuery();
                 closeDbConnection();
             } catch(Exception ex) { Console.WriteLine(ex.StackTrace); }
