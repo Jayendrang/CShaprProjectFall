@@ -34,4 +34,5 @@ namespace ConsignmentCompanyProject.com.app.model
             return userinfo;
         }
     }
+
 }

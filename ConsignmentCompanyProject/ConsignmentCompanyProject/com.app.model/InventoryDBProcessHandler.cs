@@ -10,28 +10,19 @@ using ConsignmentCompanyProject.com.app.dataobjects;
 using ConsignmentCompanyProject.com.app.model;
 namespace ConsignmentCompanyProject.com.app.model
 {
+    /*
+     * Created by Jayendran Gurumoorthy
+     * This class contains datbaase queries that related to Inventory Management
+     */
+
     class InventoryDBProcessHandler : IAppInventory<ProductProperties>
     {
+        //static fields to hold the product list and product from inventory
         public static Dictionary<string, List<ProductProperties>> INVENTORY_LIST = new Dictionary<string, List<ProductProperties>>();
         public static List<string> PRODUCT_TYPE = new List<string>();
-        
+        public static List<ProductProperties> PRODUCT_LIST = new List<ProductProperties>();
 
-        public List<ManufacturerProperties> getManufacturersList()
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<ProductProperties> getManufacturersProductsList(ManufacturerProperties manufacturer)
-        {
-            DataSet resultDataset;
-            List<ProductProperties> manufacturerProducts = new List<ProductProperties>();
-            string selectQueryString = "SELECT PRODUCT.PRODUCT_ID,PRODUCT_TYPE,PRODUCT.PRODUCT_NAME,PRODUCT.PRODUCT_CURRENT_COUNT,PRODUCT.PRICE_PER_UNIT,PRODUCT.MINIMUM_COUNT,MANUFACTURER.MANUFACTURER_ID, MANUFACTURER.MANUFACTURER_NAME,MANUFACTURER_DETAIL FROM PRODUCT INNER JOIN MANUFACTURER ON PRODUCT.MANUFACTURER_ID = MANUFACTURER.MANUFACTURER_ID WHERE MANUFACTURER.MANUFACTURER_ID = @MANFACTURERID ORDER BY MANUFACTURER.MANUFACTURER_NAME;";
-            List<KeyValuePair<string, string>> tableQueryData = new List<KeyValuePair<string, string>>();
-            tableQueryData.Add(new KeyValuePair<string, string>("@MANFACTURERID", manufacturer.Manufacturer_Id));
-            resultDataset = DatabaseConnectionHandler.executeSelectQuery(selectQueryString,  tableQueryData);
-            return manufacturerProducts;
-        }
-
+        //retrive Product details from database 
         public Dictionary<string, List<ProductProperties>> getProducts()
         {
             DataSet resultDataset;
@@ -56,7 +47,8 @@ namespace ConsignmentCompanyProject.com.app.model
                     productProperties.Manufacturer_Name = resultrow["Manufacturer_Name"].ToString();
                     productProperties.Manufacturer_Detail = resultrow["Manufacturer_detail"].ToString();
                     productList.Add(productProperties);
-                    PRODUCT_TYPE.Add(productProperties.Product_Type);           
+                    PRODUCT_TYPE.Add(productProperties.Product_Type);
+                    PRODUCT_LIST.Add(productProperties);
                 }
             }else
             {
@@ -80,7 +72,7 @@ namespace ConsignmentCompanyProject.com.app.model
 
                 }
 
-             
+                
                 productCollection.Add(manf_id, tempProductList);
               }
             
@@ -92,25 +84,35 @@ namespace ConsignmentCompanyProject.com.app.model
 
       
 
-        ProductProperties IAppInventory<ProductProperties>.searchProduct(string ProductName)
+        // Retrieve manufactures list from database
+        List<ManufacturerProperties> IAppInventory<ProductProperties>.getManufacturersList()
         {
-            throw new NotImplementedException();
+            ManufacturerProperties manufacturerProperties;
+            List<ManufacturerProperties> manufacturersList = new List<ManufacturerProperties>();
+            DataSet resultDataset;
+            string selectQueryString = "SELECT MANUFACTURER_ID, MANUFACTURER_NAME, MANUFACTURER_DETAIL FROM MANUFACTURER";
+            resultDataset = DatabaseConnectionHandler.executeSelectQuery(selectQueryString, null);
+            if (resultDataset != null)
+            {
+                foreach (DataRow resultrow in resultDataset.Tables[0].Rows)
+                {
+                    manufacturerProperties = new ManufacturerProperties();
+                    manufacturerProperties.Manufacturer_Id = resultrow["Manufacturer_Id"].ToString();
+                    manufacturerProperties.Manufacturer_Name = resultrow["Manufacturer_Name"].ToString();
+                    manufacturerProperties.Manufacturer_Detail = resultrow["Manufacturer_Detail"].ToString();
+                    manufacturersList.Add(manufacturerProperties);
+                }
+            }
+            return manufacturersList;
         }
 
-        List<ProductProperties> IAppInventory<ProductProperties>.getManufacturersList()
-        {
-            throw new NotImplementedException();
-        }
+        
+        // Adding new product in Inventory
 
-        ProductProperties IAppInventory<ProductProperties>.searchManufacturer(string manufacturerName)
-        {
-            throw new NotImplementedException();
-        }
-
-        ProductProperties IAppInventory<ProductProperties>.addNewProduct(ProductProperties productInfo, UserInformationProperties userInfo)
+        bool IAppInventory<ProductProperties>.addNewProduct(ProductProperties productInfo, UserInformationProperties userInfo)
         {
             string insertNewProductQuery = "INSERT INTO PRODUCT (PRODUCT_ID,PRODUCT_NAME,PRODUCT_TYPE,MANUFACTURER_ID,PRODUCT_CURRENT_COUNT,MINIMUM_COUNT,PRICE_PER_UNIT,CREATED_BY,CREATED_DATE,MODIFIED_BY,MODIFIED_DATE) VALUES(@PRODUCT_ID,@PRODUCT_NAME,@PRODUCT_TYPE,@MANUFACTURER_ID,@PRODUCT_CURRENT_COUNT,@MINIMUM_COUNT,@PRICE_PER_UNIT,@CREATED_BY,@CREATED_DATE,@MODIFIED_BY,@MODIFIED_DATE)";
-            
+            bool resultStatus = false;
             List<KeyValuePair<string, string>> tableParamsValues = new List<KeyValuePair<string, string>>();
             tableParamsValues.Add(new KeyValuePair<string, string>("@PRODUCT_ID",productInfo.Product_Id));
             tableParamsValues.Add(new KeyValuePair<string, string>("@PRODUCT_NAME", productInfo.Product_Name));
@@ -123,12 +125,13 @@ namespace ConsignmentCompanyProject.com.app.model
             tableParamsValues.Add(new KeyValuePair<string, string>("@CREATED_DATE", com.app.utlitiy.BusinessUtlities.getCurrentDateTime));
             tableParamsValues.Add(new KeyValuePair<string, string>("@MODIFIED_BY", userInfo.User_Id));
             tableParamsValues.Add(new KeyValuePair<string, string>("@MODIFIED_DATE", com.app.utlitiy.BusinessUtlities.getCurrentDateTime));
-            DatabaseConnectionHandler.executeInsertDbQuery(insertNewProductQuery, tableParamsValues);
+            resultStatus=DatabaseConnectionHandler.executeInsertDbQuery(insertNewProductQuery, tableParamsValues);
             
 
-            return null;
+            return resultStatus;
         }
         
+        //reduce product count based on order item count when customer submitting the order
         bool IAppInventory<ProductProperties>.reduceProductCount(ProductProperties[] productInfo)
         {
 
@@ -145,6 +148,20 @@ namespace ConsignmentCompanyProject.com.app.model
             return result;
         }
 
+        //add product count based on order item count when customer submitting the order
+        bool IAppInventory<ProductProperties>.increaseProductCount(ProductProperties productInfo)
+        {
+
+            string updateQueryString = "UPDATE PRODUCT SET PRODUCT_CURRENT_COUNT=@ORDER_COUNT WHERE PRODUCT_ID=@PRODUCTID";
+            List<KeyValuePair<string, string>> tableQueryData = new List<KeyValuePair<string, string>>();
+            bool result = false;
+                string key = productInfo.Product_Id;
+                int value = productInfo.Product_Current_Count;
+                tableQueryData.Add(new KeyValuePair<string, string>(key, value.ToString()));
+                result = DatabaseConnectionHandler.executeUpdateQuery(updateQueryString, tableQueryData);
+            return result;
+        }
+        //Remove product from inventory
         public bool removeProduct(ProductProperties productId)
         {
             bool result = false;
@@ -158,16 +175,10 @@ namespace ConsignmentCompanyProject.com.app.model
             return result;
         }
 
-        public List<ProductProperties> getManufacturersProductsList(ProductProperties manufacturer)
-        {
-            throw new NotImplementedException();
-        }
+        
 
-        public bool removeProduct(ProductProperties productId, UserInformationProperties userinfo)
-        {
-            throw new NotImplementedException();
-        }
-
+        
+        //Add new manufacturer in inventory 
         public  void addNewManufacturer(ManufacturerProperties manufacturerInfo,UserInformationProperties userInfo)
         {
             string insertNewManufacturerQuery = "INSERT INTO MANUFACTURER(MANUFACTURER_ID,MANUFACTURER_NAME,MANUFACTURER_DETAIL,CREATED_BY,CREATED_DATE,MODIFIED_BY,MODIFIED_DATE) VALUES(@MANUFACTURER_ID,@MANUFACTURER_NAME,@MANUFACTURER_DETAIL,@CREATED_BY,@CREATED_DATE,@MODIFIED_BY,@MODIFIED_DATE)";
@@ -183,7 +194,16 @@ namespace ConsignmentCompanyProject.com.app.model
             
         }
 
-
-        
+        //retrieve products of a manufacturer from database
+        public List<ProductProperties> getManufacturerProductsList(ProductProperties manufacturer)
+        {
+            DataSet resultDataset;
+            List<ProductProperties> manufacturerProducts = new List<ProductProperties>();
+            string selectQueryString = "SELECT PRODUCT.PRODUCT_ID,PRODUCT_TYPE,PRODUCT.PRODUCT_NAME,PRODUCT.PRODUCT_CURRENT_COUNT,PRODUCT.PRICE_PER_UNIT,PRODUCT.MINIMUM_COUNT,MANUFACTURER.MANUFACTURER_ID, MANUFACTURER.MANUFACTURER_NAME,MANUFACTURER_DETAIL FROM PRODUCT INNER JOIN MANUFACTURER ON PRODUCT.MANUFACTURER_ID = MANUFACTURER.MANUFACTURER_ID WHERE MANUFACTURER.MANUFACTURER_ID = @MANFACTURERID ORDER BY MANUFACTURER.MANUFACTURER_NAME;";
+            List<KeyValuePair<string, string>> tableQueryData = new List<KeyValuePair<string, string>>();
+            tableQueryData.Add(new KeyValuePair<string, string>("@MANFACTURERID", manufacturer.Manufacturer_Id));
+            resultDataset = DatabaseConnectionHandler.executeSelectQuery(selectQueryString, tableQueryData);
+            return manufacturerProducts;
+        }
     }
 }

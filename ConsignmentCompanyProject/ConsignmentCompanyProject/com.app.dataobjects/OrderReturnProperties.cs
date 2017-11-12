@@ -13,18 +13,17 @@ namespace ConsignmentCompanyProject.com.app.dataobjects
     //this class is used as persistant object for order return 
     class OrderReturnProperties 
     {
-        public string OrderReturnId { set; get; }
-        public int OrderId { set; get; }
-        public int OrderReturnDate { set; get; }
-        public string OrderReturnVendorId { set; get; }
-        public string OrderReturnVendorName { set; get; }
-        public string OrderReturnCreatedBy { set; get; }
-        public string OrderReturnProductId { set; get; }
-        public string OrderReturnProductName { set; get; }
-        public string OrderReturnProductType { set; get; }
-        public int OrderReturnCount { set; get; }
-        public double OrderReturnPricePerUnit { set; get; }
-        public string OrderReturnDescription { set; get; }
-        public string OrderReturnStatus { set; get; }
+        public string Return_Order_Id { set; get; }
+        public string Order_Id { set; get; }
+        public string User_Id { set; get; }
+        public string Vendor_Id { set; get; }
+        public string Created_By { set; get; }
+        public string Product_Id { set; get; }
+        public string Product_Name { set; get; }
+        public string Product_Type { set; get; }
+        public int Count { set; get; }
+        public double Price_Per_Unit { set; get; }
+        public string Return_Description { set; get; }
+        public string Return_Status { set; get; }
     }
 }

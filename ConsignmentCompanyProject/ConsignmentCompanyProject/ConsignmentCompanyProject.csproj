@@ -91,6 +91,7 @@
     <Compile Include="com.app.model\DatabaseConnectionHandler.cs" />
     <Compile Include="com.app.model\InventoryDBProcessHandler.cs" />
     <Compile Include="com.app.model\OrderDBProcessHandler.cs" />
+    <Compile Include="com.app.model\OrderRetrunDBProcessHandler.cs" />
     <Compile Include="com.app.model\UserDBProcessHandler.cs" />
     <Compile Include="com.app.utilities\BusinessUtlities.cs" />
     <Compile Include="com.app.utilities\FormValidationUtility.cs" />
@@ -211,11 +212,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AppData\ConsignmentStoreDB.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="AppData\ConsignmentStoreDB_log.ldf">
       <DependentUpon>ConsignmentStoreDB.mdf</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="ProdDBDontInclude\ConsignmentStoreDB.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

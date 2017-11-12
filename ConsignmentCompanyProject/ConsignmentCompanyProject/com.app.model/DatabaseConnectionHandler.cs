@@ -12,6 +12,9 @@ using ConsignmentCompanyProject.com.app.dataobjects;
 
 namespace ConsignmentCompanyProject.com.app.model
 {
+    /* Creted by Jayendran Gurumoorthy
+     * This class handles all database operations. 
+     */
     //This class handles the db query requsets from different classes in static
     class DatabaseConnectionHandler
     {
@@ -37,6 +40,7 @@ namespace ConsignmentCompanyProject.com.app.model
 
 
         } 
+        //Close database connection
         private static void closeDbConnection()
         {
             try { 
@@ -129,10 +133,10 @@ namespace ConsignmentCompanyProject.com.app.model
 
                     }
                 }
-                connection.Open();
+               // connection.Open();
                 connectionAdapter = new SqlDataAdapter(command);
                 connectionAdapter.Fill(resultSet);
-                connection.Close();
+               // connection.Close();
                 
             }catch(Exception exception) { Console.WriteLine(exception.StackTrace); }
             
@@ -141,6 +145,8 @@ namespace ConsignmentCompanyProject.com.app.model
             return resultSet;
         }
 
+
+        //Test function delete it during depolyement
         protected static List<object> returnSetWithProperties (DataSet dataset, object dataObjectType)
         {
             List<object> resultProperties = new List<object>();
