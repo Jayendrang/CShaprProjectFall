@@ -15,10 +15,10 @@ namespace ConsignmentCompanyProject.com.app.interfaces
     interface IAppVendor<T> where T : VendorProperties
     {
         T getSingleVendorInfo(string vendorId);
-        List<T> getMultipleVendorInfo();
-        T addVendorInfo(T newVendorInfo);
-        bool removeVendorInfo(T oldVendorInfo);
-        T modifyVendorInfo(T existingVendorInfo);
+        List<T> getMultipleVendorInfo(string vendorStatus);
+        bool addVendorInfo(T newVendorInfo, string userInfo);
+        bool removeVendorInfo(T oldVendorInfo, string userInfo);
+        bool modifyVendorInfo(T existingVendorInfo, string userInfo);
 
     }
 }

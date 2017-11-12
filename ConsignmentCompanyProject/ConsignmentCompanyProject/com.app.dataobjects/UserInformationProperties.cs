@@ -24,7 +24,10 @@ namespace ConsignmentCompanyProject.com.app.dataobjects
         public string Status { get;set;}
         public string Vendor_Name { get; set; }
         public string Vendor_ID { get; set; }
-        
+        public string Created_By { get; set; }
+        public string Created_date { get; set; }
+        public string Modified_By { get; set; }
+        public string Modified_Date { get; set; }
 
             
     }

@@ -89,10 +89,12 @@
     <Compile Include="com.app.interfaces\IAppUser.cs" />
     <Compile Include="com.app.interfaces\IAppVendor.cs" />
     <Compile Include="com.app.model\DatabaseConnectionHandler.cs" />
+    <Compile Include="com.app.model\DiscountDBProcessHandler.cs" />
     <Compile Include="com.app.model\InventoryDBProcessHandler.cs" />
     <Compile Include="com.app.model\OrderDBProcessHandler.cs" />
     <Compile Include="com.app.model\OrderRetrunDBProcessHandler.cs" />
     <Compile Include="com.app.model\UserDBProcessHandler.cs" />
+    <Compile Include="com.app.model\VendorDBProcessHandler.cs" />
     <Compile Include="com.app.utilities\BusinessUtlities.cs" />
     <Compile Include="com.app.utilities\FormValidationUtility.cs" />
     <Compile Include="windows.forms\InventoryManagementForm.cs">

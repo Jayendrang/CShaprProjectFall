@@ -130,7 +130,7 @@ namespace ConsignmentCompanyProject
             OrderProperties cartItems = new OrderProperties();
             try
             {
-                cartItems.Order_Id = 111231;
+                cartItems.Order_Id = "111231";
                 cartItems.OrderDate = BusinessUtlities.getCurrentDateTime;
                 cartItems.Product_Type = "Laptop";
                 cartItems.Product_Name = "Sony VAIO";
