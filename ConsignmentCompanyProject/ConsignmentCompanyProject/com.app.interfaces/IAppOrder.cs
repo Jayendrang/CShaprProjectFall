@@ -10,22 +10,21 @@ namespace ConsignmentCompanyProject.com.app.interfaces
     interface IAppOrder<T> where T : OrderProperties
     {
 
-        T getSingleOrderInfo(string orderId);
-        List<List<T>> getMultipleOrdersInfo(string vendorInfo);
-        T saveOrder(T saveorderInfo);
-        string cancelOrder(T cancelorderInfo);
-        T updateOrderStatus(T updateorderInfo);
-        void addProdcutToCart(T productInfo);
-
+       // T getSingleOrderInfo(string orderId);
+        List<T> getMultipleOrdersInfo(string vendorInfo,string orderStatus);
+        void submitOrder(List<T> saveorderInfo);
+        bool cancelOrder(T cancelorderInfo);
+        bool updateOrderStatus(T updateorderInfo);
+        
     }
     interface IAppReturnOrder<T> where T : OrderReturnProperties
     {
-        T getSingleReturnOrderInfo(string orderReturnId);
-        List<T> getMultipleReturnOrderInfo(string vendorInfo);
-        T saveOrderReturn(T saveOrderReturnInfo);
-        string cancelOrderReturn(T cancelOrderReturnInfo);
-        T updateOrderReturn(T updateOrderCancelInfo);
-        void addProdcutToReturnCart(T productReturnInfo);
+       // T getSingleReturnOrderInfo(string orderReturnId);
+        List<T> getMultipleReturnOrderInfo(T vendorInfo);
+        bool submitOrderReturn(T saveOrderReturnInfo);
+        bool cancelOrderReturn(T cancelOrderReturnInfo);
+        bool updateOrderReturn(T updateOrderCancelInfo);
+       // void addProdcutToReturnCart(T productReturnInfo);
 
     }
 }

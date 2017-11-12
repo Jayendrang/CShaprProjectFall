@@ -12,15 +12,16 @@ using ConsignmentCompanyProject.com.app.dataobjects;
 
 namespace ConsignmentCompanyProject.com.app.model
 {
+    /* Creted by Jayendran Gurumoorthy
+     * This class handles all database operations. 
+     */
     //This class handles the db query requsets from different classes in static
     class DatabaseConnectionHandler
     {
         private static SqlConnection dbConnection;
-        //private static DataTable schemaTable;
-        //private const string DB_CONNECTION_STRING = "Data Source=MSI;Initial Catalog=COSIGNMENT_DATABASE;Integrated Security=True";
-
+        
         //Reading Connection properties from App.Config file
-        private static string _CONSIGNMENT_DB_STRING = ConfigurationManager.ConnectionStrings["ConsignmentCompanyProject.Properties.Settings.ConsignmentStoreDBConnection"].ConnectionString;  
+        private static string _CONSIGNMENT_DB_STRING = ConfigurationManager.ConnectionStrings["ConsignmentCompanyProject.Properties.Settings.CONSIGNMENTDB"].ConnectionString;  
         // this method open the database connectivity with the mysql server .
         private static void openDbConnection()
         {
@@ -39,6 +40,7 @@ namespace ConsignmentCompanyProject.com.app.model
 
 
         } 
+        //Close database connection
         private static void closeDbConnection()
         {
             try { 
@@ -103,6 +105,7 @@ namespace ConsignmentCompanyProject.com.app.model
                 {
                     comman.Parameters.AddWithValue(param.Key, param.Value);
                 }
+
                 numberofRowsDeleted = comman.ExecuteNonQuery();
                 closeDbConnection();
             } catch(Exception ex) { Console.WriteLine(ex.StackTrace); }
@@ -130,10 +133,10 @@ namespace ConsignmentCompanyProject.com.app.model
 
                     }
                 }
-                connection.Open();
+               // connection.Open();
                 connectionAdapter = new SqlDataAdapter(command);
                 connectionAdapter.Fill(resultSet);
-                connection.Close();
+               // connection.Close();
                 
             }catch(Exception exception) { Console.WriteLine(exception.StackTrace); }
             
@@ -142,6 +145,8 @@ namespace ConsignmentCompanyProject.com.app.model
             return resultSet;
         }
 
+
+        //Test function delete it during depolyement
         protected static List<object> returnSetWithProperties (DataSet dataset, object dataObjectType)
         {
             List<object> resultProperties = new List<object>();

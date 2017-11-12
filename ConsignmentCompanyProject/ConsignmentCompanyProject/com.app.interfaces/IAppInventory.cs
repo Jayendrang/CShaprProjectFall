@@ -12,14 +12,16 @@ namespace ConsignmentCompanyProject.com.app.interfaces
     interface IAppInventory<T> 
     {
 
-        List<ProductProperties> getManufacturersProductsList(T manufacturer);
-        T searchProduct(string ProductName);
-        List<T> getManufacturersList();
-        T searchManufacturer(string manufacturerName);
-        T addNewProduct(ProductProperties productInfo);
+        List<ProductProperties> getManufacturerProductsList(T manufacturer);
+        //T searchProduct(string ProductName);
+        List<ManufacturerProperties> getManufacturersList();
+        void addNewManufacturer(ManufacturerProperties manufacturerInfo,UserInformationProperties userInfo);
+       // T searchManufacturer(string manufacturerName);
+        bool addNewProduct(ProductProperties productInfo, UserInformationProperties userInfo);
         bool removeProduct(ProductProperties productId);
         bool reduceProductCount(ProductProperties[] productInfo);
-        Dictionary<string, List<ProductProperties>> getProducts();
+        bool increaseProductCount(ProductProperties productInfo);
+       // Dictionary<string, List<ProductProperties>> getProducts();
     }
 
     

@@ -13,7 +13,7 @@ namespace ConsignmentCompanyProject.com.app.dataobjects
     // class holds order informatioin and used for order transaction data persistance
     class OrderProperties 
     {
-        public int Order_Id { set; get; }
+        public string Order_Id { set; get; }
         public string Vendor_Id { set; get; }
         public string User_ID { set; get; }
         public string OrderDate { set; get; }
