@@ -70,5 +70,24 @@ namespace ConsignmentCompanyProject.com.app.model
             }
             return result;
         }
+        public static DiscountProperties getDiscountOfCustomer(string vendor_Discount_Id)
+        {
+            System.Data.DataSet dataset = new System.Data.DataSet();
+            DiscountProperties discount = new DiscountProperties();
+            string selectQueryString = "SELECT DISCOUNT_RATE,DISCOUNT_ID FROM DISCOUNT WHERE DISCOUNT_ID=@DISCOUNT_ID;";
+            List<KeyValuePair<string, string>> parameters = new List<KeyValuePair<string, string>>();
+            parameters.Add(new KeyValuePair<string, string>("@DISCOUNT_ID",vendor_Discount_Id));
+
+            dataset = DatabaseConnectionHandler.executeSelectQuery(selectQueryString, parameters);
+            if (dataset != null)
+            {
+                foreach(System.Data.DataRow row in dataset.Tables[0].Rows)
+                {
+                    discount.Discount_Id = row["Discount_Id"].ToString();
+                    discount.Discount_Rate = row["Discount_Rate"].ToString();
+                }
+            }
+            return discount;
+        }
     }
 }

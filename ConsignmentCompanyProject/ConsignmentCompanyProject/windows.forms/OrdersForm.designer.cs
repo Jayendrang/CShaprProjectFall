@@ -28,9 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.panelOrder = new System.Windows.Forms.Panel();
             this.groupBoxOrderDetails = new System.Windows.Forms.GroupBox();
+            this.textBoxDescription = new System.Windows.Forms.TextBox();
+            this.labelDescription = new System.Windows.Forms.Label();
+            this.textBoxItemTotalPrice = new System.Windows.Forms.TextBox();
+            this.labelItemTotalPrice = new System.Windows.Forms.Label();
             this.textBoxOrderDate = new System.Windows.Forms.TextBox();
             this.labelDate = new System.Windows.Forms.Label();
             this.textBoxOrderId = new System.Windows.Forms.TextBox();
@@ -40,7 +43,7 @@
             this.comboBoxManufacturer = new System.Windows.Forms.ComboBox();
             this.labelManufacturerName = new System.Windows.Forms.Label();
             this.comboBoxProductType = new System.Windows.Forms.ComboBox();
-            this.textBoxProduct = new System.Windows.Forms.TextBox();
+            this.textBoxProductId = new System.Windows.Forms.TextBox();
             this.labelProductType = new System.Windows.Forms.Label();
             this.labelProductId = new System.Windows.Forms.Label();
             this.labelTotalPrice = new System.Windows.Forms.Label();
@@ -48,7 +51,7 @@
             this.textBoxDiscountId = new System.Windows.Forms.TextBox();
             this.textBoxBalanceAmount = new System.Windows.Forms.TextBox();
             this.textBoxPricePerUnit = new System.Windows.Forms.TextBox();
-            this.textBoxRaidAmount = new System.Windows.Forms.TextBox();
+            this.textBoxAdvanceAmount = new System.Windows.Forms.TextBox();
             this.textBoxCount = new System.Windows.Forms.TextBox();
             this.labelDiscountId = new System.Windows.Forms.Label();
             this.labelAdvancePay = new System.Windows.Forms.Label();
@@ -68,15 +71,11 @@
             this.buttonSubmitOrder = new System.Windows.Forms.Button();
             this.groupBoxCart = new System.Windows.Forms.GroupBox();
             this.dataGridViewCart = new System.Windows.Forms.DataGridView();
-            this.orderDetailsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.orderPropertiesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panelOrder.SuspendLayout();
             this.groupBoxOrderDetails.SuspendLayout();
             this.groupBoxVendor.SuspendLayout();
             this.groupBoxCart.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCart)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.orderDetailsBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.orderPropertiesBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // panelOrder
@@ -98,6 +97,10 @@
             // 
             // groupBoxOrderDetails
             // 
+            this.groupBoxOrderDetails.Controls.Add(this.textBoxDescription);
+            this.groupBoxOrderDetails.Controls.Add(this.labelDescription);
+            this.groupBoxOrderDetails.Controls.Add(this.textBoxItemTotalPrice);
+            this.groupBoxOrderDetails.Controls.Add(this.labelItemTotalPrice);
             this.groupBoxOrderDetails.Controls.Add(this.textBoxOrderDate);
             this.groupBoxOrderDetails.Controls.Add(this.labelDate);
             this.groupBoxOrderDetails.Controls.Add(this.textBoxOrderId);
@@ -107,7 +110,7 @@
             this.groupBoxOrderDetails.Controls.Add(this.comboBoxManufacturer);
             this.groupBoxOrderDetails.Controls.Add(this.labelManufacturerName);
             this.groupBoxOrderDetails.Controls.Add(this.comboBoxProductType);
-            this.groupBoxOrderDetails.Controls.Add(this.textBoxProduct);
+            this.groupBoxOrderDetails.Controls.Add(this.textBoxProductId);
             this.groupBoxOrderDetails.Controls.Add(this.labelProductType);
             this.groupBoxOrderDetails.Controls.Add(this.labelProductId);
             this.groupBoxOrderDetails.Controls.Add(this.labelTotalPrice);
@@ -115,7 +118,7 @@
             this.groupBoxOrderDetails.Controls.Add(this.textBoxDiscountId);
             this.groupBoxOrderDetails.Controls.Add(this.textBoxBalanceAmount);
             this.groupBoxOrderDetails.Controls.Add(this.textBoxPricePerUnit);
-            this.groupBoxOrderDetails.Controls.Add(this.textBoxRaidAmount);
+            this.groupBoxOrderDetails.Controls.Add(this.textBoxAdvanceAmount);
             this.groupBoxOrderDetails.Controls.Add(this.textBoxCount);
             this.groupBoxOrderDetails.Controls.Add(this.labelDiscountId);
             this.groupBoxOrderDetails.Controls.Add(this.labelAdvancePay);
@@ -125,9 +128,42 @@
             this.groupBoxOrderDetails.Controls.Add(this.labelPricePerUnit);
             this.groupBoxOrderDetails.Location = new System.Drawing.Point(66, 115);
             this.groupBoxOrderDetails.Name = "groupBoxOrderDetails";
-            this.groupBoxOrderDetails.Size = new System.Drawing.Size(919, 327);
+            this.groupBoxOrderDetails.Size = new System.Drawing.Size(919, 341);
             this.groupBoxOrderDetails.TabIndex = 83;
             this.groupBoxOrderDetails.TabStop = false;
+            // 
+            // textBoxDescription
+            // 
+            this.textBoxDescription.Location = new System.Drawing.Point(736, 261);
+            this.textBoxDescription.Multiline = true;
+            this.textBoxDescription.Name = "textBoxDescription";
+            this.textBoxDescription.Size = new System.Drawing.Size(174, 58);
+            this.textBoxDescription.TabIndex = 88;
+            // 
+            // labelDescription
+            // 
+            this.labelDescription.AutoSize = true;
+            this.labelDescription.Location = new System.Drawing.Point(517, 261);
+            this.labelDescription.Name = "labelDescription";
+            this.labelDescription.Size = new System.Drawing.Size(100, 17);
+            this.labelDescription.TabIndex = 87;
+            this.labelDescription.Text = "DESCRIPTION";
+            // 
+            // textBoxItemTotalPrice
+            // 
+            this.textBoxItemTotalPrice.Location = new System.Drawing.Point(737, 66);
+            this.textBoxItemTotalPrice.Name = "textBoxItemTotalPrice";
+            this.textBoxItemTotalPrice.Size = new System.Drawing.Size(113, 22);
+            this.textBoxItemTotalPrice.TabIndex = 86;
+            // 
+            // labelItemTotalPrice
+            // 
+            this.labelItemTotalPrice.AutoSize = true;
+            this.labelItemTotalPrice.Location = new System.Drawing.Point(517, 71);
+            this.labelItemTotalPrice.Name = "labelItemTotalPrice";
+            this.labelItemTotalPrice.Size = new System.Drawing.Size(134, 17);
+            this.labelItemTotalPrice.TabIndex = 85;
+            this.labelItemTotalPrice.Text = "ITEM TOTAL PRICE";
             // 
             // textBoxOrderDate
             // 
@@ -172,6 +208,7 @@
             this.comboBoxProductName.Name = "comboBoxProductName";
             this.comboBoxProductName.Size = new System.Drawing.Size(160, 24);
             this.comboBoxProductName.TabIndex = 80;
+            this.comboBoxProductName.SelectedIndexChanged += new System.EventHandler(this.comboBoxProductName_SelectedIndexChanged);
             // 
             // lablelProductName
             // 
@@ -209,17 +246,15 @@
             this.comboBoxProductType.Size = new System.Drawing.Size(160, 24);
             this.comboBoxProductType.TabIndex = 76;
             this.comboBoxProductType.SelectedIndexChanged += new System.EventHandler(this.comboBoxProductType_SelectedIndexChanged);
-            this.comboBoxProductType.SelectedValueChanged += new System.EventHandler(this.comboBoxProductType_SelectedValueChanged);
-            this.comboBoxProductType.Click += new System.EventHandler(this.comboBoxProductType_Click);
             // 
-            // textBoxProduct
+            // textBoxProductId
             // 
-            this.textBoxProduct.Location = new System.Drawing.Point(212, 233);
-            this.textBoxProduct.Margin = new System.Windows.Forms.Padding(4);
-            this.textBoxProduct.Name = "textBoxProduct";
-            this.textBoxProduct.ReadOnly = true;
-            this.textBoxProduct.Size = new System.Drawing.Size(104, 22);
-            this.textBoxProduct.TabIndex = 75;
+            this.textBoxProductId.Location = new System.Drawing.Point(212, 233);
+            this.textBoxProductId.Margin = new System.Windows.Forms.Padding(4);
+            this.textBoxProductId.Name = "textBoxProductId";
+            this.textBoxProductId.ReadOnly = true;
+            this.textBoxProductId.Size = new System.Drawing.Size(104, 22);
+            this.textBoxProductId.TabIndex = 75;
             // 
             // labelProductType
             // 
@@ -252,7 +287,7 @@
             // 
             // textBoxTotalPrice
             // 
-            this.textBoxTotalPrice.Location = new System.Drawing.Point(739, 196);
+            this.textBoxTotalPrice.Location = new System.Drawing.Point(737, 189);
             this.textBoxTotalPrice.Name = "textBoxTotalPrice";
             this.textBoxTotalPrice.ReadOnly = true;
             this.textBoxTotalPrice.Size = new System.Drawing.Size(113, 22);
@@ -260,7 +295,7 @@
             // 
             // textBoxDiscountId
             // 
-            this.textBoxDiscountId.Location = new System.Drawing.Point(739, 151);
+            this.textBoxDiscountId.Location = new System.Drawing.Point(737, 144);
             this.textBoxDiscountId.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxDiscountId.Name = "textBoxDiscountId";
             this.textBoxDiscountId.ReadOnly = true;
@@ -269,7 +304,7 @@
             // 
             // textBoxBalanceAmount
             // 
-            this.textBoxBalanceAmount.Location = new System.Drawing.Point(739, 233);
+            this.textBoxBalanceAmount.Location = new System.Drawing.Point(737, 226);
             this.textBoxBalanceAmount.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxBalanceAmount.Name = "textBoxBalanceAmount";
             this.textBoxBalanceAmount.Size = new System.Drawing.Size(113, 22);
@@ -277,53 +312,54 @@
             // 
             // textBoxPricePerUnit
             // 
-            this.textBoxPricePerUnit.Location = new System.Drawing.Point(739, 25);
+            this.textBoxPricePerUnit.Location = new System.Drawing.Point(212, 263);
             this.textBoxPricePerUnit.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxPricePerUnit.Name = "textBoxPricePerUnit";
             this.textBoxPricePerUnit.ReadOnly = true;
-            this.textBoxPricePerUnit.Size = new System.Drawing.Size(113, 22);
+            this.textBoxPricePerUnit.Size = new System.Drawing.Size(104, 22);
             this.textBoxPricePerUnit.TabIndex = 49;
             // 
-            // textBoxRaidAmount
+            // textBoxAdvanceAmount
             // 
-            this.textBoxRaidAmount.Location = new System.Drawing.Point(739, 109);
-            this.textBoxRaidAmount.Margin = new System.Windows.Forms.Padding(4);
-            this.textBoxRaidAmount.Name = "textBoxRaidAmount";
-            this.textBoxRaidAmount.Size = new System.Drawing.Size(113, 22);
-            this.textBoxRaidAmount.TabIndex = 48;
+            this.textBoxAdvanceAmount.Location = new System.Drawing.Point(737, 102);
+            this.textBoxAdvanceAmount.Margin = new System.Windows.Forms.Padding(4);
+            this.textBoxAdvanceAmount.Name = "textBoxAdvanceAmount";
+            this.textBoxAdvanceAmount.Size = new System.Drawing.Size(113, 22);
+            this.textBoxAdvanceAmount.TabIndex = 48;
             // 
             // textBoxCount
             // 
-            this.textBoxCount.Location = new System.Drawing.Point(739, 69);
+            this.textBoxCount.Location = new System.Drawing.Point(736, 30);
             this.textBoxCount.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxCount.Name = "textBoxCount";
             this.textBoxCount.Size = new System.Drawing.Size(113, 22);
             this.textBoxCount.TabIndex = 47;
+            this.textBoxCount.TextChanged += new System.EventHandler(this.textBoxCount_TextChanged);
             // 
             // labelDiscountId
             // 
             this.labelDiscountId.AutoSize = true;
-            this.labelDiscountId.Location = new System.Drawing.Point(548, 156);
+            this.labelDiscountId.Location = new System.Drawing.Point(517, 147);
             this.labelDiscountId.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelDiscountId.Name = "labelDiscountId";
-            this.labelDiscountId.Size = new System.Drawing.Size(96, 17);
+            this.labelDiscountId.Size = new System.Drawing.Size(83, 17);
             this.labelDiscountId.TabIndex = 42;
-            this.labelDiscountId.Text = "DISCOUNT ID";
+            this.labelDiscountId.Text = "DISCOUNT ";
             // 
             // labelAdvancePay
             // 
             this.labelAdvancePay.AutoSize = true;
-            this.labelAdvancePay.Location = new System.Drawing.Point(548, 114);
+            this.labelAdvancePay.Location = new System.Drawing.Point(517, 105);
             this.labelAdvancePay.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelAdvancePay.Name = "labelAdvancePay";
-            this.labelAdvancePay.Size = new System.Drawing.Size(143, 17);
+            this.labelAdvancePay.Size = new System.Drawing.Size(206, 17);
             this.labelAdvancePay.TabIndex = 41;
-            this.labelAdvancePay.Text = "ADVANCE PAYMENT";
+            this.labelAdvancePay.Text = "MINIMUM ADVANCE PAYMENT";
             // 
             // labelBalanceAmount
             // 
             this.labelBalanceAmount.AutoSize = true;
-            this.labelBalanceAmount.Location = new System.Drawing.Point(548, 238);
+            this.labelBalanceAmount.Location = new System.Drawing.Point(517, 229);
             this.labelBalanceAmount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelBalanceAmount.Name = "labelBalanceAmount";
             this.labelBalanceAmount.Size = new System.Drawing.Size(135, 17);
@@ -333,7 +369,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(548, 203);
+            this.label10.Location = new System.Drawing.Point(517, 192);
             this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(98, 17);
@@ -343,7 +379,7 @@
             // labelCount
             // 
             this.labelCount.AutoSize = true;
-            this.labelCount.Location = new System.Drawing.Point(548, 74);
+            this.labelCount.Location = new System.Drawing.Point(517, 33);
             this.labelCount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelCount.Name = "labelCount";
             this.labelCount.Size = new System.Drawing.Size(57, 17);
@@ -353,7 +389,7 @@
             // labelPricePerUnit
             // 
             this.labelPricePerUnit.AutoSize = true;
-            this.labelPricePerUnit.Location = new System.Drawing.Point(548, 28);
+            this.labelPricePerUnit.Location = new System.Drawing.Point(48, 268);
             this.labelPricePerUnit.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelPricePerUnit.Name = "labelPricePerUnit";
             this.labelPricePerUnit.Size = new System.Drawing.Size(116, 17);
@@ -433,7 +469,7 @@
             // 
             // buttonAddToCart
             // 
-            this.buttonAddToCart.Location = new System.Drawing.Point(632, 452);
+            this.buttonAddToCart.Location = new System.Drawing.Point(640, 473);
             this.buttonAddToCart.Margin = new System.Windows.Forms.Padding(4);
             this.buttonAddToCart.Name = "buttonAddToCart";
             this.buttonAddToCart.Size = new System.Drawing.Size(135, 28);
@@ -444,7 +480,7 @@
             // 
             // buttonCancelOrder
             // 
-            this.buttonCancelOrder.Location = new System.Drawing.Point(478, 452);
+            this.buttonCancelOrder.Location = new System.Drawing.Point(486, 473);
             this.buttonCancelOrder.Margin = new System.Windows.Forms.Padding(4);
             this.buttonCancelOrder.Name = "buttonCancelOrder";
             this.buttonCancelOrder.Size = new System.Drawing.Size(121, 28);
@@ -455,7 +491,7 @@
             // 
             // buttonSubmitOrder
             // 
-            this.buttonSubmitOrder.Location = new System.Drawing.Point(308, 452);
+            this.buttonSubmitOrder.Location = new System.Drawing.Point(316, 473);
             this.buttonSubmitOrder.Margin = new System.Windows.Forms.Padding(4);
             this.buttonSubmitOrder.Name = "buttonSubmitOrder";
             this.buttonSubmitOrder.Size = new System.Drawing.Size(130, 28);
@@ -484,15 +520,6 @@
             this.dataGridViewCart.Size = new System.Drawing.Size(841, 141);
             this.dataGridViewCart.TabIndex = 0;
             // 
-            // orderDetailsBindingSource
-            // 
-            this.orderDetailsBindingSource.DataMember = "Order_Details";
-            this.orderDetailsBindingSource.DataSource = this.orderPropertiesBindingSource;
-            // 
-            // orderPropertiesBindingSource
-            // 
-            this.orderPropertiesBindingSource.DataSource = typeof(ConsignmentCompanyProject.com.app.dataobjects.OrderProperties);
-            // 
             // Orders
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -511,8 +538,6 @@
             this.groupBoxVendor.PerformLayout();
             this.groupBoxCart.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCart)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.orderDetailsBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.orderPropertiesBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -528,7 +553,7 @@
         private System.Windows.Forms.TextBox textBoxDiscountId;
         private System.Windows.Forms.TextBox textBoxBalanceAmount;
         private System.Windows.Forms.TextBox textBoxPricePerUnit;
-        private System.Windows.Forms.TextBox textBoxRaidAmount;
+        private System.Windows.Forms.TextBox textBoxAdvanceAmount;
         private System.Windows.Forms.TextBox textBoxCount;
         private System.Windows.Forms.TextBox textBoxUser;
         private System.Windows.Forms.TextBox textBoxVendor;
@@ -550,7 +575,7 @@
         private System.Windows.Forms.ComboBox comboBoxManufacturer;
         private System.Windows.Forms.Label labelManufacturerName;
         private System.Windows.Forms.ComboBox comboBoxProductType;
-        private System.Windows.Forms.TextBox textBoxProduct;
+        private System.Windows.Forms.TextBox textBoxProductId;
         private System.Windows.Forms.Label labelProductType;
         private System.Windows.Forms.Label labelProductId;
         private System.Windows.Forms.Label labelTotalPrice;
@@ -559,7 +584,9 @@
         private System.Windows.Forms.Label labelDate;
         private System.Windows.Forms.GroupBox groupBoxCart;
         private System.Windows.Forms.DataGridView dataGridViewCart;
-        private System.Windows.Forms.BindingSource orderPropertiesBindingSource;
-        private System.Windows.Forms.BindingSource orderDetailsBindingSource;
+        private System.Windows.Forms.TextBox textBoxItemTotalPrice;
+        private System.Windows.Forms.Label labelItemTotalPrice;
+        private System.Windows.Forms.TextBox textBoxDescription;
+        private System.Windows.Forms.Label labelDescription;
     }
 }

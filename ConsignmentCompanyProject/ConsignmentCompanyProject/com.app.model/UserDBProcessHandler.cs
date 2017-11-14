@@ -23,6 +23,7 @@ namespace ConsignmentCompanyProject.com.app.model
             bool result = false;
             string insertQueryString = "INSERT INTO USER_TABLE(NAME,CONTACT,ADDRESS,EMAIL_ID,USER_ID,PASSWORD,ROLE,IS_VENDOR,VENDOR_ID,VENDOR_NAME,STATUS,CREATED_BY,CREATED_DATE,MODIFIED_BY,MODIFIED_DATE) VALUES(@NAME,@CONTACT,@ADDRESS,@EMAIL_ID,@USER_ID,@PASSWORD,@ROLE,@IS_VENDOR,@VENDOR_ID,@VENDOR_NAME,@STATUS,@CREATED_BY,@CREATED_DATE,@MODIFIED_BY,@MODIFIED_DATE)";
             List<KeyValuePair<string, string>> tableQueryData = new List<KeyValuePair<string, string>>();
+            try { 
             tableQueryData.Add(new KeyValuePair<string, string>("@NAME",userData.Name));
             tableQueryData.Add(new KeyValuePair<string, string>("@CONTACT", userData.Contact));
             tableQueryData.Add(new KeyValuePair<string, string>("@ADDRESS", userData.Address));
@@ -30,7 +31,7 @@ namespace ConsignmentCompanyProject.com.app.model
             tableQueryData.Add(new KeyValuePair<string, string>("@USER_ID", userData.User_Id));
             tableQueryData.Add(new KeyValuePair<string, string>("@PASSWORD", userData.Password));
             tableQueryData.Add(new KeyValuePair<string, string>("@ROLE", userData.Role));
-            tableQueryData.Add(new KeyValuePair<string, string>("@IS_VENDOR", userData.Role));
+            tableQueryData.Add(new KeyValuePair<string, string>("@IS_VENDOR", userData.Is_Vendor));
             tableQueryData.Add(new KeyValuePair<string, string>("@VENDOR_ID", userData.Vendor_ID));
             tableQueryData.Add(new KeyValuePair<string, string>("@VENDOR_NAME", userData.Vendor_Name));
             tableQueryData.Add(new KeyValuePair<string, string>("@STATUS", userData.Status));
@@ -39,6 +40,8 @@ namespace ConsignmentCompanyProject.com.app.model
             tableQueryData.Add(new KeyValuePair<string, string>("@MODIFIED_BY", currentUserId));
             tableQueryData.Add(new KeyValuePair<string, string>("@MODIFIED_DATE", com.app.utlitiy.BusinessUtlities.getCurrentDateTime));
             result = DatabaseConnectionHandler.executeInsertDbQuery(insertQueryString, tableQueryData);
+            }catch(Exception ex) { Console.WriteLine(ex.StackTrace); }
+             
             return result;
         }
 

@@ -10,36 +10,32 @@ namespace ConsignmentCompanyProject.com.app.business
     class UserInformationHandler
     {
         
-        public static UserInformationProperties userSessionData = new UserInformationProperties();
-
-        public static UserInformationProperties validateUser(LoginProperties loginData)
+        private static List<VendorProperties> vendorLists = new List<VendorProperties>();
+        public List<VendorProperties> getVendorsList()
         {
-            try
-            {
-                //tempstubvariables
-                UserDBProcessHandler dbProcess = new UserDBProcessHandler();
-                userSessionData = dbProcess.validateUserLogin(loginData);
-                if (userSessionData != null)
-                {
-                   if((loginData.Username.Equals(userSessionData.User_Id)) && (loginData.Password.Equals(userSessionData.Password)))
-                    {
-                        return userSessionData;
-                    }
-                    else
-                    {
-                        return userSessionData = null; 
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-
-                Console.WriteLine(ex.StackTrace);
-            }
-
-            return userSessionData;
+            com.app.model.VendorDBProcessHandler vendors = new VendorDBProcessHandler();
+            vendorLists = vendors.getMultipleVendorInfo("ACTIVE");
+            return vendorLists;
         }
 
+        public  void addNewUser(UserInformationProperties userInformation, string currentUser)
+        {
+            com.app.model.UserDBProcessHandler userDbHandler = new UserDBProcessHandler();
+            userDbHandler.addUser(userInformation,currentUser);
+        }
+        public  VendorProperties getVendorInfo(string vendorName)
+        {
+            VendorProperties vendorProperties = new VendorProperties();
+            foreach(VendorProperties vendor in vendorLists)
+            {
+                if (vendor.Vendor_Name.Equals(vendorName))
+                {
+                    vendorProperties.Vendor_Name = vendor.Vendor_Name;
+                    vendorProperties.Vendor_Id = vendor.Vendor_Id;
+                }
+            }
+            return vendorProperties;
+        }
 
     }
 }

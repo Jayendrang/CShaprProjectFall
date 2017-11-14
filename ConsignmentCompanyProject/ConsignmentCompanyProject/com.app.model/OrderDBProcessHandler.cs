@@ -69,13 +69,16 @@ namespace ConsignmentCompanyProject.com.app.model
             return listOfOrders;
         }
 
-        public void submitOrder(List<OrderProperties> purchaseOrderInfo)
+        public bool submitOrder(List<OrderProperties> purchaseOrderInfo)
         {
             int numberOfRowsInserted = 0;
             bool result = false;
             string insertQueryString = "INSERT INTO SALES_ORDER(ORDER_ID,VENDOR_ID,USER_ID,MANUFACTURER_NAME,PRODUCT_ID,PRODUCT_TYPE,PRODUCT_NAME,COUNT,PRICE_PER_UNIT,TOTAL_PRICE,PAID_AMOUNT,BALANCE_AMOUNT,DISCOUNT_RATE,ORDER_STATUS,DESCRIPTION,CREATED_BY,CREATED_DATE,MODIFY_BY,MODIFY_DATE) VALUES(@ORDER_ID,@VENDOR_ID,@USER_ID,@MANUFACTURER_NAME,@PRODUCT_ID,@PRODUCT_TYPE,@PRODUCT_NAME,@COUNT,@PRICE_PER_UNIT,@TOTAL_PRICE,@PAID_AMOUNT,@BALANCE_AMOUNT,@DISCOUNT_RATE,@ORDER_STATUS,@DESCRIPTION,@CREATED_BY,@CREATED_DATE,@MODIFY_BY,@MODIFY_DATE);";
-            foreach(OrderProperties orderdetail in purchaseOrderInfo)
+            List<ProductProperties> reduceProductCountList = new List<ProductProperties>();
+            foreach (OrderProperties orderdetail in purchaseOrderInfo)
             {
+                ProductProperties productList = new ProductProperties();
+
                 List<KeyValuePair<string, string>> queryParameter = new List<KeyValuePair<string, string>>();
                 queryParameter.Add(new KeyValuePair<string, string>("@ORDER_ID",orderdetail.Order_Id));
                 queryParameter.Add(new KeyValuePair<string, string>("@VENDOR_ID", orderdetail.Vendor_Id));
@@ -97,19 +100,27 @@ namespace ConsignmentCompanyProject.com.app.model
                 queryParameter.Add(new KeyValuePair<string, string>("@MODIFY_BY", orderdetail.User_ID));
                 queryParameter.Add(new KeyValuePair<string, string>("@MODIFY_DATE", BusinessUtlities.getCurrentDateTime));
 
+                productList.Product_Id = orderdetail.Product_Id;
+                productList.Product_Current_Count = orderdetail.Count;
+                reduceProductCountList.Add(productList);
                result= DatabaseConnectionHandler.executeInsertDbQuery(insertQueryString, queryParameter);
                 if (result == true) {
-                    numberOfRowsInserted++;
+                    ++numberOfRowsInserted;
                 }
             }
             if (numberOfRowsInserted.Equals(purchaseOrderInfo.Count()))
             {
+                InventoryDBProcessHandler reduceProductCount = new InventoryDBProcessHandler();
+                reduceProductCount.reduceProductCount(reduceProductCountList);
                 Console.WriteLine("Order placed sucessfully");
+                result = true;
+
             }else
             {
                 Console.WriteLine("Order submission failed");
+                result = false;
             }
-           
+            return result;
         }
 
         public bool updateOrderStatus(OrderProperties updateorderInfo)

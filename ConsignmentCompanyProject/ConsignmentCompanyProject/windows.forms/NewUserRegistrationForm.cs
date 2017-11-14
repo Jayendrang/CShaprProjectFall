@@ -14,6 +14,9 @@ namespace ConsignmentCompanyProject.windows.forms
 {
     public partial class NewUserRegistrationForm : Form
     {
+        List<VendorProperties> vendorsList = new List<VendorProperties>();
+        com.app.business.UserInformationHandler userInformationHandler = new com.app.business.UserInformationHandler();
+
         public NewUserRegistrationForm()
         {
             InitializeComponent();
@@ -31,52 +34,85 @@ namespace ConsignmentCompanyProject.windows.forms
             userInformation.Contact = textBoxContact.Text;
             userInformation.Address = textBoxAddress.Text;
             userInformation.EMail_Id = textBoxEmailId.Text;
+            userInformation.Status = "ACTIVE";
+            userInformation.User_Id = textBoxGeneratedUsername.Text;
+            userInformation.Password = textBoxGeneratedPassword.Text;
+            
             if (radioButtonIsVendorYes.Checked == true)
             {
                 comboBoxVendorName.Enabled = true;
                 listBoxRoles.Enabled = false;
                 userInformation.Is_Vendor = "TRUE";
-                userInformation.Role = "VENDOR USER";
-
-            }else if(radioButtonIsVendorNo.Checked==true)
+                userInformation.Role = "VENDOR";
+                VendorProperties vendorDetails = userInformationHandler.getVendorInfo(comboBoxVendorName.SelectedItem.ToString());
+                userInformation.Vendor_Name = vendorDetails.Vendor_Name;
+                userInformation.Vendor_ID = vendorDetails.Vendor_Id;
+            }
+            else if (radioButtonIsVendorNo.Checked == true)
             {
                 comboBoxVendorName.Enabled = false;
+                listBoxRoles.Enabled = true;
                 userInformation.Is_Vendor = "FALSE";
-            }else
+                userInformation.Role = listBoxRoles.SelectedIndex.ToString();
+                userInformation.Vendor_ID = "N/A";
+                userInformation.Vendor_Name = "N/A";
+            }
+            else
             {
-                MessageBox.Show("Error","Please provide user role!", MessageBoxButtons.OK);
+                MessageBox.Show("Error", "Please provide user role!", MessageBoxButtons.OK);
             }
 
+            com.app.business.UserInformationHandler userInfoHandler = new com.app.business.UserInformationHandler();
+            userInformationHandler.addNewUser(userInformation, "JaY2234");
 
-            List<KeyValuePair<string, string>> kvl = new  List<KeyValuePair<string, string>>();
-            string Insertquery = "INSERT INTO USER_TABLE VALUES(@NAME, @CONTACT, @ADDRESS, @EMAIL_ID, @USER_ID, @PASSWORD, @ROLE, @IS_VENDOR, @VENDOR_ID, @VENDOR_NAME, @STATUS, @CREATED_BY, @CREATED_DATE, @MODIFIED_BY, @MODIFIED_DATE)";
 
-            kvl.Add(new KeyValuePair<string, string>("@NAME", "gurumoorthy"));
-            kvl.Add(new KeyValuePair<string, string>("@CONTACT", "4795223290"));
-            kvl.Add(new KeyValuePair<string, string>("@ADDRESS", "THAJAVUR"));
-            kvl.Add(new KeyValuePair<string, string>("@EMAIL_ID", "RKKADO@GMAIL.COM"));
-            kvl.Add(new KeyValuePair<string, string>("@USER_ID", "MANAGER50"));
-            kvl.Add(new KeyValuePair<string, string>("@PASSWORD", "RAKKYRO"));
-            kvl.Add(new KeyValuePair<string, string>("@ROLE", "MANAGER"));
-            kvl.Add(new KeyValuePair<string, string>("@IS_VENDOR", "FALSE"));
-            kvl.Add(new KeyValuePair<string, string>("@VENDOR_NAME", "N/A"));
-            kvl.Add(new KeyValuePair<string, string>("@VENDOR_ID", "N/A"));
-            kvl.Add(new KeyValuePair<string, string>("@STATUS", "ACTIVE"));
-            kvl.Add(new KeyValuePair<string, string>("@CREATED_BY", "ADMIN123"));
-            kvl.Add(new KeyValuePair<string, string>("@CREATED_DATE", "10/11/2017"));
-            kvl.Add(new KeyValuePair<string, string>("@MODIFIED_BY", "ADMIN123"));
-            kvl.Add(new KeyValuePair<string, string>("@MODIFIED_DATE", "10/11/2017"));
+        }
 
-          
-            DatabaseConnectionHandler.executeInsertDbQuery(Insertquery,kvl);    
-                
-                }
-
-        private void groupBox1_Enter(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e)
         {
-            listBoxRoles.Items.Add("STAFF");
-            listBoxRoles.Items.Add("MANAGER");
-            listBoxRoles.Items.Add("ADMIN");
+            this.Close();
+        }
+
+        private void NewUserRegistrationForm_Load(object sender, EventArgs e)
+        {
+            vendorsList = userInformationHandler.getVendorsList();
+
+        }
+
+        private void radioButtonIsVendorNo_CheckedChanged(object sender, EventArgs e)
+        {
+            listBoxRoles.Enabled = true;
+            listBoxRoles.Items.Clear();
+            if (radioButtonIsVendorNo.Checked)
+            {
+                listBoxRoles.Items.Add("STAFF");
+                listBoxRoles.Items.Add("MANAGER");
+                listBoxRoles.Items.Add("ADMIN");
+            }
+            comboBoxVendorName.Enabled = false;
+        }
+
+        private void radioButtonIsVendorYes_CheckedChanged(object sender, EventArgs e)
+        {
+            comboBoxVendorName.Enabled = true;
+            comboBoxVendorName.Items.Clear();
+            if (radioButtonIsVendorYes.Checked)
+            {
+                foreach (VendorProperties vendor in vendorsList)
+                {
+                    comboBoxVendorName.Items.Add(vendor.Vendor_Name);
+                }
+                listBoxRoles.Enabled = false;
+            }
+        }
+
+        private void buttonGenerateCreds_Click(object sender, EventArgs e)
+        {
+            if ((!textBoxName.Text.Equals(null)) && (!textBoxContact.Text.Equals(null)))
+            {
+                textBoxGeneratedUsername.Text = com.app.utlitiy.BusinessUtlities.generateNewUserName(textBoxName.Text, textBoxContact.Text);
+                textBoxGeneratedPassword.Text = com.app.utlitiy.BusinessUtlities.generateNewPassword();
+            }
         }
     }
 }

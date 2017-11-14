@@ -12,7 +12,7 @@ namespace ConsignmentCompanyProject.com.app.interfaces
 
        // T getSingleOrderInfo(string orderId);
         List<T> getMultipleOrdersInfo(string vendorInfo,string orderStatus);
-        void submitOrder(List<T> saveorderInfo);
+        bool submitOrder(List<T> saveorderInfo);
         bool cancelOrder(T cancelorderInfo);
         bool updateOrderStatus(T updateorderInfo);
         

@@ -75,6 +75,7 @@
     <Compile Include="com.app.business\OrderHandler.cs" />
     <Compile Include="com.app.business\OrderReturnHandler.cs" />
     <Compile Include="com.app.business\UserInformationHandler.cs" />
+    <Compile Include="com.app.business\VendorBusinessHandler.cs" />
     <Compile Include="com.app.dataobjects\AuditInformationProperties.cs" />
     <Compile Include="com.app.dataobjects\DiscountProperties.cs" />
     <Compile Include="com.app.dataobjects\LoginProperties.cs" />
@@ -141,11 +142,29 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="windows.forms\StaffMainWindowForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="windows.forms\StaffMainWindowForm.Designer.cs">
+      <DependentUpon>StaffMainWindowForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="windows.forms\UserProfileChangeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="windows.forms\UserProfileChangeForm.Designer.cs">
+      <DependentUpon>UserProfileChangeForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="windows.forms\VendorForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="windows.forms\VendorForm.designer.cs">
       <DependentUpon>VendorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="windows.forms\VendorMainWindowForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="windows.forms\VendorMainWindowForm.Designer.cs">
+      <DependentUpon>VendorMainWindowForm.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="windows.forms\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
@@ -181,6 +200,7 @@
       <DependentUpon>VendorForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\DataSources\ConsignmentCompanyProject.com.app.dataobjects.OrderProperties.datasource" />
+    <None Include="Properties\DataSources\ConsignmentCompanyProject.com.app.dataobjects.VendorProperties.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -219,13 +239,6 @@
     <Content Include="AppData\ConsignmentStoreDB_log.ldf">
       <DependentUpon>ConsignmentStoreDB.mdf</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ProdDBDontInclude\ConsignmentStoreDB.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ProdDBDontInclude\ConsignmentStoreDB_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>ConsignmentStoreDB.mdf</DependentUpon>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

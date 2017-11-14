@@ -29,7 +29,7 @@ namespace ConsignmentCompanyProject.com.app.dataobjects
         public string Discount_Rate { set; get; }
         public string Order_Status { set; get;}
         public string Description { set; get;}
-        public List<OrderProperties> Order_Details { set; get; }
+       // public List<OrderProperties> Order_Details { set; get; }
 
     }
 }

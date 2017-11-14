@@ -42,7 +42,7 @@ namespace ConsignmentCompanyProject
             LoginProperties logindata = new LoginProperties();
             logindata.Username = textBoxUserName.Text;
             logindata.Password = textBoxPassword.Text;
-            userSession= UserInformationHandler.validateUser(logindata);
+            //userSession= UserInformationHandler.validateUser(logindata);
             
             
             if (userSession!=null)
