@@ -14,10 +14,10 @@ namespace ConsignmentCompanyProject.com.app.dataobjects
      * */
     class AuditInformationProperties
     {
-        public string createdBy { protected set; get; }
-        public string createdOn { protected set; get; }
-        public string modifiedBy { protected set; get; }
-        public string modifiedOn { protected set; get; }
+        public string createdBy {  set; get; }
+        public string createdOn { set; get; }
+        public string modifiedBy { set; get; }
+        public string modifiedOn { set; get; }
         
     }
 }

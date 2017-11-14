@@ -132,7 +132,7 @@ namespace ConsignmentCompanyProject.com.app.model
         }
         
         //reduce product count based on order item count when customer submitting the order
-        bool IAppInventory<ProductProperties>.reduceProductCount(ProductProperties[] productInfo)
+       public  bool reduceProductCount(List<ProductProperties> productInfo)
         {
 
             string updateQueryString = "UPDATE PRODUCT SET PRODUCT_CURRENT_COUNT=PRODUCT_CURRENT_COUNT-@ORDER_COUNT WHERE PRODUCT_ID=@PRODUCTID";
@@ -149,7 +149,7 @@ namespace ConsignmentCompanyProject.com.app.model
         }
 
         //add product count based on order item count when customer submitting the order
-        bool IAppInventory<ProductProperties>.increaseProductCount(ProductProperties productInfo)
+      public  bool increaseProductCount(ProductProperties productInfo)
         {
 
             string updateQueryString = "UPDATE PRODUCT SET PRODUCT_CURRENT_COUNT=@ORDER_COUNT WHERE PRODUCT_ID=@PRODUCTID";

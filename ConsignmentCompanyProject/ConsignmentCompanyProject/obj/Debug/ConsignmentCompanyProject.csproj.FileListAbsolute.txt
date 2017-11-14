@@ -28,5 +28,3 @@ D:\GitHub\CShaprProjectFall\ConsignmentCompanyProject\ConsignmentCompanyProject\
 D:\GitHub\CShaprProjectFall\ConsignmentCompanyProject\ConsignmentCompanyProject\obj\Debug\ConsignmentCompanyProject.VendorForm.resources
 D:\GitHub\CShaprProjectFall\ConsignmentCompanyProject\ConsignmentCompanyProject\bin\Debug\AppData\ConsignmentStoreDB.mdf
 D:\GitHub\CShaprProjectFall\ConsignmentCompanyProject\ConsignmentCompanyProject\bin\Debug\AppData\ConsignmentStoreDB_log.ldf
-D:\GitHub\CShaprProjectFall\ConsignmentCompanyProject\ConsignmentCompanyProject\bin\Debug\ProdDBDontInclude\ConsignmentStoreDB.mdf
-D:\GitHub\CShaprProjectFall\ConsignmentCompanyProject\ConsignmentCompanyProject\bin\Debug\ProdDBDontInclude\ConsignmentStoreDB_log.ldf

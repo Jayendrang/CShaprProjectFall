@@ -52,6 +52,7 @@
             this.labelAddress = new System.Windows.Forms.Label();
             this.labelContact = new System.Windows.Forms.Label();
             this.labelName = new System.Windows.Forms.Label();
+            this.buttonGenerateCreds = new System.Windows.Forms.Button();
             this.panelAddUser.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -80,6 +81,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.buttonGenerateCreds);
             this.groupBox1.Controls.Add(this.textBoxGeneratedPassword);
             this.groupBox1.Controls.Add(this.textBoxGeneratedUsername);
             this.groupBox1.Controls.Add(this.labelUsername);
@@ -101,17 +103,16 @@
             this.groupBox1.Controls.Add(this.labelAddress);
             this.groupBox1.Controls.Add(this.labelContact);
             this.groupBox1.Controls.Add(this.labelName);
-            this.groupBox1.Location = new System.Drawing.Point(123, 63);
+            this.groupBox1.Location = new System.Drawing.Point(57, 63);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(925, 449);
+            this.groupBox1.Size = new System.Drawing.Size(991, 516);
             this.groupBox1.TabIndex = 30;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "NEW USER DETAILS";
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // textBoxGeneratedPassword
             // 
-            this.textBoxGeneratedPassword.Location = new System.Drawing.Point(747, 188);
+            this.textBoxGeneratedPassword.Location = new System.Drawing.Point(845, 110);
             this.textBoxGeneratedPassword.Name = "textBoxGeneratedPassword";
             this.textBoxGeneratedPassword.ReadOnly = true;
             this.textBoxGeneratedPassword.Size = new System.Drawing.Size(100, 22);
@@ -119,7 +120,7 @@
             // 
             // textBoxGeneratedUsername
             // 
-            this.textBoxGeneratedUsername.Location = new System.Drawing.Point(747, 140);
+            this.textBoxGeneratedUsername.Location = new System.Drawing.Point(845, 62);
             this.textBoxGeneratedUsername.Name = "textBoxGeneratedUsername";
             this.textBoxGeneratedUsername.ReadOnly = true;
             this.textBoxGeneratedUsername.Size = new System.Drawing.Size(100, 22);
@@ -128,7 +129,7 @@
             // labelUsername
             // 
             this.labelUsername.AutoSize = true;
-            this.labelUsername.Location = new System.Drawing.Point(488, 145);
+            this.labelUsername.Location = new System.Drawing.Point(586, 67);
             this.labelUsername.Name = "labelUsername";
             this.labelUsername.Size = new System.Drawing.Size(235, 17);
             this.labelUsername.TabIndex = 26;
@@ -137,52 +138,54 @@
             // radioButtonIsVendorNo
             // 
             this.radioButtonIsVendorNo.AutoSize = true;
-            this.radioButtonIsVendorNo.Location = new System.Drawing.Point(282, 267);
+            this.radioButtonIsVendorNo.Location = new System.Drawing.Point(328, 282);
             this.radioButtonIsVendorNo.Name = "radioButtonIsVendorNo";
             this.radioButtonIsVendorNo.Size = new System.Drawing.Size(47, 21);
             this.radioButtonIsVendorNo.TabIndex = 1;
             this.radioButtonIsVendorNo.TabStop = true;
             this.radioButtonIsVendorNo.Text = "No";
             this.radioButtonIsVendorNo.UseVisualStyleBackColor = true;
+            this.radioButtonIsVendorNo.CheckedChanged += new System.EventHandler(this.radioButtonIsVendorNo_CheckedChanged);
             // 
             // listBoxRoles
             // 
             this.listBoxRoles.FormattingEnabled = true;
             this.listBoxRoles.ItemHeight = 16;
-            this.listBoxRoles.Location = new System.Drawing.Point(223, 360);
+            this.listBoxRoles.Location = new System.Drawing.Point(269, 375);
             this.listBoxRoles.Name = "listBoxRoles";
-            this.listBoxRoles.Size = new System.Drawing.Size(120, 20);
+            this.listBoxRoles.Size = new System.Drawing.Size(120, 52);
             this.listBoxRoles.TabIndex = 25;
             // 
             // radioButtonIsVendorYes
             // 
             this.radioButtonIsVendorYes.AutoSize = true;
-            this.radioButtonIsVendorYes.Location = new System.Drawing.Point(223, 267);
+            this.radioButtonIsVendorYes.Location = new System.Drawing.Point(269, 282);
             this.radioButtonIsVendorYes.Name = "radioButtonIsVendorYes";
             this.radioButtonIsVendorYes.Size = new System.Drawing.Size(53, 21);
             this.radioButtonIsVendorYes.TabIndex = 0;
             this.radioButtonIsVendorYes.TabStop = true;
             this.radioButtonIsVendorYes.Text = "Yes";
             this.radioButtonIsVendorYes.UseVisualStyleBackColor = true;
+            this.radioButtonIsVendorYes.CheckedChanged += new System.EventHandler(this.radioButtonIsVendorYes_CheckedChanged);
             // 
             // comboBoxVendorName
             // 
             this.comboBoxVendorName.FormattingEnabled = true;
-            this.comboBoxVendorName.Location = new System.Drawing.Point(223, 312);
+            this.comboBoxVendorName.Location = new System.Drawing.Point(269, 327);
             this.comboBoxVendorName.Name = "comboBoxVendorName";
             this.comboBoxVendorName.Size = new System.Drawing.Size(121, 24);
             this.comboBoxVendorName.TabIndex = 24;
             // 
             // textBoxEmailId
             // 
-            this.textBoxEmailId.Location = new System.Drawing.Point(223, 220);
+            this.textBoxEmailId.Location = new System.Drawing.Point(269, 235);
             this.textBoxEmailId.Name = "textBoxEmailId";
             this.textBoxEmailId.Size = new System.Drawing.Size(193, 22);
             this.textBoxEmailId.TabIndex = 22;
             // 
             // textBoxAddress
             // 
-            this.textBoxAddress.Location = new System.Drawing.Point(223, 140);
+            this.textBoxAddress.Location = new System.Drawing.Point(269, 155);
             this.textBoxAddress.Multiline = true;
             this.textBoxAddress.Name = "textBoxAddress";
             this.textBoxAddress.Size = new System.Drawing.Size(193, 62);
@@ -190,32 +193,33 @@
             // 
             // textBoxContact
             // 
-            this.textBoxContact.Location = new System.Drawing.Point(223, 97);
+            this.textBoxContact.Location = new System.Drawing.Point(269, 112);
             this.textBoxContact.Name = "textBoxContact";
             this.textBoxContact.Size = new System.Drawing.Size(120, 22);
             this.textBoxContact.TabIndex = 20;
             // 
             // textBoxName
             // 
-            this.textBoxName.Location = new System.Drawing.Point(223, 56);
+            this.textBoxName.Location = new System.Drawing.Point(269, 71);
             this.textBoxName.Name = "textBoxName";
             this.textBoxName.Size = new System.Drawing.Size(120, 22);
             this.textBoxName.TabIndex = 19;
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(690, 362);
+            this.button2.Location = new System.Drawing.Point(803, 366);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(112, 41);
+            this.button2.Size = new System.Drawing.Size(112, 26);
             this.button2.TabIndex = 18;
             this.button2.Text = "CAN&CEL";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // buttonAddUser
             // 
-            this.buttonAddUser.Location = new System.Drawing.Point(491, 362);
+            this.buttonAddUser.Location = new System.Drawing.Point(637, 366);
             this.buttonAddUser.Name = "buttonAddUser";
-            this.buttonAddUser.Size = new System.Drawing.Size(125, 41);
+            this.buttonAddUser.Size = new System.Drawing.Size(125, 26);
             this.buttonAddUser.TabIndex = 17;
             this.buttonAddUser.Text = "&ADD USER";
             this.buttonAddUser.UseVisualStyleBackColor = true;
@@ -224,7 +228,7 @@
             // labelPassword
             // 
             this.labelPassword.AutoSize = true;
-            this.labelPassword.Location = new System.Drawing.Point(488, 195);
+            this.labelPassword.Location = new System.Drawing.Point(586, 117);
             this.labelPassword.Name = "labelPassword";
             this.labelPassword.Size = new System.Drawing.Size(238, 17);
             this.labelPassword.TabIndex = 16;
@@ -233,7 +237,7 @@
             // labelVendorName
             // 
             this.labelVendorName.AutoSize = true;
-            this.labelVendorName.Location = new System.Drawing.Point(45, 319);
+            this.labelVendorName.Location = new System.Drawing.Point(91, 334);
             this.labelVendorName.Name = "labelVendorName";
             this.labelVendorName.Size = new System.Drawing.Size(110, 17);
             this.labelVendorName.TabIndex = 15;
@@ -242,7 +246,7 @@
             // labelIsVendor
             // 
             this.labelIsVendor.AutoSize = true;
-            this.labelIsVendor.Location = new System.Drawing.Point(45, 271);
+            this.labelIsVendor.Location = new System.Drawing.Point(91, 286);
             this.labelIsVendor.Name = "labelIsVendor";
             this.labelIsVendor.Size = new System.Drawing.Size(83, 17);
             this.labelIsVendor.TabIndex = 14;
@@ -251,7 +255,7 @@
             // labelRole
             // 
             this.labelRole.AutoSize = true;
-            this.labelRole.Location = new System.Drawing.Point(45, 360);
+            this.labelRole.Location = new System.Drawing.Point(91, 375);
             this.labelRole.Name = "labelRole";
             this.labelRole.Size = new System.Drawing.Size(46, 17);
             this.labelRole.TabIndex = 13;
@@ -260,7 +264,7 @@
             // labelMailId
             // 
             this.labelMailId.AutoSize = true;
-            this.labelMailId.Location = new System.Drawing.Point(45, 226);
+            this.labelMailId.Location = new System.Drawing.Point(91, 241);
             this.labelMailId.Name = "labelMailId";
             this.labelMailId.Size = new System.Drawing.Size(65, 17);
             this.labelMailId.TabIndex = 11;
@@ -269,7 +273,7 @@
             // labelAddress
             // 
             this.labelAddress.AutoSize = true;
-            this.labelAddress.Location = new System.Drawing.Point(45, 140);
+            this.labelAddress.Location = new System.Drawing.Point(91, 155);
             this.labelAddress.Name = "labelAddress";
             this.labelAddress.Size = new System.Drawing.Size(74, 17);
             this.labelAddress.TabIndex = 10;
@@ -278,7 +282,7 @@
             // labelContact
             // 
             this.labelContact.AutoSize = true;
-            this.labelContact.Location = new System.Drawing.Point(45, 97);
+            this.labelContact.Location = new System.Drawing.Point(91, 112);
             this.labelContact.Name = "labelContact";
             this.labelContact.Size = new System.Drawing.Size(74, 17);
             this.labelContact.TabIndex = 9;
@@ -287,11 +291,21 @@
             // labelName
             // 
             this.labelName.AutoSize = true;
-            this.labelName.Location = new System.Drawing.Point(45, 62);
+            this.labelName.Location = new System.Drawing.Point(91, 77);
             this.labelName.Name = "labelName";
             this.labelName.Size = new System.Drawing.Size(47, 17);
             this.labelName.TabIndex = 8;
             this.labelName.Text = "NAME";
+            // 
+            // buttonGenerateCreds
+            // 
+            this.buttonGenerateCreds.Location = new System.Drawing.Point(589, 155);
+            this.buttonGenerateCreds.Name = "buttonGenerateCreds";
+            this.buttonGenerateCreds.Size = new System.Drawing.Size(147, 34);
+            this.buttonGenerateCreds.TabIndex = 29;
+            this.buttonGenerateCreds.Text = "&GENERATE CREDS";
+            this.buttonGenerateCreds.UseVisualStyleBackColor = true;
+            this.buttonGenerateCreds.Click += new System.EventHandler(this.buttonGenerateCreds_Click);
             // 
             // NewUserRegistrationForm
             // 
@@ -301,6 +315,7 @@
             this.Controls.Add(this.panelAddUser);
             this.Name = "NewUserRegistrationForm";
             this.Text = "ADD NEW USER";
+            this.Load += new System.EventHandler(this.NewUserRegistrationForm_Load);
             this.panelAddUser.ResumeLayout(false);
             this.panelAddUser.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -335,5 +350,6 @@
         private System.Windows.Forms.Button buttonAddUser;
         private System.Windows.Forms.Label labelPassword;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button buttonGenerateCreds;
     }
 }

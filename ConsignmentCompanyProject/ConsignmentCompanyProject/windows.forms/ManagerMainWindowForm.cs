@@ -14,9 +14,7 @@ namespace ConsignmentCompanyProject
 {
     public partial class ManagerMainWindow : Form
     {
-        UserInformationProperties userSession = UserInformationHandler.userSessionData;
         public void loadFormData() {
-            labelUserName.Text = userSession.Name;
             }
 
         public ManagerMainWindow()

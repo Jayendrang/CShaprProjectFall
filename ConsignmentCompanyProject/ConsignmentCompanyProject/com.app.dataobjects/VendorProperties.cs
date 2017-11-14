@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace ConsignmentCompanyProject.com.app.dataobjects
 {
     //This class holds vendor information with their respective discount properties
-    class VendorProperties
+    class VendorProperties 
     {
         public string Vendor_Address { get;set;}
         public string Vendor_Contact { get; set;}
@@ -15,7 +15,6 @@ namespace ConsignmentCompanyProject.com.app.dataobjects
         public string Vendor_Status { get; set; }
         public double Vendor_Balance_Amount {get; set;}
         public string Vendor_Discount_ID { get; set; }
-        public string Vendor_Balance_amount { get; set; }
         public string Vendor_Name { get; set; }
         public string Vendor_Id { get; set; }
 
