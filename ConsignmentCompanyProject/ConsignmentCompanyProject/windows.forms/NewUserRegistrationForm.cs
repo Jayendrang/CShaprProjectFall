@@ -14,7 +14,7 @@ namespace ConsignmentCompanyProject.windows.forms
 {
     public partial class NewUserRegistrationForm : Form
     {
-        List<VendorProperties> vendorsList = new List<VendorProperties>();
+        List<CustomerProperties> vendorsList = new List<CustomerProperties>();
         com.app.business.UserInformationHandler userInformationHandler = new com.app.business.UserInformationHandler();
 
         public NewUserRegistrationForm()
@@ -44,7 +44,7 @@ namespace ConsignmentCompanyProject.windows.forms
                 listBoxRoles.Enabled = false;
                 userInformation.Is_Vendor = "TRUE";
                 userInformation.Role = "VENDOR";
-                VendorProperties vendorDetails = userInformationHandler.getVendorInfo(comboBoxVendorName.SelectedItem.ToString());
+                CustomerProperties vendorDetails = userInformationHandler.getVendorInfo(comboBoxVendorName.SelectedItem.ToString());
                 userInformation.Vendor_Name = vendorDetails.Vendor_Name;
                 userInformation.Vendor_ID = vendorDetails.Vendor_Id;
             }
@@ -98,7 +98,7 @@ namespace ConsignmentCompanyProject.windows.forms
             comboBoxVendorName.Items.Clear();
             if (radioButtonIsVendorYes.Checked)
             {
-                foreach (VendorProperties vendor in vendorsList)
+                foreach (CustomerProperties vendor in vendorsList)
                 {
                     comboBoxVendorName.Items.Add(vendor.Vendor_Name);
                 }

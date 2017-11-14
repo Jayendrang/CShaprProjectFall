@@ -75,7 +75,7 @@
     <Compile Include="com.app.business\OrderHandler.cs" />
     <Compile Include="com.app.business\OrderReturnHandler.cs" />
     <Compile Include="com.app.business\UserInformationHandler.cs" />
-    <Compile Include="com.app.business\VendorBusinessHandler.cs" />
+    <Compile Include="com.app.business\CustomerInformationHandler.cs" />
     <Compile Include="com.app.dataobjects\AuditInformationProperties.cs" />
     <Compile Include="com.app.dataobjects\DiscountProperties.cs" />
     <Compile Include="com.app.dataobjects\LoginProperties.cs" />
@@ -84,18 +84,18 @@
     <Compile Include="com.app.dataobjects\OrderReturnProperties.cs" />
     <Compile Include="com.app.dataobjects\ProductProperties.cs" />
     <Compile Include="com.app.dataobjects\UserInformationProperties.cs" />
-    <Compile Include="com.app.dataobjects\VendorProperties.cs" />
+    <Compile Include="com.app.dataobjects\CustomerProperties.cs" />
     <Compile Include="com.app.interfaces\IAppInventory.cs" />
     <Compile Include="com.app.interfaces\IAppOrder.cs" />
     <Compile Include="com.app.interfaces\IAppUser.cs" />
-    <Compile Include="com.app.interfaces\IAppVendor.cs" />
+    <Compile Include="com.app.interfaces\IAppCustomer.cs" />
     <Compile Include="com.app.model\DatabaseConnectionHandler.cs" />
     <Compile Include="com.app.model\DiscountDBProcessHandler.cs" />
     <Compile Include="com.app.model\InventoryDBProcessHandler.cs" />
     <Compile Include="com.app.model\OrderDBProcessHandler.cs" />
     <Compile Include="com.app.model\OrderRetrunDBProcessHandler.cs" />
     <Compile Include="com.app.model\UserDBProcessHandler.cs" />
-    <Compile Include="com.app.model\VendorDBProcessHandler.cs" />
+    <Compile Include="com.app.model\CustomerDBProcessHandler.cs" />
     <Compile Include="com.app.utilities\BusinessUtlities.cs" />
     <Compile Include="com.app.utilities\FormValidationUtility.cs" />
     <Compile Include="windows.forms\InventoryManagementForm.cs">
@@ -154,17 +154,17 @@
     <Compile Include="windows.forms\UserProfileChangeForm.Designer.cs">
       <DependentUpon>UserProfileChangeForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="windows.forms\VendorForm.cs">
+    <Compile Include="windows.forms\CustomerForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="windows.forms\VendorForm.designer.cs">
-      <DependentUpon>VendorForm.cs</DependentUpon>
+    <Compile Include="windows.forms\CustomerForm.designer.cs">
+      <DependentUpon>CustomerForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="windows.forms\VendorMainWindowForm.cs">
+    <Compile Include="windows.forms\CustomerMainWindowForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="windows.forms\VendorMainWindowForm.Designer.cs">
-      <DependentUpon>VendorMainWindowForm.cs</DependentUpon>
+    <Compile Include="windows.forms\CustomerMainWindowForm.Designer.cs">
+      <DependentUpon>CustomerMainWindowForm.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="windows.forms\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
@@ -196,8 +196,8 @@
     <EmbeddedResource Include="windows.forms\SplashScreen.resx">
       <DependentUpon>SplashScreen.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="windows.forms\VendorForm.resx">
-      <DependentUpon>VendorForm.cs</DependentUpon>
+    <EmbeddedResource Include="windows.forms\CustomerForm.resx">
+      <DependentUpon>CustomerForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\DataSources\ConsignmentCompanyProject.com.app.dataobjects.OrderProperties.datasource" />
     <None Include="Properties\DataSources\ConsignmentCompanyProject.com.app.dataobjects.VendorProperties.datasource" />

@@ -18,7 +18,7 @@ namespace ConsignmentCompanyProject
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new VendorForm());
+            Application.Run(new CustomerForm());
             //Application.Run(new Orders());
             
         }

@@ -25,6 +25,6 @@ D:\GitHub\CShaprProjectFall\ConsignmentCompanyProject\ConsignmentCompanyProject\
 D:\GitHub\CShaprProjectFall\ConsignmentCompanyProject\ConsignmentCompanyProject\bin\Debug\ConsignmentCompanyProject.pdb
 D:\GitHub\CShaprProjectFall\ConsignmentCompanyProject\ConsignmentCompanyProject\bin\Debug\Microsoft.ReportViewer.WinForms.dll
 D:\GitHub\CShaprProjectFall\ConsignmentCompanyProject\ConsignmentCompanyProject\obj\Debug\ConsignmentCompanyProject.csprojResolveAssemblyReference.cache
-D:\GitHub\CShaprProjectFall\ConsignmentCompanyProject\ConsignmentCompanyProject\obj\Debug\ConsignmentCompanyProject.VendorForm.resources
 D:\GitHub\CShaprProjectFall\ConsignmentCompanyProject\ConsignmentCompanyProject\bin\Debug\AppData\ConsignmentStoreDB.mdf
 D:\GitHub\CShaprProjectFall\ConsignmentCompanyProject\ConsignmentCompanyProject\bin\Debug\AppData\ConsignmentStoreDB_log.ldf
+D:\GitHub\CShaprProjectFall\ConsignmentCompanyProject\ConsignmentCompanyProject\obj\Debug\ConsignmentCompanyProject.CustomerForm.resources

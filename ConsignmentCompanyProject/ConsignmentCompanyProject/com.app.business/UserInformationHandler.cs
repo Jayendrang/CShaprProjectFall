@@ -10,11 +10,11 @@ namespace ConsignmentCompanyProject.com.app.business
     class UserInformationHandler
     {
         
-        private static List<VendorProperties> vendorLists = new List<VendorProperties>();
-        public List<VendorProperties> getVendorsList()
+        private static List<CustomerProperties> vendorLists = new List<CustomerProperties>();
+        public List<CustomerProperties> getVendorsList()
         {
-            com.app.model.VendorDBProcessHandler vendors = new VendorDBProcessHandler();
-            vendorLists = vendors.getMultipleVendorInfo("ACTIVE");
+            com.app.model.CustomerDBProcessHandler customer = new CustomerDBProcessHandler();
+            vendorLists = customer.getMultipleCustomerInfo("ACTIVE");
             return vendorLists;
         }
 
@@ -23,18 +23,18 @@ namespace ConsignmentCompanyProject.com.app.business
             com.app.model.UserDBProcessHandler userDbHandler = new UserDBProcessHandler();
             userDbHandler.addUser(userInformation,currentUser);
         }
-        public  VendorProperties getVendorInfo(string vendorName)
+        public  CustomerProperties getVendorInfo(string vendorName)
         {
-            VendorProperties vendorProperties = new VendorProperties();
-            foreach(VendorProperties vendor in vendorLists)
+            CustomerProperties customerProperties = new CustomerProperties();
+            foreach(CustomerProperties vendor in vendorLists)
             {
                 if (vendor.Vendor_Name.Equals(vendorName))
                 {
-                    vendorProperties.Vendor_Name = vendor.Vendor_Name;
-                    vendorProperties.Vendor_Id = vendor.Vendor_Id;
+                    customerProperties.Vendor_Name = vendor.Vendor_Name;
+                    customerProperties.Vendor_Id = vendor.Vendor_Id;
                 }
             }
-            return vendorProperties;
+            return customerProperties;
         }
 
     }
