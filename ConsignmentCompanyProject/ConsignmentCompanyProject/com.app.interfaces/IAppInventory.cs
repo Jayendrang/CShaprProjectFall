@@ -14,14 +14,15 @@ namespace ConsignmentCompanyProject.com.app.interfaces
 
         List<ProductProperties> getManufacturerProductsList(T manufacturer);
         //T searchProduct(string ProductName);
-        List<ManufacturerProperties> getManufacturersList();
-        void addNewManufacturer(ManufacturerProperties manufacturerInfo,UserInformationProperties userInfo);
+        List<ManufacturerProperties> getManufacturersList(string status);
+        bool addNewManufacturer(ManufacturerProperties manufacturerInfo,string userInfo);
        // T searchManufacturer(string manufacturerName);
         bool addNewProduct(ProductProperties productInfo, UserInformationProperties userInfo);
         bool removeProduct(ProductProperties productId);
         bool reduceProductCount(List<ProductProperties> productInfo);
         bool increaseProductCount(ProductProperties productInfo);
-       // Dictionary<string, List<ProductProperties>> getProducts();
+        Dictionary<string, List<ProductProperties>> getProducts();
+        bool deActivateManufacturer(ManufacturerProperties manufacturerProperties, string userInfo);
     }
 
     

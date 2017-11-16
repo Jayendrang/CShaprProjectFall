@@ -13,8 +13,8 @@ namespace ConsignmentCompanyProject.com.app.interfaces
     interface IAppUser<T> where T : UserInformationProperties
     {
         bool addUser(T userData,string currentUserId);
-        bool removeUser(string userId);
-        bool modifyUser(T userInfo);
+        bool deactivateUser(string userId);
+        bool updateUserInfo(T userInfo);
         T getSingleUserInfo(string userId);
         List<T> getMultipleUserInfo(string UserStatus);
         

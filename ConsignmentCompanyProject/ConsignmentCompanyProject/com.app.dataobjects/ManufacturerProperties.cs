@@ -17,7 +17,7 @@ namespace ConsignmentCompanyProject.com.app.dataobjects
         public string Manufacturer_Id { get; set; }
         public string Manufacturer_Name { get; set; }
         public string Manufacturer_Detail {  set;  get; }
-
+        public string Manufacturer_Status { set; get; }
        
         
     }

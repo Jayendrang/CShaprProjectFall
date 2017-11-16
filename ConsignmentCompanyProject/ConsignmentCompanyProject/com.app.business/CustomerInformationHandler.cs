@@ -45,7 +45,14 @@ namespace ConsignmentCompanyProject.com.app.business
 
         public static bool deactivateVendor(CustomerProperties vendor, string userId)
         {
-            return vendorDbProcessHandler.removeCustomerInfo(vendor, userId);
+            bool result = false;
+            result=vendorDbProcessHandler.removeCustomerInfo(vendor, userId);
+            if (result)
+            {
+                UserDBProcessHandler removeVendorUser = new UserDBProcessHandler();
+                result = removeVendorUser.removeMultipleCustomerUsers(vendor.Vendor_Id);
+            }
+            return result;
         }
 
     }

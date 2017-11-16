@@ -23,7 +23,7 @@ namespace ConsignmentCompanyProject.com.app.interfaces
         List<T> getMultipleReturnOrderInfo(T vendorInfo);
         bool submitOrderReturn(T saveOrderReturnInfo);
         bool cancelOrderReturn(T cancelOrderReturnInfo);
-        bool updateOrderReturn(T updateOrderCancelInfo);
+        bool updateOrderReturn(T updateOrderCancelInfo,string userId);
        // void addProdcutToReturnCart(T productReturnInfo);
 
     }

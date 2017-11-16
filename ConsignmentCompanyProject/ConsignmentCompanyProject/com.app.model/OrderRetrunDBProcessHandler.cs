@@ -62,20 +62,21 @@ namespace ConsignmentCompanyProject.com.app.model
             queryParameter.Add(new KeyValuePair<string, string>("@RETURN_ORDER_ID",saveOrderReturnInfo.Return_Order_Id));
             queryParameter.Add(new KeyValuePair<string, string>("@ORDER_ID",saveOrderReturnInfo.Order_Id));
             queryParameter.Add(new KeyValuePair<string, string>("@USER_ID",saveOrderReturnInfo.User_Id));
+            queryParameter.Add(new KeyValuePair<string, string>("@VENDOR_ID", saveOrderReturnInfo.Vendor_Id));
             queryParameter.Add(new KeyValuePair<string, string>("@PRODUCT_ID",saveOrderReturnInfo.Product_Id));
             queryParameter.Add(new KeyValuePair<string, string>("@PRODUCT_TYPE",saveOrderReturnInfo.Product_Type));
             queryParameter.Add(new KeyValuePair<string, string>("@COUNT",saveOrderReturnInfo.Count.ToString()));
             queryParameter.Add(new KeyValuePair<string, string>("@PRICE_PER_UNIT",saveOrderReturnInfo.Price_Per_Unit.ToString()));
             queryParameter.Add(new KeyValuePair<string, string>("@RETURN_DESCRIPTION",saveOrderReturnInfo.Return_Description));
             queryParameter.Add(new KeyValuePair<string, string>("@RETURN_STATUS",saveOrderReturnInfo.Return_Status));
-            queryParameter.Add(new KeyValuePair<string, string>("@CREATED_BY",saveOrderReturnInfo.User_Id));
+            queryParameter.Add(new KeyValuePair<string, string>("@CREATED_BY",saveOrderReturnInfo.Created_By));
             queryParameter.Add(new KeyValuePair<string, string>("@CREATED_DATE",com.app.utlitiy.BusinessUtlities.getCurrentDateTime));
-            queryParameter.Add(new KeyValuePair<string, string>("@MODIFIED_BY",saveOrderReturnInfo.User_Id));
+            queryParameter.Add(new KeyValuePair<string, string>("@MODIFIED_BY",saveOrderReturnInfo.Created_By));
             queryParameter.Add(new KeyValuePair<string, string>("@MODIFIED_DATE",com.app.utlitiy.BusinessUtlities.getCurrentDateTime));
             return DatabaseConnectionHandler.executeInsertDbQuery(insertQueryString, queryParameter);
         }
 
-        public bool updateOrderReturn(OrderReturnProperties updateOrderStatusInfo)
+        public bool updateOrderReturn(OrderReturnProperties updateOrderStatusInfo, string userInfo)
         {
             string updateQueryString = "UPDATE RETURN_ORDER SET RETURN_STATUS=@STATUS,RETURN_DESCRITPION=@RETURN_DESCRIPTION,MODIFIED_BY=@MODIFIED_BY,MODIFIED_DATE=@MODIFIED_DATE WHERE RETURN_ORDER_ID=@RETURN_ORDER_ID";
             List<KeyValuePair<string, string>> tableQueryData = new List<KeyValuePair<string, string>>();

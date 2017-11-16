@@ -9,9 +9,10 @@ namespace ConsignmentCompanyProject.com.app.business
 {
     class UserInformationHandler
     {
-        
+        private static UserDBProcessHandler userDataHandler = new UserDBProcessHandler();
         private static List<CustomerProperties> vendorLists = new List<CustomerProperties>();
-        public List<CustomerProperties> getVendorsList()
+
+        public List<CustomerProperties> getCustomerList()
         {
             com.app.model.CustomerDBProcessHandler customer = new CustomerDBProcessHandler();
             vendorLists = customer.getMultipleCustomerInfo("ACTIVE");
@@ -23,7 +24,7 @@ namespace ConsignmentCompanyProject.com.app.business
             com.app.model.UserDBProcessHandler userDbHandler = new UserDBProcessHandler();
             userDbHandler.addUser(userInformation,currentUser);
         }
-        public  CustomerProperties getVendorInfo(string vendorName)
+        public  CustomerProperties getCustomerInfo(string vendorName)
         {
             CustomerProperties customerProperties = new CustomerProperties();
             foreach(CustomerProperties vendor in vendorLists)
@@ -36,6 +37,14 @@ namespace ConsignmentCompanyProject.com.app.business
             }
             return customerProperties;
         }
+        public static UserInformationProperties getUserProfileInformation(string userId)
+        {
+            return userDataHandler.getSingleUserInfo(userId);
 
+        }
+        public static bool updateUserInformation(UserInformationProperties userInformation)
+        {
+            return userDataHandler.updateUserInfo(userInformation);
+        }
     }
 }

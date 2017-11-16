@@ -18,8 +18,8 @@ namespace ConsignmentCompanyProject
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new CustomerForm());
-            //Application.Run(new Orders());
+            //Application.Run(new OrderReturnForm());
+            Application.Run(new InventoryManagement());
             
         }
     }

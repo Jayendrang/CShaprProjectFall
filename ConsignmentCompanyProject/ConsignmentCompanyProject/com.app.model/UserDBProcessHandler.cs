@@ -96,7 +96,7 @@ namespace ConsignmentCompanyProject.com.app.model
         {
             DataSet dataset = new DataSet();
             UserInformationProperties userinformation = new UserInformationProperties();
-            string selectQueryString = "SELECT NAME,CONTACT,ADDRESS,EMAIL_ID,USER_ID,ROLE,IS_VENDOR,VENDOR_ID,VENDOR_NAME,STATUS,CREATED_BY,CREATED_DATE,MODIFIED_BY,MODIFIED_DATE FROM USER_TABLE WHERE USER_ID=@USER_ID";
+            string selectQueryString = "SELECT NAME,CONTACT,ADDRESS,EMAIL_ID,USER_ID,PASSWORD,ROLE,IS_VENDOR,VENDOR_ID,VENDOR_NAME,STATUS,CREATED_BY,CREATED_DATE,MODIFIED_BY,MODIFIED_DATE FROM USER_TABLE WHERE USER_ID=@USER_ID";
             List<KeyValuePair<string, string>> tableQueryData = new List<KeyValuePair<string, string>>();
             tableQueryData.Add(new KeyValuePair<string, string>("@USER_ID", userId));
             dataset = DatabaseConnectionHandler.executeSelectQuery(selectQueryString, tableQueryData);
@@ -109,6 +109,7 @@ namespace ConsignmentCompanyProject.com.app.model
                     userinformation.Address = row["Address"].ToString();
                     userinformation.EMail_Id = row["Email_id"].ToString();
                     userinformation.User_Id = row["User_Id"].ToString();
+                    userinformation.Password = row["Password"].ToString();
                     userinformation.Role = row["Role"].ToString();
                     userinformation.Is_Vendor = row["Is_Vendor"].ToString();
                     userinformation.Vendor_ID = row["Vendor_Id"].ToString();
@@ -125,7 +126,7 @@ namespace ConsignmentCompanyProject.com.app.model
         }
 
         //Modify the single user profile
-        public bool modifyUser(UserInformationProperties userInfo)
+        public bool updateUserInfo(UserInformationProperties userInfo)
         {
             string updateQueryString = null;
             bool result = false;
@@ -144,7 +145,7 @@ namespace ConsignmentCompanyProject.com.app.model
         }
 
         //Update the user profile status as deactivate to remove the user from system
-        public bool removeUser(string userId)
+        public bool deactivateUser(string userId)
         {
             string updateQueryString = null;
             bool result = false;
@@ -157,7 +158,7 @@ namespace ConsignmentCompanyProject.com.app.model
         }
 
         //Method used to remove multiple users after deactivating(removing) vendor from vendor list
-        public bool removeMultipleVendorUsers(string vendorID)
+        public bool removeMultipleCustomerUsers(string vendorID)
         {
             string updateQueryString = null;
             bool result = false;
@@ -174,8 +175,8 @@ namespace ConsignmentCompanyProject.com.app.model
         {
             DataSet reader;
             List<KeyValuePair<string,string>> tableQueryData = new List<KeyValuePair<string, string>>();
+            UserInformationProperties userProfileInformation = new UserInformationProperties();
 
-            var userinfo  = new UserInformationProperties();
             try
             {
                     string queryString = "SELECT NAME,CONTACT,ADDRESS,EMAIL_ID,USER_ID,PASSWORD,ROLE,IS_VENDOR,VENDOR_ID,VENDOR_NAME,STATUS FROM USER_TABLE WHERE USER_ID=@USERID AND PASSWORD=@PASSWORD AND STATUS='ACTIVE'";
@@ -183,13 +184,16 @@ namespace ConsignmentCompanyProject.com.app.model
                     tableQueryData.Add(new KeyValuePair<string, string>("@PASSWORD", userCreds.Password));
                     
                     reader =  DatabaseConnectionHandler.executeSelectQuery(queryString, tableQueryData);
-                
+                if (reader != null)
+                {
+                    userProfileInformation = getSingleUserInfo(userCreds.Username);
+                }
 
 
             }
             catch (Exception ex) {Console.WriteLine("Login issue occured",ex.Message); }
 
-            return userinfo;
+            return userProfileInformation;
            }
     }
 
