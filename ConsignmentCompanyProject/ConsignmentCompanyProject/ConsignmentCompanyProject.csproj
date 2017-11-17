@@ -71,6 +71,7 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="com.app.business\CustomerMainWindowHandler.cs" />
     <Compile Include="com.app.business\InvetoryManagementHandler.cs" />
     <Compile Include="com.app.business\OrderHandler.cs" />
     <Compile Include="com.app.business\OrderReturnHandler.cs" />
@@ -98,6 +99,12 @@
     <Compile Include="com.app.model\CustomerDBProcessHandler.cs" />
     <Compile Include="com.app.utilities\BusinessUtlities.cs" />
     <Compile Include="com.app.utilities\FormValidationUtility.cs" />
+    <Compile Include="com.windows.forms\CustomerMainWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="com.windows.forms\CustomerMainWindow.Designer.cs">
+      <DependentUpon>CustomerMainWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="com.windows.forms\InventoryManagementForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -160,12 +167,9 @@
     <Compile Include="com.windows.forms\CustomerForm.designer.cs">
       <DependentUpon>CustomerForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="com.windows.forms\CustomerMainWindowForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="com.windows.forms\CustomerMainWindowForm.Designer.cs">
-      <DependentUpon>CustomerMainWindowForm.cs</DependentUpon>
-    </Compile>
+    <EmbeddedResource Include="com.windows.forms\CustomerMainWindow.resx">
+      <DependentUpon>CustomerMainWindow.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="com.windows.forms\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -237,11 +241,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AppData\ConsignmentStoreDB.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="AppData\ConsignmentStoreDB_log.ldf">
       <DependentUpon>ConsignmentStoreDB.mdf</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

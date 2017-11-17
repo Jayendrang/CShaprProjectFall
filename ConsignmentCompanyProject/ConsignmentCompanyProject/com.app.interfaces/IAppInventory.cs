@@ -17,10 +17,10 @@ namespace ConsignmentCompanyProject.com.app.interfaces
         List<ManufacturerProperties> getManufacturersList(string status);
         bool addNewManufacturer(ManufacturerProperties manufacturerInfo,string userInfo);
        // T searchManufacturer(string manufacturerName);
-        bool addNewProduct(ProductProperties productInfo, UserInformationProperties userInfo);
+        bool addNewProduct(ProductProperties productInfo, string userInfo);
         bool removeProduct(ProductProperties productId);
         bool reduceProductCount(List<ProductProperties> productInfo);
-        bool increaseProductCount(ProductProperties productInfo);
+        bool updateProduct(ProductProperties productInfo,string userInfo);
         Dictionary<string, List<ProductProperties>> getProducts();
         bool deActivateManufacturer(ManufacturerProperties manufacturerProperties, string userInfo);
     }

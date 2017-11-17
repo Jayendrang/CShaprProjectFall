@@ -9,20 +9,20 @@ namespace ConsignmentCompanyProject.windows.forms
 {
     public partial class OrderReturnForm : Form
     {
+        
+
         int _gridNumber = 0;
         private OrderReturnHandler orderReturnHandler;
         private OrderReturnProperties orderReturnProperty = new OrderReturnProperties();
         private List<OrderProperties> orderItineraryList = new List<OrderProperties>();
 
-        public OrderReturnForm()
+        public OrderReturnForm( )
         {
             InitializeComponent();
+           
             orderReturnHandler = new OrderReturnHandler();
         }
-        private void listBoxReturnOrderItem_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
+        
 
         private void OrderReturnForm_Load(object sender, EventArgs e)
         {

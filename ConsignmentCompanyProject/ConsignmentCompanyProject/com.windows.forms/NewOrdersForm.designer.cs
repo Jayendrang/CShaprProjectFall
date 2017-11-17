@@ -1,6 +1,6 @@
 ﻿namespace ConsignmentCompanyProject
 {
-    partial class Orders
+    partial class NewOrdersForm
     {
         /// <summary>
         /// Required designer variable.
@@ -131,6 +131,7 @@
             this.groupBoxOrderDetails.Size = new System.Drawing.Size(919, 341);
             this.groupBoxOrderDetails.TabIndex = 83;
             this.groupBoxOrderDetails.TabStop = false;
+            this.groupBoxOrderDetails.Text = "ORDER DETAILS";
             // 
             // textBoxDescription
             // 
@@ -520,14 +521,15 @@
             this.dataGridViewCart.Size = new System.Drawing.Size(913, 141);
             this.dataGridViewCart.TabIndex = 0;
             // 
-            // Orders
+            // NewOrdersForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1114, 706);
             this.Controls.Add(this.panelOrder);
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "Orders";
+            this.Name = "NewOrdersForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PURCHASE ORDER ";
             this.Load += new System.EventHandler(this.Orders_Load);
             this.panelOrder.ResumeLayout(false);

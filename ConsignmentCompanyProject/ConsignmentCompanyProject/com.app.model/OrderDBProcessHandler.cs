@@ -17,11 +17,12 @@ namespace ConsignmentCompanyProject.com.app.model
     {
         public bool cancelOrder(OrderProperties cancelorderInfo)
         {
-            string deleteQueryString = "UPDATE SALES_ORDER SET ORDER_STATUS='CANCELLED',DESCRIPTION=@DESCRIPTION,MODIFIED_BY=@MODIFIED_BY,MODIFIED_DATE=@MODIFIED_DATE WHERE ORDER_ID=@ORDER_ID AND VENDOR_ID=@VENDOR_ID";
+            string deleteQueryString = "UPDATE SALES_ORDER SET ORDER_STATUS='CANCELLED',DESCRIPTION=@DESCRIPTION,MODIFY_BY=@MODIFIED_BY,MODIFY_DATE=@MODIFIED_DATE WHERE ORDER_ID=@ORDER_ID AND VENDOR_ID=@VENDOR_ID AND ORDER_STATUS=@ORDER_STATUS;";
             List<KeyValuePair<string, string>> queryParameter = new List<KeyValuePair<string, string>>();
             queryParameter.Add(new KeyValuePair<string, string>("@ORDER_ID",cancelorderInfo.Order_Id.ToString()));
             queryParameter.Add(new KeyValuePair<string, string>("@VENDOR_ID", cancelorderInfo.Vendor_Id.ToString()));
-            queryParameter.Add(new KeyValuePair<string, string>("@DESCRIPTON", cancelorderInfo.Description.ToString()));
+            queryParameter.Add(new KeyValuePair<string, string>("@DESCRIPTION", cancelorderInfo.Description.ToString()));
+            queryParameter.Add(new KeyValuePair<string, string>("@ORDER_STATUS", cancelorderInfo.Order_Status));
             queryParameter.Add(new KeyValuePair<string, string>("@MODIFIED_BY", cancelorderInfo.User_ID));
             queryParameter.Add(new KeyValuePair<string, string>("@MODIFIED_DATE", utlitiy.BusinessUtlities.getCurrentDateTime.ToString()));
             bool result = DatabaseConnectionHandler.executeUpdateQuery(deleteQueryString, queryParameter);
@@ -39,7 +40,15 @@ namespace ConsignmentCompanyProject.com.app.model
                 List<KeyValuePair<string, string>> queryParameter = new List<KeyValuePair<string, string>>();
                 queryParameter.Add(new KeyValuePair<string, string>("@VENDOR_ID", vendorInfo.ToString()));
                 dataset = DatabaseConnectionHandler.executeSelectQuery(selectQueryString, queryParameter);
-            }else
+            }else if (orderStatus.Equals("CANCELLED"))
+            {
+                selectQueryString = "SELECT ORDER_ID,VENDOR_ID,MANUFACTURER_NAME,PRODUCT_ID,PRODUCT_TYPE,PRODUCT_NAME,COUNT,PRICE_PER_UNIT,TOTAL_PRICE,PAID_AMOUNT,BALANCE_AMOUNT,DISCOUNT_RATE,ORDER_STATUS,DESCRIPTION,CREATED_DATE FROM SALES_ORDER  WHERE VENDOR_ID=@VENDOR_ID AND ORDER_STATUS=@ORDER_STATUS ORDER BY ORDER_ID";
+                List<KeyValuePair<string, string>> queryParameter = new List<KeyValuePair<string, string>>();
+                queryParameter.Add(new KeyValuePair<string, string>("@VENDOR_ID", vendorInfo.ToString()));
+                queryParameter.Add(new KeyValuePair<string, string>("@ORDER_STATUS", orderStatus));
+                dataset = DatabaseConnectionHandler.executeSelectQuery(selectQueryString, queryParameter);
+            }
+            else
             {
                 selectQueryString = "SELECT ORDER_ID,VENDOR_ID,MANUFACTURER_NAME,PRODUCT_ID,PRODUCT_TYPE,PRODUCT_NAME,COUNT,PRICE_PER_UNIT,TOTAL_PRICE,PAID_AMOUNT,BALANCE_AMOUNT,DISCOUNT_RATE,ORDER_STATUS,DESCRIPTION,CREATED_DATE FROM SALES_ORDER WHERE VENDOR_ID=@VENDOR_ID AND ORDER_STATUS=@ORDER_STATUS ORDER BY ORDER_ID";
                 List<KeyValuePair<string, string>> queryParameter = new List<KeyValuePair<string, string>>();

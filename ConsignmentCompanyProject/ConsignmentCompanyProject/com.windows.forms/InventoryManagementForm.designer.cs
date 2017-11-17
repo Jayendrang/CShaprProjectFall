@@ -34,14 +34,23 @@
             this.labelManufacturerName = new System.Windows.Forms.Label();
             this.textBoxManufacturerName = new System.Windows.Forms.TextBox();
             this.groupBoxManufacturerInfo = new System.Windows.Forms.GroupBox();
-            this.radioButtonSearchManufacturer = new System.Windows.Forms.RadioButton();
+            this.button1 = new System.Windows.Forms.Button();
+            this.comboBoxStatus = new System.Windows.Forms.ComboBox();
+            this.textBoxStatus = new System.Windows.Forms.TextBox();
+            this.labelStatus = new System.Windows.Forms.Label();
             this.radioButtonRemoveManufacturer = new System.Windows.Forms.RadioButton();
             this.radioButtonAddNewManufacturer = new System.Windows.Forms.RadioButton();
             this.textBoxManfacturerDescriptions = new System.Windows.Forms.TextBox();
             this.labelManufacturerDescription = new System.Windows.Forms.Label();
             this.buttonDynamicAction = new System.Windows.Forms.Button();
             this.groupBoxProductInfo = new System.Windows.Forms.GroupBox();
-            this.radioButtonProductSearch = new System.Windows.Forms.RadioButton();
+            this.checkBoxNewProductType = new System.Windows.Forms.CheckBox();
+            this.labelMinimumCount = new System.Windows.Forms.Label();
+            this.textBoxMinimumCount = new System.Windows.Forms.TextBox();
+            this.textBoxNewProductType = new System.Windows.Forms.TextBox();
+            this.comboBoxProductName = new System.Windows.Forms.ComboBox();
+            this.textBoxProductId = new System.Windows.Forms.TextBox();
+            this.labelProductId = new System.Windows.Forms.Label();
             this.textBoxProductName = new System.Windows.Forms.TextBox();
             this.labelProductName = new System.Windows.Forms.Label();
             this.comboBoxProductType = new System.Windows.Forms.ComboBox();
@@ -52,21 +61,16 @@
             this.labelProductManufacturereName = new System.Windows.Forms.Label();
             this.buttonAddProducts = new System.Windows.Forms.Button();
             this.textBoxProductCurrentCount = new System.Windows.Forms.TextBox();
-            this.textBoxDescription = new System.Windows.Forms.TextBox();
             this.textBoxProductPerUnit = new System.Windows.Forms.TextBox();
-            this.labelProductDescription = new System.Windows.Forms.Label();
             this.labelPricePerUnit = new System.Windows.Forms.Label();
             this.labelProductCount = new System.Windows.Forms.Label();
             this.labelProductType = new System.Windows.Forms.Label();
             this.groupBoxProductsLIst = new System.Windows.Forms.GroupBox();
             this.dataGridViewProductList = new System.Windows.Forms.DataGridView();
             this.groupBoxManufacturersList = new System.Windows.Forms.GroupBox();
-            this.dataGridViewManufacturers = new System.Windows.Forms.DataGridView();
-            this.labelStatus = new System.Windows.Forms.Label();
-            this.textBoxStatus = new System.Windows.Forms.TextBox();
-            this.radioButtonActiveManufacturers = new System.Windows.Forms.RadioButton();
             this.radioButtonInactiveManufacturer = new System.Windows.Forms.RadioButton();
-            this.comboBoxStatus = new System.Windows.Forms.ComboBox();
+            this.radioButtonActiveManufacturers = new System.Windows.Forms.RadioButton();
+            this.dataGridViewManufacturers = new System.Windows.Forms.DataGridView();
             this.groupBoxManufacturerInfo.SuspendLayout();
             this.groupBoxProductInfo.SuspendLayout();
             this.groupBoxProductsLIst.SuspendLayout();
@@ -124,10 +128,10 @@
             // 
             // groupBoxManufacturerInfo
             // 
+            this.groupBoxManufacturerInfo.Controls.Add(this.button1);
             this.groupBoxManufacturerInfo.Controls.Add(this.comboBoxStatus);
             this.groupBoxManufacturerInfo.Controls.Add(this.textBoxStatus);
             this.groupBoxManufacturerInfo.Controls.Add(this.labelStatus);
-            this.groupBoxManufacturerInfo.Controls.Add(this.radioButtonSearchManufacturer);
             this.groupBoxManufacturerInfo.Controls.Add(this.radioButtonRemoveManufacturer);
             this.groupBoxManufacturerInfo.Controls.Add(this.radioButtonAddNewManufacturer);
             this.groupBoxManufacturerInfo.Controls.Add(this.textBoxManfacturerDescriptions);
@@ -146,17 +150,42 @@
             this.groupBoxManufacturerInfo.TabStop = false;
             this.groupBoxManufacturerInfo.Text = "NEW MANUFACTURER INFO";
             // 
-            // radioButtonSearchManufacturer
+            // button1
             // 
-            this.radioButtonSearchManufacturer.AutoSize = true;
-            this.radioButtonSearchManufacturer.Location = new System.Drawing.Point(563, 33);
-            this.radioButtonSearchManufacturer.Name = "radioButtonSearchManufacturer";
-            this.radioButtonSearchManufacturer.Size = new System.Drawing.Size(203, 21);
-            this.radioButtonSearchManufacturer.TabIndex = 10;
-            this.radioButtonSearchManufacturer.TabStop = true;
-            this.radioButtonSearchManufacturer.Text = "SEARCH MANUFACTURER";
-            this.radioButtonSearchManufacturer.UseVisualStyleBackColor = true;
-            this.radioButtonSearchManufacturer.CheckedChanged += new System.EventHandler(this.radioButtonSearchManufacturer_CheckedChanged);
+            this.button1.Location = new System.Drawing.Point(778, 22);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 29);
+            this.button1.TabIndex = 9;
+            this.button1.Text = "&CLOSE";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // comboBoxStatus
+            // 
+            this.comboBoxStatus.FormattingEnabled = true;
+            this.comboBoxStatus.Items.AddRange(new object[] {
+            "ACTIVE",
+            "INACTIVE"});
+            this.comboBoxStatus.Location = new System.Drawing.Point(630, 71);
+            this.comboBoxStatus.Name = "comboBoxStatus";
+            this.comboBoxStatus.Size = new System.Drawing.Size(105, 24);
+            this.comboBoxStatus.TabIndex = 13;
+            // 
+            // textBoxStatus
+            // 
+            this.textBoxStatus.Location = new System.Drawing.Point(630, 73);
+            this.textBoxStatus.Name = "textBoxStatus";
+            this.textBoxStatus.Size = new System.Drawing.Size(100, 22);
+            this.textBoxStatus.TabIndex = 12;
+            // 
+            // labelStatus
+            // 
+            this.labelStatus.AutoSize = true;
+            this.labelStatus.Location = new System.Drawing.Point(516, 76);
+            this.labelStatus.Name = "labelStatus";
+            this.labelStatus.Size = new System.Drawing.Size(63, 17);
+            this.labelStatus.TabIndex = 11;
+            this.labelStatus.Text = "STATUS";
             // 
             // radioButtonRemoveManufacturer
             // 
@@ -212,7 +241,12 @@
             // 
             // groupBoxProductInfo
             // 
-            this.groupBoxProductInfo.Controls.Add(this.radioButtonProductSearch);
+            this.groupBoxProductInfo.Controls.Add(this.checkBoxNewProductType);
+            this.groupBoxProductInfo.Controls.Add(this.labelMinimumCount);
+            this.groupBoxProductInfo.Controls.Add(this.textBoxMinimumCount);
+            this.groupBoxProductInfo.Controls.Add(this.comboBoxProductName);
+            this.groupBoxProductInfo.Controls.Add(this.textBoxProductId);
+            this.groupBoxProductInfo.Controls.Add(this.labelProductId);
             this.groupBoxProductInfo.Controls.Add(this.textBoxProductName);
             this.groupBoxProductInfo.Controls.Add(this.labelProductName);
             this.groupBoxProductInfo.Controls.Add(this.comboBoxProductType);
@@ -223,35 +257,82 @@
             this.groupBoxProductInfo.Controls.Add(this.labelProductManufacturereName);
             this.groupBoxProductInfo.Controls.Add(this.buttonAddProducts);
             this.groupBoxProductInfo.Controls.Add(this.textBoxProductCurrentCount);
-            this.groupBoxProductInfo.Controls.Add(this.textBoxDescription);
             this.groupBoxProductInfo.Controls.Add(this.textBoxProductPerUnit);
-            this.groupBoxProductInfo.Controls.Add(this.labelProductDescription);
             this.groupBoxProductInfo.Controls.Add(this.labelPricePerUnit);
             this.groupBoxProductInfo.Controls.Add(this.labelProductCount);
             this.groupBoxProductInfo.Controls.Add(this.labelProductType);
-            this.groupBoxProductInfo.Location = new System.Drawing.Point(124, 461);
+            this.groupBoxProductInfo.Controls.Add(this.textBoxNewProductType);
+            this.groupBoxProductInfo.Location = new System.Drawing.Point(124, 462);
             this.groupBoxProductInfo.Margin = new System.Windows.Forms.Padding(4);
             this.groupBoxProductInfo.Name = "groupBoxProductInfo";
             this.groupBoxProductInfo.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBoxProductInfo.Size = new System.Drawing.Size(860, 258);
+            this.groupBoxProductInfo.Size = new System.Drawing.Size(860, 295);
             this.groupBoxProductInfo.TabIndex = 6;
             this.groupBoxProductInfo.TabStop = false;
             this.groupBoxProductInfo.Text = "NEW PRODUCT INFO";
             // 
-            // radioButtonProductSearch
+            // checkBoxNewProductType
             // 
-            this.radioButtonProductSearch.AutoSize = true;
-            this.radioButtonProductSearch.Location = new System.Drawing.Point(729, 50);
-            this.radioButtonProductSearch.Name = "radioButtonProductSearch";
-            this.radioButtonProductSearch.Size = new System.Drawing.Size(85, 21);
-            this.radioButtonProductSearch.TabIndex = 26;
-            this.radioButtonProductSearch.TabStop = true;
-            this.radioButtonProductSearch.Text = "SEARCH";
-            this.radioButtonProductSearch.UseVisualStyleBackColor = true;
+            this.checkBoxNewProductType.AutoSize = true;
+            this.checkBoxNewProductType.Location = new System.Drawing.Point(252, 147);
+            this.checkBoxNewProductType.Name = "checkBoxNewProductType";
+            this.checkBoxNewProductType.Size = new System.Drawing.Size(174, 21);
+            this.checkBoxNewProductType.TabIndex = 0;
+            this.checkBoxNewProductType.Text = "NEW PRODUCT TYPE";
+            this.checkBoxNewProductType.UseVisualStyleBackColor = true;
+            this.checkBoxNewProductType.CheckedChanged += new System.EventHandler(this.checkBoxNewProductType_CheckedChanged);
+            // 
+            // labelMinimumCount
+            // 
+            this.labelMinimumCount.AutoSize = true;
+            this.labelMinimumCount.Location = new System.Drawing.Point(476, 194);
+            this.labelMinimumCount.Name = "labelMinimumCount";
+            this.labelMinimumCount.Size = new System.Drawing.Size(120, 17);
+            this.labelMinimumCount.TabIndex = 35;
+            this.labelMinimumCount.Text = "MINIMUM COUNT";
+            // 
+            // textBoxMinimumCount
+            // 
+            this.textBoxMinimumCount.Location = new System.Drawing.Point(673, 194);
+            this.textBoxMinimumCount.Name = "textBoxMinimumCount";
+            this.textBoxMinimumCount.Size = new System.Drawing.Size(116, 22);
+            this.textBoxMinimumCount.TabIndex = 34;
+            // 
+            // textBoxNewProductType
+            // 
+            this.textBoxNewProductType.Location = new System.Drawing.Point(253, 175);
+            this.textBoxNewProductType.Name = "textBoxNewProductType";
+            this.textBoxNewProductType.Size = new System.Drawing.Size(133, 22);
+            this.textBoxNewProductType.TabIndex = 32;
+            // 
+            // comboBoxProductName
+            // 
+            this.comboBoxProductName.FormattingEnabled = true;
+            this.comboBoxProductName.Location = new System.Drawing.Point(253, 222);
+            this.comboBoxProductName.Name = "comboBoxProductName";
+            this.comboBoxProductName.Size = new System.Drawing.Size(133, 24);
+            this.comboBoxProductName.TabIndex = 29;
+            this.comboBoxProductName.SelectedIndexChanged += new System.EventHandler(this.comboBoxProducts_SelectedIndexChanged);
+            // 
+            // textBoxProductId
+            // 
+            this.textBoxProductId.Location = new System.Drawing.Point(673, 108);
+            this.textBoxProductId.Name = "textBoxProductId";
+            this.textBoxProductId.Size = new System.Drawing.Size(100, 22);
+            this.textBoxProductId.TabIndex = 28;
+            // 
+            // labelProductId
+            // 
+            this.labelProductId.AutoSize = true;
+            this.labelProductId.Location = new System.Drawing.Point(474, 113);
+            this.labelProductId.Name = "labelProductId";
+            this.labelProductId.Size = new System.Drawing.Size(93, 17);
+            this.labelProductId.TabIndex = 27;
+            this.labelProductId.Text = "PRODUCT ID";
             // 
             // textBoxProductName
             // 
-            this.textBoxProductName.Location = new System.Drawing.Point(252, 190);
+            this.textBoxProductName.Location = new System.Drawing.Point(253, 222);
             this.textBoxProductName.Name = "textBoxProductName";
             this.textBoxProductName.Size = new System.Drawing.Size(133, 22);
             this.textBoxProductName.TabIndex = 25;
@@ -259,7 +340,7 @@
             // labelProductName
             // 
             this.labelProductName.AutoSize = true;
-            this.labelProductName.Location = new System.Drawing.Point(15, 190);
+            this.labelProductName.Location = new System.Drawing.Point(16, 222);
             this.labelProductName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelProductName.Name = "labelProductName";
             this.labelProductName.Size = new System.Drawing.Size(119, 17);
@@ -269,10 +350,11 @@
             // comboBoxProductType
             // 
             this.comboBoxProductType.FormattingEnabled = true;
-            this.comboBoxProductType.Location = new System.Drawing.Point(253, 148);
+            this.comboBoxProductType.Location = new System.Drawing.Point(253, 173);
             this.comboBoxProductType.Name = "comboBoxProductType";
-            this.comboBoxProductType.Size = new System.Drawing.Size(132, 24);
+            this.comboBoxProductType.Size = new System.Drawing.Size(134, 24);
             this.comboBoxProductType.TabIndex = 23;
+            this.comboBoxProductType.SelectedIndexChanged += new System.EventHandler(this.comboBoxProductType_SelectedIndexChanged);
             // 
             // radioButtonRemoveProduct
             // 
@@ -284,17 +366,19 @@
             this.radioButtonRemoveProduct.TabStop = true;
             this.radioButtonRemoveProduct.Text = "REMOVE PRODUCT";
             this.radioButtonRemoveProduct.UseVisualStyleBackColor = true;
+            this.radioButtonRemoveProduct.CheckedChanged += new System.EventHandler(this.radioButtonRemoveProduct_CheckedChanged);
             // 
             // radioButtonUpdateProductUnit
             // 
             this.radioButtonUpdateProductUnit.AutoSize = true;
-            this.radioButtonUpdateProductUnit.Location = new System.Drawing.Point(274, 50);
+            this.radioButtonUpdateProductUnit.Location = new System.Drawing.Point(241, 50);
             this.radioButtonUpdateProductUnit.Name = "radioButtonUpdateProductUnit";
-            this.radioButtonUpdateProductUnit.Size = new System.Drawing.Size(202, 21);
+            this.radioButtonUpdateProductUnit.Size = new System.Drawing.Size(259, 21);
             this.radioButtonUpdateProductUnit.TabIndex = 21;
             this.radioButtonUpdateProductUnit.TabStop = true;
-            this.radioButtonUpdateProductUnit.Text = "UPDATE PRODCUT UNITS";
+            this.radioButtonUpdateProductUnit.Text = "UPDATE PRODUCT UNITS && PRICE";
             this.radioButtonUpdateProductUnit.UseVisualStyleBackColor = true;
+            this.radioButtonUpdateProductUnit.CheckedChanged += new System.EventHandler(this.radioButtonUpdateProductUnit_CheckedChanged);
             // 
             // radioButtonAddNewProduct
             // 
@@ -306,6 +390,7 @@
             this.radioButtonAddNewProduct.TabStop = true;
             this.radioButtonAddNewProduct.Text = "ADD NEW PRODUCT";
             this.radioButtonAddNewProduct.UseVisualStyleBackColor = true;
+            this.radioButtonAddNewProduct.CheckedChanged += new System.EventHandler(this.radioButtonAddNewProduct_CheckedChanged);
             // 
             // comboBoxManufacturerName
             // 
@@ -314,6 +399,7 @@
             this.comboBoxManufacturerName.Name = "comboBoxManufacturerName";
             this.comboBoxManufacturerName.Size = new System.Drawing.Size(132, 24);
             this.comboBoxManufacturerName.TabIndex = 19;
+            this.comboBoxManufacturerName.SelectedIndexChanged += new System.EventHandler(this.comboBoxManufacturerName_SelectedIndexChanged);
             // 
             // labelProductManufacturereName
             // 
@@ -327,53 +413,35 @@
             // 
             // buttonAddProducts
             // 
-            this.buttonAddProducts.Location = new System.Drawing.Point(682, 223);
+            this.buttonAddProducts.Location = new System.Drawing.Point(477, 253);
             this.buttonAddProducts.Margin = new System.Windows.Forms.Padding(4);
             this.buttonAddProducts.Name = "buttonAddProducts";
             this.buttonAddProducts.Size = new System.Drawing.Size(161, 28);
             this.buttonAddProducts.TabIndex = 16;
             this.buttonAddProducts.Text = "ADD &PRODUCT";
             this.buttonAddProducts.UseVisualStyleBackColor = true;
+            this.buttonAddProducts.Click += new System.EventHandler(this.buttonAddProducts_Click);
             // 
             // textBoxProductCurrentCount
             // 
-            this.textBoxProductCurrentCount.Location = new System.Drawing.Point(252, 224);
+            this.textBoxProductCurrentCount.Location = new System.Drawing.Point(253, 256);
             this.textBoxProductCurrentCount.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxProductCurrentCount.Name = "textBoxProductCurrentCount";
             this.textBoxProductCurrentCount.Size = new System.Drawing.Size(133, 22);
             this.textBoxProductCurrentCount.TabIndex = 15;
             // 
-            // textBoxDescription
-            // 
-            this.textBoxDescription.Location = new System.Drawing.Point(668, 157);
-            this.textBoxDescription.Margin = new System.Windows.Forms.Padding(4);
-            this.textBoxDescription.Multiline = true;
-            this.textBoxDescription.Name = "textBoxDescription";
-            this.textBoxDescription.Size = new System.Drawing.Size(175, 50);
-            this.textBoxDescription.TabIndex = 14;
-            // 
             // textBoxProductPerUnit
             // 
-            this.textBoxProductPerUnit.Location = new System.Drawing.Point(668, 112);
+            this.textBoxProductPerUnit.Location = new System.Drawing.Point(673, 151);
             this.textBoxProductPerUnit.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxProductPerUnit.Name = "textBoxProductPerUnit";
             this.textBoxProductPerUnit.Size = new System.Drawing.Size(116, 22);
             this.textBoxProductPerUnit.TabIndex = 12;
             // 
-            // labelProductDescription
-            // 
-            this.labelProductDescription.AutoSize = true;
-            this.labelProductDescription.Location = new System.Drawing.Point(469, 157);
-            this.labelProductDescription.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelProductDescription.Name = "labelProductDescription";
-            this.labelProductDescription.Size = new System.Drawing.Size(169, 17);
-            this.labelProductDescription.TabIndex = 8;
-            this.labelProductDescription.Text = "PRODUCT DESCRIPTON";
-            // 
             // labelPricePerUnit
             // 
             this.labelPricePerUnit.AutoSize = true;
-            this.labelPricePerUnit.Location = new System.Drawing.Point(469, 112);
+            this.labelPricePerUnit.Location = new System.Drawing.Point(474, 151);
             this.labelPricePerUnit.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelPricePerUnit.Name = "labelPricePerUnit";
             this.labelPricePerUnit.Size = new System.Drawing.Size(116, 17);
@@ -383,7 +451,7 @@
             // labelProductCount
             // 
             this.labelProductCount.AutoSize = true;
-            this.labelProductCount.Location = new System.Drawing.Point(15, 229);
+            this.labelProductCount.Location = new System.Drawing.Point(16, 261);
             this.labelProductCount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelProductCount.Name = "labelProductCount";
             this.labelProductCount.Size = new System.Drawing.Size(129, 17);
@@ -393,7 +461,7 @@
             // labelProductType
             // 
             this.labelProductType.AutoSize = true;
-            this.labelProductType.Location = new System.Drawing.Point(15, 148);
+            this.labelProductType.Location = new System.Drawing.Point(14, 178);
             this.labelProductType.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelProductType.Name = "labelProductType";
             this.labelProductType.Size = new System.Drawing.Size(116, 17);
@@ -403,7 +471,7 @@
             // groupBoxProductsLIst
             // 
             this.groupBoxProductsLIst.Controls.Add(this.dataGridViewProductList);
-            this.groupBoxProductsLIst.Location = new System.Drawing.Point(124, 726);
+            this.groupBoxProductsLIst.Location = new System.Drawing.Point(124, 764);
             this.groupBoxProductsLIst.Name = "groupBoxProductsLIst";
             this.groupBoxProductsLIst.Size = new System.Drawing.Size(860, 243);
             this.groupBoxProductsLIst.TabIndex = 7;
@@ -432,34 +500,17 @@
             this.groupBoxManufacturersList.TabStop = false;
             this.groupBoxManufacturersList.Text = "MANUFACTURER LIST";
             // 
-            // dataGridViewManufacturers
+            // radioButtonInactiveManufacturer
             // 
-            this.dataGridViewManufacturers.AllowUserToAddRows = false;
-            this.dataGridViewManufacturers.AllowUserToDeleteRows = false;
-            this.dataGridViewManufacturers.AllowUserToOrderColumns = true;
-            this.dataGridViewManufacturers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewManufacturers.Location = new System.Drawing.Point(3, 18);
-            this.dataGridViewManufacturers.Name = "dataGridViewManufacturers";
-            this.dataGridViewManufacturers.ReadOnly = true;
-            this.dataGridViewManufacturers.RowTemplate.Height = 24;
-            this.dataGridViewManufacturers.Size = new System.Drawing.Size(602, 153);
-            this.dataGridViewManufacturers.TabIndex = 0;
-            // 
-            // labelStatus
-            // 
-            this.labelStatus.AutoSize = true;
-            this.labelStatus.Location = new System.Drawing.Point(516, 76);
-            this.labelStatus.Name = "labelStatus";
-            this.labelStatus.Size = new System.Drawing.Size(63, 17);
-            this.labelStatus.TabIndex = 11;
-            this.labelStatus.Text = "STATUS";
-            // 
-            // textBoxStatus
-            // 
-            this.textBoxStatus.Location = new System.Drawing.Point(630, 73);
-            this.textBoxStatus.Name = "textBoxStatus";
-            this.textBoxStatus.Size = new System.Drawing.Size(100, 22);
-            this.textBoxStatus.TabIndex = 12;
+            this.radioButtonInactiveManufacturer.AutoSize = true;
+            this.radioButtonInactiveManufacturer.Location = new System.Drawing.Point(658, 55);
+            this.radioButtonInactiveManufacturer.Name = "radioButtonInactiveManufacturer";
+            this.radioButtonInactiveManufacturer.Size = new System.Drawing.Size(90, 21);
+            this.radioButtonInactiveManufacturer.TabIndex = 2;
+            this.radioButtonInactiveManufacturer.TabStop = true;
+            this.radioButtonInactiveManufacturer.Text = "INACTIVE";
+            this.radioButtonInactiveManufacturer.UseVisualStyleBackColor = true;
+            this.radioButtonInactiveManufacturer.CheckedChanged += new System.EventHandler(this.radioButtonInactiveManufacturer_CheckedChanged);
             // 
             // radioButtonActiveManufacturers
             // 
@@ -473,28 +524,18 @@
             this.radioButtonActiveManufacturers.UseVisualStyleBackColor = true;
             this.radioButtonActiveManufacturers.CheckedChanged += new System.EventHandler(this.radioButtonActiveManufacturers_CheckedChanged);
             // 
-            // radioButtonInactiveManufacturer
+            // dataGridViewManufacturers
             // 
-            this.radioButtonInactiveManufacturer.AutoSize = true;
-            this.radioButtonInactiveManufacturer.Location = new System.Drawing.Point(658, 55);
-            this.radioButtonInactiveManufacturer.Name = "radioButtonInactiveManufacturer";
-            this.radioButtonInactiveManufacturer.Size = new System.Drawing.Size(90, 21);
-            this.radioButtonInactiveManufacturer.TabIndex = 2;
-            this.radioButtonInactiveManufacturer.TabStop = true;
-            this.radioButtonInactiveManufacturer.Text = "INACTIVE";
-            this.radioButtonInactiveManufacturer.UseVisualStyleBackColor = true;
-            this.radioButtonInactiveManufacturer.CheckedChanged += new System.EventHandler(this.radioButtonInactiveManufacturer_CheckedChanged);
-            // 
-            // comboBoxStatus
-            // 
-            this.comboBoxStatus.FormattingEnabled = true;
-            this.comboBoxStatus.Items.AddRange(new object[] {
-            "ACTIVE",
-            "INACTIVE"});
-            this.comboBoxStatus.Location = new System.Drawing.Point(630, 71);
-            this.comboBoxStatus.Name = "comboBoxStatus";
-            this.comboBoxStatus.Size = new System.Drawing.Size(105, 24);
-            this.comboBoxStatus.TabIndex = 13;
+            this.dataGridViewManufacturers.AllowUserToAddRows = false;
+            this.dataGridViewManufacturers.AllowUserToDeleteRows = false;
+            this.dataGridViewManufacturers.AllowUserToOrderColumns = true;
+            this.dataGridViewManufacturers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewManufacturers.Location = new System.Drawing.Point(3, 18);
+            this.dataGridViewManufacturers.Name = "dataGridViewManufacturers";
+            this.dataGridViewManufacturers.ReadOnly = true;
+            this.dataGridViewManufacturers.RowTemplate.Height = 24;
+            this.dataGridViewManufacturers.Size = new System.Drawing.Size(602, 153);
+            this.dataGridViewManufacturers.TabIndex = 0;
             // 
             // InventoryManagement
             // 
@@ -534,14 +575,12 @@
         private System.Windows.Forms.GroupBox groupBoxManufacturerInfo;
         private System.Windows.Forms.Button buttonDynamicAction;
         private System.Windows.Forms.GroupBox groupBoxProductInfo;
-        private System.Windows.Forms.Label labelProductDescription;
         private System.Windows.Forms.Label labelPricePerUnit;
         private System.Windows.Forms.Label labelProductCount;
         private System.Windows.Forms.Label labelProductType;
         private System.Windows.Forms.TextBox textBoxProductPerUnit;
         private System.Windows.Forms.Button buttonAddProducts;
         private System.Windows.Forms.TextBox textBoxProductCurrentCount;
-        private System.Windows.Forms.TextBox textBoxDescription;
         private System.Windows.Forms.RadioButton radioButtonRemoveManufacturer;
         private System.Windows.Forms.RadioButton radioButtonAddNewManufacturer;
         private System.Windows.Forms.TextBox textBoxManfacturerDescriptions;
@@ -554,9 +593,6 @@
         private System.Windows.Forms.GroupBox groupBoxProductsLIst;
         private System.Windows.Forms.Label labelProductName;
         private System.Windows.Forms.ComboBox comboBoxProductType;
-        private System.Windows.Forms.TextBox textBoxProductName;
-        private System.Windows.Forms.RadioButton radioButtonSearchManufacturer;
-        private System.Windows.Forms.RadioButton radioButtonProductSearch;
         private System.Windows.Forms.DataGridView dataGridViewProductList;
         private System.Windows.Forms.GroupBox groupBoxManufacturersList;
         private System.Windows.Forms.DataGridView dataGridViewManufacturers;
@@ -565,5 +601,14 @@
         private System.Windows.Forms.RadioButton radioButtonInactiveManufacturer;
         private System.Windows.Forms.RadioButton radioButtonActiveManufacturers;
         private System.Windows.Forms.ComboBox comboBoxStatus;
+        private System.Windows.Forms.TextBox textBoxProductId;
+        private System.Windows.Forms.Label labelProductId;
+        private System.Windows.Forms.ComboBox comboBoxProductName;
+        private System.Windows.Forms.TextBox textBoxProductName;
+        private System.Windows.Forms.TextBox textBoxNewProductType;
+        private System.Windows.Forms.CheckBox checkBoxNewProductType;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label labelMinimumCount;
+        private System.Windows.Forms.TextBox textBoxMinimumCount;
     }
 }

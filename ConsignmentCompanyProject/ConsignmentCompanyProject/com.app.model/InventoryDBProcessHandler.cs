@@ -119,7 +119,7 @@ namespace ConsignmentCompanyProject.com.app.model
         
         // Adding new product in Inventory
 
-        public bool addNewProduct(ProductProperties productInfo, UserInformationProperties userInfo)
+        public bool addNewProduct(ProductProperties productInfo, string userInfo)
         {
             string insertNewProductQuery = "INSERT INTO PRODUCT (PRODUCT_ID,PRODUCT_NAME,PRODUCT_TYPE,MANUFACTURER_ID,PRODUCT_CURRENT_COUNT,MINIMUM_COUNT,PRICE_PER_UNIT,CREATED_BY,CREATED_DATE,MODIFIED_BY,MODIFIED_DATE) VALUES(@PRODUCT_ID,@PRODUCT_NAME,@PRODUCT_TYPE,@MANUFACTURER_ID,@PRODUCT_CURRENT_COUNT,@MINIMUM_COUNT,@PRICE_PER_UNIT,@CREATED_BY,@CREATED_DATE,@MODIFIED_BY,@MODIFIED_DATE)";
             bool resultStatus = false;
@@ -131,9 +131,9 @@ namespace ConsignmentCompanyProject.com.app.model
             tableParamsValues.Add(new KeyValuePair<string, string>("@PRODUCT_CURRENT_COUNT", Convert.ToString(productInfo.Product_Current_Count)));
             tableParamsValues.Add(new KeyValuePair<string, string>("@MINIMUM_COUNT",Convert.ToString(productInfo.Minimum_Count)));
             tableParamsValues.Add(new KeyValuePair<string, string>("@PRICE_PER_UNIT", Convert.ToString(productInfo.Price_Per_Unit)));
-            tableParamsValues.Add(new KeyValuePair<string, string>("@CREATED_BY", userInfo.User_Id));
+            tableParamsValues.Add(new KeyValuePair<string, string>("@CREATED_BY", userInfo));
             tableParamsValues.Add(new KeyValuePair<string, string>("@CREATED_DATE", com.app.utlitiy.BusinessUtlities.getCurrentDateTime));
-            tableParamsValues.Add(new KeyValuePair<string, string>("@MODIFIED_BY", userInfo.User_Id));
+            tableParamsValues.Add(new KeyValuePair<string, string>("@MODIFIED_BY", userInfo));
             tableParamsValues.Add(new KeyValuePair<string, string>("@MODIFIED_DATE", com.app.utlitiy.BusinessUtlities.getCurrentDateTime));
             resultStatus=DatabaseConnectionHandler.executeInsertDbQuery(insertNewProductQuery, tableParamsValues);
             
@@ -160,16 +160,16 @@ namespace ConsignmentCompanyProject.com.app.model
         }
 
         //add product count based on order item count when customer submitting the order
-      public  bool increaseProductCount(ProductProperties productInfo)
+      public  bool updateProduct(ProductProperties productInfo,string userInfo)
         {
-
-            string updateQueryString = "UPDATE PRODUCT SET PRODUCT_CURRENT_COUNT=@ORDER_COUNT WHERE PRODUCT_ID=@PRODUCTID";
+           
+            string updateQueryString = "UPDATE PRODUCT SET PRODUCT_CURRENT_COUNT=PRODUCT_CURRENT_COUNT+@NEW_PRODUCT_COUNT, PRICE_PER_UNIT=@PRICE_PER_UNIT WHERE PRODUCT_ID=@PRODUCTID";
             List<KeyValuePair<string, string>> tableQueryData = new List<KeyValuePair<string, string>>();
             bool result = false;
-                string key = productInfo.Product_Id;
-                int value = productInfo.Product_Current_Count;
-                tableQueryData.Add(new KeyValuePair<string, string>(key, value.ToString()));
-                result = DatabaseConnectionHandler.executeUpdateQuery(updateQueryString, tableQueryData);
+            tableQueryData.Add(new KeyValuePair<string, string>("@NEW_PRODUCT_COUNT",productInfo.Product_Current_Count.ToString()));
+            tableQueryData.Add(new KeyValuePair<string, string>("@PRICE_PER_UNIT", productInfo.Price_Per_Unit.ToString()));
+            tableQueryData.Add(new KeyValuePair<string, string>("@PRODUCTID", productInfo.Product_Id));
+            result = DatabaseConnectionHandler.executeUpdateQuery(updateQueryString, tableQueryData);
             return result;
         }
         //Remove product from inventory
@@ -194,7 +194,7 @@ namespace ConsignmentCompanyProject.com.app.model
         {
             bool result = false;
             try { 
-            string insertNewManufacturerQuery = "INSERT INTO MANUFACTURER(MANUFACTURER_ID,MANUFACTURER_NAME,MANUFACTURER_DETAIL,CREATED_BY,CREATED_DATE,MODIFIED_BY,MODIFIED_DATE) VALUES(@MANUFACTURER_ID,@MANUFACTURER_NAME,@MANUFACTURER_DETAIL,@CREATED_BY,@CREATED_DATE,@MODIFIED_BY,@MODIFIED_DATE)";
+            string insertNewManufacturerQuery = "INSERT INTO MANUFACTURER(MANUFACTURER_ID,MANUFACTURER_NAME,MANUFACTURER_DETAIL,CREATED_BY,CREATED_DATE,MODIFIED_BY,MODIFIED_DATE,MANUFACTURER_STATUS) VALUES(@MANUFACTURER_ID,@MANUFACTURER_NAME,@MANUFACTURER_DETAIL,@CREATED_BY,@CREATED_DATE,@MODIFIED_BY,@MODIFIED_DATE,@MANUFACTURER_STATUS)";
             List<KeyValuePair<string, string>> tableQueryData = new List<KeyValuePair<string, string>>();
             tableQueryData.Add(new KeyValuePair<string, string>("@MANUFACTURER_ID", manufacturerInfo.Manufacturer_Id));
             tableQueryData.Add(new KeyValuePair<string, string>("@MANUFACTURER_NAME", manufacturerInfo.Manufacturer_Name));
@@ -203,7 +203,8 @@ namespace ConsignmentCompanyProject.com.app.model
             tableQueryData.Add(new KeyValuePair<string, string>("@CREATED_DATE", com.app.utlitiy.BusinessUtlities.getCurrentDateTime));
             tableQueryData.Add(new KeyValuePair<string, string>("@MODIFIED_BY", userInfo));
             tableQueryData.Add(new KeyValuePair<string, string>("@MODIFIED_DATE", com.app.utlitiy.BusinessUtlities.getCurrentDateTime));
-            result=DatabaseConnectionHandler.executeInsertDbQuery(insertNewManufacturerQuery, tableQueryData);
+                tableQueryData.Add(new KeyValuePair<string, string>("@MANUFACTURER_STATUS", manufacturerInfo.Manufacturer_Status));
+                result =DatabaseConnectionHandler.executeInsertDbQuery(insertNewManufacturerQuery, tableQueryData);
             }catch(Exception ex) { Console.WriteLine(ex.StackTrace); }
             return result;
         }
@@ -225,6 +226,7 @@ namespace ConsignmentCompanyProject.com.app.model
                 return manufacturerProducts;
         }
 
+        //deactive/remove the manufacturer from database
         public bool deActivateManufacturer(ManufacturerProperties manufacturerProperties, string userInfo)
         {
             bool result = false;

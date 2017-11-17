@@ -14,7 +14,7 @@ using ConsignmentCompanyProject.com.app.interfaces;
 
 namespace ConsignmentCompanyProject
 {   
-    public partial class Orders : Form
+    public partial class NewOrdersForm : Form
     {
         private static int _itemNo = 0;
         private double _totalPrice = 0;
@@ -23,15 +23,17 @@ namespace ConsignmentCompanyProject
         private double _discountPrice = 0;
         private double _grossPrice = 0;
         private int _itemCount = 0;
-        private DataGridViewButtonColumn buttonRemoveCartItem = new DataGridViewButtonColumn();
-        private List<ProductProperties> productInformation = new List<ProductProperties>();
-        private Dictionary<int, OrderProperties> listOfOrderItems = new Dictionary<int, OrderProperties>();
+        private DataGridViewButtonColumn _buttonRemoveCartItem = new DataGridViewButtonColumn();
+        private List<ProductProperties> _productInformation = new List<ProductProperties>();
+        private Dictionary<int, OrderProperties> _listOfOrderItems = new Dictionary<int, OrderProperties>();
 
-
-        public Orders()
+        public NewOrdersForm()
         {
             InitializeComponent();
+           
         }
+
+       
 
         private void addToCartDataGrid(OrderProperties orderItems)
         {
@@ -40,11 +42,11 @@ namespace ConsignmentCompanyProject
                 _itemNo++;
                 string [] cartRow = new string[] {_itemNo.ToString(), orderItems.Order_Id.ToString(), orderItems.Manufacturer_Name, orderItems.Product_Name, orderItems.Product_Type, orderItems.Count.ToString(), orderItems.Price_Per_Unit.ToString("c"), orderItems.Total_Price.ToString("c") };
                 dataGridViewCart.Rows.Add(cartRow);
-                dataGridViewCart.Columns.Add(buttonRemoveCartItem);
-                buttonRemoveCartItem.HeaderText = "REMOVE ITEM";
-                buttonRemoveCartItem.Name = "buttonRemoveCartItem";
-                buttonRemoveCartItem.Text = "REMOVE";
-                buttonRemoveCartItem.UseColumnTextForButtonValue = true;
+                dataGridViewCart.Columns.Add(_buttonRemoveCartItem);
+                _buttonRemoveCartItem.HeaderText = "REMOVE ITEM";
+                _buttonRemoveCartItem.Name = "buttonRemoveCartItem";
+                _buttonRemoveCartItem.Text = "REMOVE";
+                _buttonRemoveCartItem.UseColumnTextForButtonValue = true;
                 dataGridViewCart.CellClick += new DataGridViewCellEventHandler(dataGridViewCart_CellClick);
                 
                 }
@@ -88,15 +90,8 @@ namespace ConsignmentCompanyProject
        
 
         
-        private void panelOrder_Paint(object sender, PaintEventArgs e)
-        {
-            
-        }
-
-        private void groupBoxOrderDetails_Enter(object sender, EventArgs e)
-        {
-
-        }
+       
+     
 
         private void Orders_Load(object sender, EventArgs e)
         {
@@ -150,7 +145,7 @@ namespace ConsignmentCompanyProject
             if (advanceAmount >= _minimumAdvancePayment)
             {
                 List<OrderProperties> finalListofOrderItems = new List<OrderProperties>();
-                foreach(KeyValuePair<int,OrderProperties> orders in listOfOrderItems) {
+                foreach(KeyValuePair<int,OrderProperties> orders in _listOfOrderItems) {
                     OrderProperties order = orders.Value;
                     order.Balance_Amount = _totalPrice - advanceAmount;
                     order.Order_Status = "NEW ORDER";
@@ -210,7 +205,7 @@ namespace ConsignmentCompanyProject
                 textBoxAdvanceAmount.Text = _minimumAdvancePayment.ToString("c");
                 textBoxTotalPrice.Text = _totalPrice.ToString("c");
                 textBoxDiscountId.Text = _discountPrice.ToString("c");
-                listOfOrderItems.Add(_itemCount++, cartItems);
+                _listOfOrderItems.Add(_itemCount++, cartItems);
 
 
             }
@@ -234,7 +229,7 @@ namespace ConsignmentCompanyProject
             foreach(ProductProperties products in productsList.Distinct().ToList())
             {
                 comboBoxProductName.Items.Add(products.Product_Name);
-                productInformation.Add(products);
+                _productInformation.Add(products);
             }
         }
 
@@ -256,7 +251,7 @@ namespace ConsignmentCompanyProject
 
         private void comboBoxProductName_SelectedIndexChanged(object sender, EventArgs e)
         {try { 
-            ProductProperties singleproductInformations = OrderHandler.getProductInformation(productInformation,comboBoxManufacturer.SelectedItem.ToString(),comboBoxProductType.SelectedItem.ToString(),comboBoxProductName.SelectedItem.ToString());
+            ProductProperties singleproductInformations = OrderHandler.getProductInformation(_productInformation,comboBoxManufacturer.SelectedItem.ToString(),comboBoxProductType.SelectedItem.ToString(),comboBoxProductName.SelectedItem.ToString());
             textBoxProductId.Text = singleproductInformations.Product_Id.ToString();
             textBoxPricePerUnit.Text = singleproductInformations.Price_Per_Unit.ToString();
             }catch(Exception ex) { MessageBox.Show("WRONG SELECTION, PLEASE SELECT RIGHT MANUFACTURER AND PRODUCT", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -274,6 +269,8 @@ namespace ConsignmentCompanyProject
             }
             }catch(Exception ex) { Console.WriteLine(ex.Message); }
         }
+
+       
     }
     public class ItemRemovedEventArgs : EventArgs
     {
