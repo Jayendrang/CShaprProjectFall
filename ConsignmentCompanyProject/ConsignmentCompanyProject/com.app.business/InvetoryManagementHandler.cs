@@ -69,7 +69,7 @@ namespace ConsignmentCompanyProject.com.app.business
 
         public List<ProductProperties> getProductsList()
         {
-            return InventoryDBProcessHandler.PRODUCT_LIST;
+            return InventoryDBProcessHandler._product_list;
         }
 
         public string generateNewUniqueProductId()

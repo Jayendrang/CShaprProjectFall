@@ -44,10 +44,10 @@ namespace ConsignmentCompanyProject.com.app.business
             
         }
         
-        public void getCustomerData(string orderId)
+        public void getCustomerData(string vendorId)
         {
             //***************testing
-            getProcessedOrder("VEN1120", "NEW ORDER");
+            getProcessedOrder(vendorId, "NEW ORDER");
         }
         public List<OrderGridFields> getGridData()
         {

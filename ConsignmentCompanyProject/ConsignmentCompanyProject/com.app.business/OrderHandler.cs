@@ -10,16 +10,19 @@ namespace ConsignmentCompanyProject.com.app.business
 {
     class OrderHandler
     {
+        private  List<ProductProperties> _current_product_list = new List<ProductProperties>();
+
        public OrderHandler(){
             
             com.app.model.InventoryDBProcessHandler productsList = new model.InventoryDBProcessHandler();
             productsList.getProducts();
+            _current_product_list = InventoryDBProcessHandler._product_list;
             
             }
-        public static List<ProductProperties> getManufacturerAndProductList(string productType)
+        public  List<ProductProperties> getManufacturerAndProductList(string productType)
         {
             List<ProductProperties> manufacturer = new List<ProductProperties>();
-            foreach (List<ProductProperties> productList in InventoryDBProcessHandler.INVENTORY_LIST.Values.ToList())
+            foreach (List<ProductProperties> productList in InventoryDBProcessHandler._inventory_list.Values.ToList())
             {
                 foreach (ProductProperties products in productList)
                 {
@@ -32,10 +35,10 @@ namespace ConsignmentCompanyProject.com.app.business
             return manufacturer;
         }
 
-        public static List<ProductProperties> getProductList(string manfacturername, string productType)
+        public  List<ProductProperties> getProductList(string manfacturername, string productType)
         {
             List<ProductProperties> listofproducts = new List<ProductProperties>();
-            foreach (List<ProductProperties> productList in InventoryDBProcessHandler.INVENTORY_LIST.Values.ToList())
+            foreach (List<ProductProperties> productList in InventoryDBProcessHandler._inventory_list.Values.ToList())
             {
                 foreach (ProductProperties products in productList)
                 {
@@ -47,7 +50,7 @@ namespace ConsignmentCompanyProject.com.app.business
             }
             return listofproducts;
         }
-        public static ProductProperties getProductInformation(List<ProductProperties> productDetails,string manufacturer,string productType,string productName)
+        public  ProductProperties getProductInformation(List<ProductProperties> productDetails,string manufacturer,string productType,string productName)
         {
             ProductProperties selectedProductInfo = new ProductProperties();
             foreach(ProductProperties products in productDetails)
@@ -62,19 +65,25 @@ namespace ConsignmentCompanyProject.com.app.business
             return selectedProductInfo;
 
         }
-        public static List<string> getproductTypeList()
+        public  List<ProductProperties> getproductTypeList()
         {
-            List<string> productType = new List<string>();
+            List<ProductProperties> productType = new List<ProductProperties>();
             try
-            {
-                productType = InventoryDBProcessHandler.PRODUCT_TYPE.Distinct().ToList();
+            { 
+                foreach (ProductProperties prods in _current_product_list)
+                {
+                    if (!productType.Contains(prods))
+                    {
+                        productType.Add(prods);
+                    }
+                }
 
             }
             catch (Exception ex) { Console.WriteLine(ex.StackTrace + "\t" + "No Products loaded"); }
             return productType;
         }
 
-        public static bool submitPurchaseOrder(List<OrderProperties> purchaseOrders)
+        public  bool submitPurchaseOrder(List<OrderProperties> purchaseOrders)
         {
             bool result = false;
             OrderDBProcessHandler submitOrder = new OrderDBProcessHandler();
@@ -87,6 +96,13 @@ namespace ConsignmentCompanyProject.com.app.business
         {
             DiscountProperties discount= DiscountDBProcessHandler.getDiscountOfCustomer("DIS1");
             return  Convert.ToInt16(discount.Discount_Rate);
+        }
+
+        public bool updateOrderStatus(OrderProperties orderStatusUpdate)
+        {
+            OrderDBProcessHandler updateOrder = new OrderDBProcessHandler();
+            return updateOrder.updateOrderStatus(orderStatusUpdate);
+
         }
     }
 }

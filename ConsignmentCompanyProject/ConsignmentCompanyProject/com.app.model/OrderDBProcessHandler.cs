@@ -40,15 +40,14 @@ namespace ConsignmentCompanyProject.com.app.model
                 List<KeyValuePair<string, string>> queryParameter = new List<KeyValuePair<string, string>>();
                 queryParameter.Add(new KeyValuePair<string, string>("@VENDOR_ID", vendorInfo.ToString()));
                 dataset = DatabaseConnectionHandler.executeSelectQuery(selectQueryString, queryParameter);
-            }else if (orderStatus.Equals("CANCELLED"))
+            }else if (vendorInfo==null)
             {
-                selectQueryString = "SELECT ORDER_ID,VENDOR_ID,MANUFACTURER_NAME,PRODUCT_ID,PRODUCT_TYPE,PRODUCT_NAME,COUNT,PRICE_PER_UNIT,TOTAL_PRICE,PAID_AMOUNT,BALANCE_AMOUNT,DISCOUNT_RATE,ORDER_STATUS,DESCRIPTION,CREATED_DATE FROM SALES_ORDER  WHERE VENDOR_ID=@VENDOR_ID AND ORDER_STATUS=@ORDER_STATUS ORDER BY ORDER_ID";
+                selectQueryString = "SELECT ORDER_ID,VENDOR_ID,MANUFACTURER_NAME,PRODUCT_ID,PRODUCT_TYPE,PRODUCT_NAME,COUNT,PRICE_PER_UNIT,TOTAL_PRICE,PAID_AMOUNT,BALANCE_AMOUNT,DISCOUNT_RATE,ORDER_STATUS,DESCRIPTION,CREATED_DATE FROM SALES_ORDER  WHERE ORDER_STATUS=@ORDER_STATUS ORDER BY ORDER_ID";
                 List<KeyValuePair<string, string>> queryParameter = new List<KeyValuePair<string, string>>();
-                queryParameter.Add(new KeyValuePair<string, string>("@VENDOR_ID", vendorInfo.ToString()));
                 queryParameter.Add(new KeyValuePair<string, string>("@ORDER_STATUS", orderStatus));
                 dataset = DatabaseConnectionHandler.executeSelectQuery(selectQueryString, queryParameter);
             }
-            else
+            else if((vendorInfo!=null)&&(orderStatus!=null))
             {
                 selectQueryString = "SELECT ORDER_ID,VENDOR_ID,MANUFACTURER_NAME,PRODUCT_ID,PRODUCT_TYPE,PRODUCT_NAME,COUNT,PRICE_PER_UNIT,TOTAL_PRICE,PAID_AMOUNT,BALANCE_AMOUNT,DISCOUNT_RATE,ORDER_STATUS,DESCRIPTION,CREATED_DATE FROM SALES_ORDER WHERE VENDOR_ID=@VENDOR_ID AND ORDER_STATUS=@ORDER_STATUS ORDER BY ORDER_ID";
                 List<KeyValuePair<string, string>> queryParameter = new List<KeyValuePair<string, string>>();
@@ -144,10 +143,10 @@ namespace ConsignmentCompanyProject.com.app.model
             bool result = false;
             List<KeyValuePair<string, string>> queryParameter = new List<KeyValuePair<string, string>>();
             if (updateorderInfo.Description != null && updateorderInfo.Order_Status!=null) {
-                string updateQueryString = "UPDATE SALES_ORDER SET ORDER_STATUS=@ORDER_STATUS,DESCRIPTION=@DESCRIPTION,MODIFIED_BY=@MODIFIED_BY,MODIFIED_DATE=@MODIFIED_DATE WHERE ORDER_ID=@ORDER_ID";
+                string updateQueryString = "UPDATE SALES_ORDER SET ORDER_STATUS=@ORDER_STATUS,DESCRIPTION=@DESCRIPTION,MODIFY_BY=@MODIFIED_BY,MODIFY_DATE=@MODIFIED_DATE WHERE ORDER_ID=@ORDER_ID";
                 queryParameter.Add(new KeyValuePair<string, string>("@ORDER_ID", updateorderInfo.Order_Id.ToString()));
-                queryParameter.Add(new KeyValuePair<string, string>("@ORDER_STATUS", updateorderInfo.Vendor_Id.ToString()));
-                queryParameter.Add(new KeyValuePair<string, string>("@DESCRIPTON", updateorderInfo.Description.ToString()));
+                queryParameter.Add(new KeyValuePair<string, string>("@ORDER_STATUS", updateorderInfo.Order_Status));
+                queryParameter.Add(new KeyValuePair<string, string>("@DESCRIPTION", updateorderInfo.Description));
                 queryParameter.Add(new KeyValuePair<string, string>("@MODIFIED_BY", updateorderInfo.User_ID));
                 queryParameter.Add(new KeyValuePair<string, string>("@MODIFIED_DATE", utlitiy.BusinessUtlities.getCurrentDateTime.ToString()));
                 result = DatabaseConnectionHandler.executeUpdateQuery(updateQueryString, queryParameter);

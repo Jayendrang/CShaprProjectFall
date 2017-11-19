@@ -25,5 +25,6 @@ namespace ConsignmentCompanyProject.com.app.dataobjects
         public double Price_Per_Unit { set; get; }
         public string Return_Description { set; get; }
         public string Return_Status { set; get; }
+        
     }
 }

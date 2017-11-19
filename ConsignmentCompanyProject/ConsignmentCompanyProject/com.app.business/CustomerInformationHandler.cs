@@ -50,7 +50,7 @@ namespace ConsignmentCompanyProject.com.app.business
             if (result)
             {
                 UserDBProcessHandler removeVendorUser = new UserDBProcessHandler();
-                result = removeVendorUser.removeMultipleCustomerUsers(vendor.Vendor_Id);
+                removeVendorUser.removeMultipleCustomerUsers(vendor.Vendor_Id);
             }
             return result;
         }

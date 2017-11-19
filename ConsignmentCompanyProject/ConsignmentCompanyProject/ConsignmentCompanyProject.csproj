@@ -71,6 +71,14 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="com.app.business\LoginException.cs" />
+    <Compile Include="com.app.business\MainWIndowFormHandler.cs" />
+    <Compile Include="windows.forms\AboutBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="windows.forms\AboutBox.Designer.cs">
+      <DependentUpon>AboutBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="com.app.business\CustomerMainWindowHandler.cs" />
     <Compile Include="com.app.business\InvetoryManagementHandler.cs" />
     <Compile Include="com.app.business\OrderHandler.cs" />
@@ -99,82 +107,88 @@
     <Compile Include="com.app.model\CustomerDBProcessHandler.cs" />
     <Compile Include="com.app.utilities\BusinessUtlities.cs" />
     <Compile Include="com.app.utilities\FormValidationUtility.cs" />
-    <Compile Include="com.windows.forms\CustomerMainWindow.cs">
+    <Compile Include="windows.forms\CustomerMainWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="com.windows.forms\CustomerMainWindow.Designer.cs">
+    <Compile Include="windows.forms\CustomerMainWindow.Designer.cs">
       <DependentUpon>CustomerMainWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="com.windows.forms\InventoryManagementForm.cs">
+    <Compile Include="windows.forms\InventoryManagementForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="com.windows.forms\InventoryManagementForm.designer.cs">
+    <Compile Include="windows.forms\InventoryManagementForm.designer.cs">
       <DependentUpon>InventoryManagementForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="com.windows.forms\NewUserRegistrationForm.cs">
+    <Compile Include="windows.forms\NewUserRegistrationForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="com.windows.forms\NewUserRegistrationForm.Designer.cs">
+    <Compile Include="windows.forms\NewUserRegistrationForm.Designer.cs">
       <DependentUpon>NewUserRegistrationForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="com.windows.forms\OrderReturnForm.cs">
+    <Compile Include="windows.forms\OrderReturnForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="com.windows.forms\OrderReturnForm.Designer.cs">
+    <Compile Include="windows.forms\OrderReturnForm.Designer.cs">
       <DependentUpon>OrderReturnForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="com.windows.forms\NewOrdersForm.cs">
+    <Compile Include="windows.forms\NewOrdersForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="com.windows.forms\NewOrdersForm.designer.cs">
+    <Compile Include="windows.forms\NewOrdersForm.designer.cs">
       <DependentUpon>NewOrdersForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="com.windows.forms\SplashScreen.cs">
+    <Compile Include="windows.forms\OrdersDetailsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="com.windows.forms\SplashScreen.Designer.cs">
+    <Compile Include="windows.forms\OrdersDetailsForm.Designer.cs">
+      <DependentUpon>OrdersDetailsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="windows.forms\SplashScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="windows.forms\SplashScreen.Designer.cs">
       <DependentUpon>SplashScreen.cs</DependentUpon>
     </Compile>
-    <Compile Include="com.windows.forms\LoginForm.cs">
+    <Compile Include="windows.forms\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="com.windows.forms\LoginForm.Designer.cs">
+    <Compile Include="windows.forms\LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="com.windows.forms\ManagerMainWindowForm.cs">
+    <Compile Include="windows.forms\ManagerMainWindowForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="com.windows.forms\ManagerMainWindowForm.Designer.cs">
+    <Compile Include="windows.forms\ManagerMainWindowForm.Designer.cs">
       <DependentUpon>ManagerMainWindowForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="com.windows.forms\StaffMainWindowForm.cs">
+    <Compile Include="windows.forms\UserProfileChangeForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="com.windows.forms\StaffMainWindowForm.Designer.cs">
-      <DependentUpon>StaffMainWindowForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="com.windows.forms\UserProfileChangeForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="com.windows.forms\UserProfileChangeForm.Designer.cs">
+    <Compile Include="windows.forms\UserProfileChangeForm.Designer.cs">
       <DependentUpon>UserProfileChangeForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="com.windows.forms\CustomerForm.cs">
+    <Compile Include="windows.forms\CustomerManagementForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="com.windows.forms\CustomerForm.designer.cs">
-      <DependentUpon>CustomerForm.cs</DependentUpon>
+    <Compile Include="windows.forms\CustomerManagementForm.designer.cs">
+      <DependentUpon>CustomerManagementForm.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="com.windows.forms\CustomerMainWindow.resx">
+    <EmbeddedResource Include="windows.forms\AboutBox.resx">
+      <DependentUpon>AboutBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="windows.forms\CustomerMainWindow.resx">
       <DependentUpon>CustomerMainWindow.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="com.windows.forms\LoginForm.resx">
+    <EmbeddedResource Include="windows.forms\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="com.windows.forms\ManagerMainWindowForm.resx">
+    <EmbeddedResource Include="windows.forms\ManagerMainWindowForm.resx">
       <DependentUpon>ManagerMainWindowForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="windows.forms\OrdersDetailsForm.resx">
+      <DependentUpon>OrdersDetailsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -185,27 +199,28 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="com.windows.forms\InventoryManagementForm.resx">
+    <EmbeddedResource Include="windows.forms\InventoryManagementForm.resx">
       <DependentUpon>InventoryManagementForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="com.windows.forms\NewUserRegistrationForm.resx">
+    <EmbeddedResource Include="windows.forms\NewUserRegistrationForm.resx">
       <DependentUpon>NewUserRegistrationForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="com.windows.forms\OrderReturnForm.resx">
+    <EmbeddedResource Include="windows.forms\OrderReturnForm.resx">
       <DependentUpon>OrderReturnForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="com.windows.forms\NewOrdersForm.resx">
+    <EmbeddedResource Include="windows.forms\NewOrdersForm.resx">
       <DependentUpon>NewOrdersForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="com.windows.forms\SplashScreen.resx">
+    <EmbeddedResource Include="windows.forms\SplashScreen.resx">
       <DependentUpon>SplashScreen.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="com.windows.forms\CustomerForm.resx">
-      <DependentUpon>CustomerForm.cs</DependentUpon>
+    <EmbeddedResource Include="windows.forms\CustomerManagementForm.resx">
+      <DependentUpon>CustomerManagementForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="com.windows.forms\UserProfileChangeForm.resx">
+    <EmbeddedResource Include="windows.forms\UserProfileChangeForm.resx">
       <DependentUpon>UserProfileChangeForm.cs</DependentUpon>
     </EmbeddedResource>
+    <Compile Include="com.app.business\LoginHandler.cs" />
     <None Include="Properties\DataSources\ConsignmentCompanyProject.com.app.dataobjects.OrderProperties.datasource" />
     <None Include="Properties\DataSources\ConsignmentCompanyProject.com.app.dataobjects.VendorProperties.datasource" />
     <None Include="Properties\Settings.settings">
@@ -225,6 +240,7 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="bin\" />
     <Folder Include="com.app.reports\" />
   </ItemGroup>
   <ItemGroup>

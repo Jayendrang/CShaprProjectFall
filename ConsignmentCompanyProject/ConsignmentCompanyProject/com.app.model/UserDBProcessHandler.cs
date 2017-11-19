@@ -150,7 +150,6 @@ namespace ConsignmentCompanyProject.com.app.model
             string updateQueryString = null;
             bool result = false;
                 List<KeyValuePair<string, string>> tableQueryData = new List<KeyValuePair<string, string>>();
-
                 updateQueryString = "UPDATE USER_TABLE SET STATUS='DEACTIVATED' WHERE USER_ID=@USER_ID;";
                 tableQueryData.Add(new KeyValuePair<string, string>("@USER_ID", userId));
                 result = DatabaseConnectionHandler.executeUpdateQuery(updateQueryString, tableQueryData);
@@ -164,9 +163,10 @@ namespace ConsignmentCompanyProject.com.app.model
             bool result = false;
             List<KeyValuePair<string, string>> tableQueryData = new List<KeyValuePair<string, string>>();
 
-            updateQueryString = "UPDATE USER_TABLE SET STATUS='DEACTIVATED' WHERE VENDOR_ID=@VENDOR_ID;";
+            updateQueryString = "UPDATE USER_TABLE SET STATUS='INACTIVE' WHERE VENDOR_ID=@VENDOR_ID;";
             tableQueryData.Add(new KeyValuePair<string, string>("@VENDOR_ID", vendorID));
             result = DatabaseConnectionHandler.executeUpdateQuery(updateQueryString, tableQueryData);
+            
             return result;
         }
 

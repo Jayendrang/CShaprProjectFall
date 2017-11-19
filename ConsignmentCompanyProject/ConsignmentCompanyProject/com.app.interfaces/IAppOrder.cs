@@ -20,7 +20,7 @@ namespace ConsignmentCompanyProject.com.app.interfaces
     interface IAppReturnOrder<T> where T : OrderReturnProperties
     {
        // T getSingleReturnOrderInfo(string orderReturnId);
-        List<T> getMultipleReturnOrderInfo(T vendorInfo);
+        List<T> getMultipleReturnOrderInfo(string status);
         bool submitOrderReturn(T saveOrderReturnInfo);
         bool cancelOrderReturn(T cancelOrderReturnInfo);
         bool updateOrderReturn(T updateOrderCancelInfo,string userId);

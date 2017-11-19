@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ConsignmentCompanyProject.windows.forms;
 using ConsignmentCompanyProject.com.app.dataobjects;
+using ConsignmentCompanyProject.com.windows.forms;
+
 namespace ConsignmentCompanyProject
 {
     static class Program
@@ -18,7 +20,10 @@ namespace ConsignmentCompanyProject
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new com.windows.forms.CustomerMainWindow()); ;
+
+            
+            Application.Run(new Login()); 
+            //Application.Run(new NewOrdersForm(userSessionData));
             
         }
     }

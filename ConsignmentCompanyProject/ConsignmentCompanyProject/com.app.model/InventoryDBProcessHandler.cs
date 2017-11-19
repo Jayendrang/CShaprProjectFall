@@ -18,9 +18,9 @@ namespace ConsignmentCompanyProject.com.app.model
     class InventoryDBProcessHandler : IAppInventory<ProductProperties>
     {
         //static fields to hold the product list and product from inventory
-        public static Dictionary<string, List<ProductProperties>> INVENTORY_LIST = new Dictionary<string, List<ProductProperties>>();
-        public static List<string> PRODUCT_TYPE = new List<string>();
-        public static List<ProductProperties> PRODUCT_LIST = new List<ProductProperties>();
+        public static Dictionary<string, List<ProductProperties>> _inventory_list = new Dictionary<string, List<ProductProperties>>();
+        public static List<string> _product_type = new List<string>();
+        public static List<ProductProperties> _product_list = new List<ProductProperties>();
         
         //retrive Product details from database 
         public Dictionary<string, List<ProductProperties>> getProducts()
@@ -30,7 +30,7 @@ namespace ConsignmentCompanyProject.com.app.model
             Dictionary<string, List<ProductProperties>> productCollection = new Dictionary<string, List<ProductProperties>>();
             try { 
             List<ProductProperties> productList = new List<ProductProperties>();
-            string selectQueryString = "SELECT PRODUCT.PRODUCT_ID,PRODUCT_TYPE,PRODUCT.PRODUCT_NAME,PRODUCT.MINIMUM_COUNT,PRODUCT.PRODUCT_CURRENT_COUNT,PRODUCT.PRICE_PER_UNIT,MANUFACTURER.MANUFACTURER_ID, MANUFACTURER.MANUFACTURER_NAME,MANUFACTURER_DETAIL FROM PRODUCT INNER JOIN MANUFACTURER ON PRODUCT.MANUFACTURER_ID = MANUFACTURER.MANUFACTURER_ID WHERE MANUFACTURER.MANUFACTURER_STATUS='ACTIVE' ORDER BY MANUFACTURER.MANUFACTURER_NAME;";
+            string selectQueryString = "SELECT PRODUCT.PRODUCT_ID,PRODUCT_TYPE,PRODUCT.PRODUCT_NAME,PRODUCT.MINIMUM_COUNT,PRODUCT.PRODUCT_CURRENT_COUNT,PRODUCT.PRICE_PER_UNIT,MANUFACTURER.MANUFACTURER_ID, MANUFACTURER.MANUFACTURER_NAME FROM PRODUCT INNER JOIN MANUFACTURER ON PRODUCT.MANUFACTURER_ID = MANUFACTURER.MANUFACTURER_ID WHERE MANUFACTURER.MANUFACTURER_STATUS='ACTIVE' ORDER BY MANUFACTURER.MANUFACTURER_NAME;";
             resultDataset = DatabaseConnectionHandler.executeSelectQuery(selectQueryString, null);
             if (resultDataset != null)
             {
@@ -46,10 +46,9 @@ namespace ConsignmentCompanyProject.com.app.model
                     productProperties.Price_Per_Unit = double.Parse(resultrow["Price_per_unit"].ToString());
                     productProperties.Manufacturer_Id = resultrow["Manufacturer_id"].ToString();
                     productProperties.Manufacturer_Name = resultrow["Manufacturer_Name"].ToString();
-                    productProperties.Manufacturer_Detail = resultrow["Manufacturer_detail"].ToString();
                     productList.Add(productProperties);
-                    PRODUCT_TYPE.Add(productProperties.Product_Type);
-                    PRODUCT_LIST.Add(productProperties);
+                    _product_type.Add(productProperties.Product_Type);
+                    _product_list.Add(productProperties);
                 }
             }else
             {
@@ -77,7 +76,7 @@ namespace ConsignmentCompanyProject.com.app.model
                 productCollection.Add(manf_id, tempProductList);
               }
             
-            INVENTORY_LIST = productCollection;
+            _inventory_list = productCollection;
             }catch(Exception exp)
             {
                 Console.WriteLine(exp.StackTrace);

@@ -22,14 +22,13 @@ namespace ConsignmentCompanyProject.com.app.model
             return result ;
         }
 
-        public List<OrderReturnProperties> getMultipleReturnOrderInfo(OrderReturnProperties vendorInfo)
+        public List<OrderReturnProperties> getMultipleReturnOrderInfo(string status)
         {
             DataSet dataset = new DataSet();
-            String selectQueryString = "SELECT RETURN_ORDER_ID,ORDER_ID,VENDOR_ID,USER_ID,PRODUCT_ID,PRODUCT_TYPE,COUNT,PRICE_PER_UNIT,RETURN_DESCRIPTION,RETURN_STATUS WHERE RETURN_ORDER_ID=@RETURN_ORDER_ID AND VENDOR_ID=@VENDOR_ID;";
+            String selectQueryString = "SELECT RETURN_ORDER_ID,ORDER_ID,VENDOR_ID,USER_ID,PRODUCT_ID,PRODUCT_TYPE,COUNT,PRICE_PER_UNIT,RETURN_DESCRIPTION,RETURN_STATUS,CREATED_BY FROM RETURN_ORDER WHERE RETURN_STATUS=@RETURN_STATUS;";
             List<OrderReturnProperties> orderReturnsList = new List<OrderReturnProperties>();
             List<KeyValuePair<string, string>> queryParameter = new List<KeyValuePair<string, string>>();
-            queryParameter.Add(new KeyValuePair<string, string>("@VENDOR_ID", vendorInfo.Vendor_Id));
-            queryParameter.Add(new KeyValuePair<string, string>("@RETURN_ORDER_ID", vendorInfo.Return_Order_Id));
+            queryParameter.Add(new KeyValuePair<string, string>("@RETURN_STATUS", status));
             dataset = DatabaseConnectionHandler.executeSelectQuery(selectQueryString, queryParameter);
 
             if (dataset != null)
@@ -47,6 +46,7 @@ namespace ConsignmentCompanyProject.com.app.model
                     returnOrders.Price_Per_Unit = Convert.ToDouble(row["Price_Per_Unit"].ToString());
                     returnOrders.Return_Description = row["Return_Description"].ToString();
                     returnOrders.Return_Status = row["Return_status"].ToString();
+                    returnOrders.Created_By = row["Created_By"].ToString();
                     orderReturnsList.Add(returnOrders);
                 }
             }

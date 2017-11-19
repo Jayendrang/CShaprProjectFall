@@ -111,7 +111,7 @@ namespace ConsignmentCompanyProject.com.app.model
             string updateQueryString = null;
             bool result = false;
             List<KeyValuePair<string, string>> tableParameters = new List<KeyValuePair<string, string>>();
-            if ((existingVendorInfo.Vendor_Address != null) && (existingVendorInfo.Vendor_Contact != null) && (existingVendorInfo.Vendor_EMail_Id != null))
+            if ((existingVendorInfo.Vendor_Address != null) && (existingVendorInfo.Vendor_Contact != null) && (existingVendorInfo.Vendor_EMail_Id != null) )
             {
                 updateQueryString = "UPDATE VENDOR SET VENDOR_ADDRESS=@VENDOR_ADDRESS,VENDOR_CONTACT=@VENDOR_CONTACT,VENDOR_EMAIL_ID=@VENDOR_EMAIL_ID,MODIFIED_BY=@MODIFIED_BY,MODIFIED_DATE=@MODIFIED_DATE,VENDOR_STATUS=@VENDOR_STATUS WHERE VENDOR_ID=@VENDOR_ID;";
                 tableParameters.Add(new KeyValuePair<string, string>("@VENDOR_ADDRESS", existingVendorInfo.Vendor_Address));
@@ -122,6 +122,8 @@ namespace ConsignmentCompanyProject.com.app.model
                 tableParameters.Add(new KeyValuePair<string, string>("@VENDOR_ID",existingVendorInfo.Vendor_Id));
                 tableParameters.Add(new KeyValuePair<string, string>("@VENDOR_STATUS", existingVendorInfo.Vendor_Status));
                 result = DatabaseConnectionHandler.executeUpdateQuery(updateQueryString, tableParameters);
+
+                
             }
             return result;
         }
@@ -133,18 +135,13 @@ namespace ConsignmentCompanyProject.com.app.model
             bool result = false;
             if (oldVendorInfo.Vendor_Id != null)
             {
-                updateQueryString = "UPDATE VENDOR SET VENDOR_STATUS='DEACTIVATED',MODIFIED_BY=@MODIFIED_BY,MODIFIED_DATE=@MODIFIED_DATE WHERE VENDOR_ID=@VENDOR_ID;";
+                updateQueryString = "UPDATE VENDOR SET VENDOR_STATUS='INACTIVE',MODIFIED_BY=@MODIFIED_BY,MODIFIED_DATE=@MODIFIED_DATE WHERE VENDOR_ID=@VENDOR_ID;";
                 List<KeyValuePair<string, string>> tableParameters = new List<KeyValuePair<string, string>>();
                 tableParameters.Add(new KeyValuePair<string, string>("@VENDOR_ID", oldVendorInfo.Vendor_Id));
                 tableParameters.Add(new KeyValuePair<string, string>("@MODIFIED_BY", userInfo));
                 tableParameters.Add(new KeyValuePair<string, string>("@MODIFIED_DATE", com.app.utlitiy.BusinessUtlities.getCurrentDateTime));
                 result = DatabaseConnectionHandler.executeUpdateQuery(updateQueryString, tableParameters);
             }
-            //if (result == true)
-            //{
-            //    com.app.model.UserDBProcessHandler userDBProcessHandler = new UserDBProcessHandler();
-            //  result=userDBProcessHandler.removeMultipleVendorUsers(oldVendorInfo.Vendor_Id);
-            //}
             return result;
         }
     }
