@@ -11,10 +11,10 @@ namespace ConsignmentCompanyProject.com.app.model
     /*
      * Created by Jayendran Gurumoorthy
      * */
-    class VendorDBProcessHandler : IAppVendor<VendorProperties>
+    class CustomerDBProcessHandler : IAppCustomer<CustomerProperties>
     {
         //Add new vendor in Vendor table
-        public bool addVendorInfo(VendorProperties newVendorInfo, string userInfo)
+        public bool addCustomerInfo(CustomerProperties newVendorInfo, string userInfo)
         {
             bool result = false;
             string insertQueryString = "INSERT INTO VENDOR(VENDOR_NAME,VENDOR_ID,VENDOR_ADDRESS,VENDOR_CONTACT,VENDOR_EMAIL_ID,VENDOR_STATUS,VENDOR_DISCOUNT_ID,VENDOR_BALANCE_AMOUNT,CREATED_BY,CREATED_DATE,MODIFIED_BY,MODIFIED_DATE) VALUES (@VENDOR_NAME,@VENDOR_ID,@VENDOR_ADDRESS,@VENDOR_CONTACT,@VENDOR_EMAIL_ID,@VENDOR_STATUS,@VENDOR_DISCOUNT_ID,@VENDOR_BALANCE_AMOUNT,@CREATED_BY,@CREATED_DATE,@MODIFIED_BY,@MODIFIED_DATE)";
@@ -37,10 +37,10 @@ namespace ConsignmentCompanyProject.com.app.model
         }
 
         //retrieving multiple vendor profile information from vendor table
-        public List<VendorProperties> getMultipleVendorInfo(string vendorStatus)
+        public List<CustomerProperties> getMultipleCustomerInfo(string vendorStatus)
         {
             DataSet dataset = new DataSet();
-            List<VendorProperties> vendorsList = new List<VendorProperties>();
+            List<CustomerProperties> customerList = new List<CustomerProperties>();
             string selectQueryString = null;
             if (vendorStatus.Equals("ALL"))
             {
@@ -60,7 +60,7 @@ namespace ConsignmentCompanyProject.com.app.model
             {
                 foreach (DataRow row in dataset.Tables[0].Rows)
                 {
-                    VendorProperties vendorInfo = new VendorProperties();
+                    CustomerProperties vendorInfo = new CustomerProperties();
                     vendorInfo.Vendor_Name = row["Vendor_Name"].ToString();
                     vendorInfo.Vendor_Id = row["Vendor_Id"].ToString();
                     vendorInfo.Vendor_Address = row["Vendor_Address"].ToString();
@@ -69,20 +69,20 @@ namespace ConsignmentCompanyProject.com.app.model
                     vendorInfo.Vendor_Status = row["Vendor_Status"].ToString();
                     vendorInfo.Vendor_Discount_ID = row["Vendor_Discount_ID"].ToString();
                     vendorInfo.Vendor_Balance_Amount =Convert.ToDouble(row["Vendor_Balance_Amount"].ToString());
-                    vendorsList.Add(vendorInfo);
+                    customerList.Add(vendorInfo);
 
                 }
             }
 
-            return vendorsList;
+            return customerList;
                 }
 
 
         //retrieving single vendor profile information from vendor table
-        public VendorProperties getSingleVendorInfo(string vendorId)
+        public CustomerProperties getSingleCustomerInfo(string vendorId)
         {
             DataSet dataset = new DataSet();
-            VendorProperties vendorInfo = new VendorProperties();
+            CustomerProperties vendorInfo = new CustomerProperties();
             string selectQueryString = "SELECT VENDOR_NAME,VENDOR_ID,VENDOR_ADDRESS,VENDOR_CONTACT,VENDOR_EMAIL_ID,VENDOR_STATUS,VENDOR_DISCOUNT_ID,VENDOR_BALANCE_AMOUNT FROM VENDOR WHERE VENDOR_ID=@VENDOR_ID";
             List<KeyValuePair<string, string>> tableQueryData = new List<KeyValuePair<string, string>>();
             tableQueryData.Add(new KeyValuePair<string, string>("@VENDOR_ID", vendorId));
@@ -106,41 +106,41 @@ namespace ConsignmentCompanyProject.com.app.model
         }
 
         //updating information in vendor profile
-        public bool modifyVendorInfo(VendorProperties existingVendorInfo, string userInfo)
+        public bool modifyCustomerInfo(CustomerProperties existingVendorInfo, string userInfo)
         {
             string updateQueryString = null;
             bool result = false;
             List<KeyValuePair<string, string>> tableParameters = new List<KeyValuePair<string, string>>();
-            if ((existingVendorInfo.Vendor_Address != null) && (existingVendorInfo.Vendor_Contact != null) && (existingVendorInfo.Vendor_EMail_Id != null))
+            if ((existingVendorInfo.Vendor_Address != null) && (existingVendorInfo.Vendor_Contact != null) && (existingVendorInfo.Vendor_EMail_Id != null) )
             {
-                updateQueryString = "UPDATE VENDOR SET VENDOR_ADDRESS=@VENDOR_ADDERESS,VENDOR_CONTACT=@VENDOR_CONTACT,VENDOR_EMAIL_ID=@VENDOR_EMAIL_ID,MODIFIED_BY=@MODIFIED_BY,MODIFIED_DATE=@MODIFIED_DATE WHERE VENDOR_ID=@VENDOR_ID;";
+                updateQueryString = "UPDATE VENDOR SET VENDOR_ADDRESS=@VENDOR_ADDRESS,VENDOR_CONTACT=@VENDOR_CONTACT,VENDOR_EMAIL_ID=@VENDOR_EMAIL_ID,MODIFIED_BY=@MODIFIED_BY,MODIFIED_DATE=@MODIFIED_DATE,VENDOR_STATUS=@VENDOR_STATUS WHERE VENDOR_ID=@VENDOR_ID;";
                 tableParameters.Add(new KeyValuePair<string, string>("@VENDOR_ADDRESS", existingVendorInfo.Vendor_Address));
                 tableParameters.Add(new KeyValuePair<string, string>("@VENDOR_CONTACT", existingVendorInfo.Vendor_Contact));
                 tableParameters.Add(new KeyValuePair<string, string>("@VENDOR_EMAIL_ID", existingVendorInfo.Vendor_EMail_Id));
                 tableParameters.Add(new KeyValuePair<string, string>("@MODIFIED_BY", userInfo));
-                tableParameters.Add(new KeyValuePair<string, string>("@VENDOR_DATE", com.app.utlitiy.BusinessUtlities.getCurrentDateTime));
+                tableParameters.Add(new KeyValuePair<string, string>("@MODIFIED_DATE", com.app.utlitiy.BusinessUtlities.getCurrentDateTime));
                 tableParameters.Add(new KeyValuePair<string, string>("@VENDOR_ID",existingVendorInfo.Vendor_Id));
+                tableParameters.Add(new KeyValuePair<string, string>("@VENDOR_STATUS", existingVendorInfo.Vendor_Status));
                 result = DatabaseConnectionHandler.executeUpdateQuery(updateQueryString, tableParameters);
+
+                
             }
             return result;
         }
 
         //Deactivating vendor from vendor table, with this method respective vendor users profile also deactivated
-        public bool removeVendorInfo(VendorProperties oldVendorInfo,string userInfo)
+        public bool removeCustomerInfo(CustomerProperties oldVendorInfo,string userInfo)
         {
             string updateQueryString = null;
             bool result = false;
             if (oldVendorInfo.Vendor_Id != null)
             {
-                updateQueryString = "UPDATE VENDOR SET VENDOR_STATUS='DEACTIVATED' WHERE VENDOR_ID=@VENDOR_ID;";
+                updateQueryString = "UPDATE VENDOR SET VENDOR_STATUS='INACTIVE',MODIFIED_BY=@MODIFIED_BY,MODIFIED_DATE=@MODIFIED_DATE WHERE VENDOR_ID=@VENDOR_ID;";
                 List<KeyValuePair<string, string>> tableParameters = new List<KeyValuePair<string, string>>();
                 tableParameters.Add(new KeyValuePair<string, string>("@VENDOR_ID", oldVendorInfo.Vendor_Id));
+                tableParameters.Add(new KeyValuePair<string, string>("@MODIFIED_BY", userInfo));
+                tableParameters.Add(new KeyValuePair<string, string>("@MODIFIED_DATE", com.app.utlitiy.BusinessUtlities.getCurrentDateTime));
                 result = DatabaseConnectionHandler.executeUpdateQuery(updateQueryString, tableParameters);
-            }
-            if (result == true)
-            {
-                com.app.model.UserDBProcessHandler userDBProcessHandler = new UserDBProcessHandler();
-                result=userDBProcessHandler.removeMultipleVendorUsers(oldVendorInfo.Vendor_Id);
             }
             return result;
         }

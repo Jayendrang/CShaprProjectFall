@@ -22,14 +22,13 @@ namespace ConsignmentCompanyProject.com.app.model
             return result ;
         }
 
-        public List<OrderReturnProperties> getMultipleReturnOrderInfo(OrderReturnProperties vendorInfo)
+        public List<OrderReturnProperties> getMultipleReturnOrderInfo(string status)
         {
             DataSet dataset = new DataSet();
-            String selectQueryString = "SELECT RETURN_ORDER_ID,ORDER_ID,VENDOR_ID,USER_ID,PRODUCT_ID,PRODUCT_TYPE,COUNT,PRICE_PER_UNIT,RETURN_DESCRIPTION,RETURN_STATUS WHERE RETURN_ORDER_ID=@RETURN_ORDER_ID AND VENDOR_ID=@VENDOR_ID;";
+            String selectQueryString = "SELECT RETURN_ORDER_ID,ORDER_ID,VENDOR_ID,USER_ID,PRODUCT_ID,PRODUCT_TYPE,COUNT,PRICE_PER_UNIT,RETURN_DESCRIPTION,RETURN_STATUS,CREATED_BY FROM RETURN_ORDER WHERE RETURN_STATUS=@RETURN_STATUS;";
             List<OrderReturnProperties> orderReturnsList = new List<OrderReturnProperties>();
             List<KeyValuePair<string, string>> queryParameter = new List<KeyValuePair<string, string>>();
-            queryParameter.Add(new KeyValuePair<string, string>("@VENDOR_ID", vendorInfo.Vendor_Id));
-            queryParameter.Add(new KeyValuePair<string, string>("@RETURN_ORDER_ID", vendorInfo.Return_Order_Id));
+            queryParameter.Add(new KeyValuePair<string, string>("@RETURN_STATUS", status));
             dataset = DatabaseConnectionHandler.executeSelectQuery(selectQueryString, queryParameter);
 
             if (dataset != null)
@@ -47,6 +46,7 @@ namespace ConsignmentCompanyProject.com.app.model
                     returnOrders.Price_Per_Unit = Convert.ToDouble(row["Price_Per_Unit"].ToString());
                     returnOrders.Return_Description = row["Return_Description"].ToString();
                     returnOrders.Return_Status = row["Return_status"].ToString();
+                    returnOrders.Created_By = row["Created_By"].ToString();
                     orderReturnsList.Add(returnOrders);
                 }
             }
@@ -62,20 +62,21 @@ namespace ConsignmentCompanyProject.com.app.model
             queryParameter.Add(new KeyValuePair<string, string>("@RETURN_ORDER_ID",saveOrderReturnInfo.Return_Order_Id));
             queryParameter.Add(new KeyValuePair<string, string>("@ORDER_ID",saveOrderReturnInfo.Order_Id));
             queryParameter.Add(new KeyValuePair<string, string>("@USER_ID",saveOrderReturnInfo.User_Id));
+            queryParameter.Add(new KeyValuePair<string, string>("@VENDOR_ID", saveOrderReturnInfo.Vendor_Id));
             queryParameter.Add(new KeyValuePair<string, string>("@PRODUCT_ID",saveOrderReturnInfo.Product_Id));
             queryParameter.Add(new KeyValuePair<string, string>("@PRODUCT_TYPE",saveOrderReturnInfo.Product_Type));
             queryParameter.Add(new KeyValuePair<string, string>("@COUNT",saveOrderReturnInfo.Count.ToString()));
             queryParameter.Add(new KeyValuePair<string, string>("@PRICE_PER_UNIT",saveOrderReturnInfo.Price_Per_Unit.ToString()));
             queryParameter.Add(new KeyValuePair<string, string>("@RETURN_DESCRIPTION",saveOrderReturnInfo.Return_Description));
             queryParameter.Add(new KeyValuePair<string, string>("@RETURN_STATUS",saveOrderReturnInfo.Return_Status));
-            queryParameter.Add(new KeyValuePair<string, string>("@CREATED_BY",saveOrderReturnInfo.User_Id));
+            queryParameter.Add(new KeyValuePair<string, string>("@CREATED_BY",saveOrderReturnInfo.Created_By));
             queryParameter.Add(new KeyValuePair<string, string>("@CREATED_DATE",com.app.utlitiy.BusinessUtlities.getCurrentDateTime));
-            queryParameter.Add(new KeyValuePair<string, string>("@MODIFIED_BY",saveOrderReturnInfo.User_Id));
+            queryParameter.Add(new KeyValuePair<string, string>("@MODIFIED_BY",saveOrderReturnInfo.Created_By));
             queryParameter.Add(new KeyValuePair<string, string>("@MODIFIED_DATE",com.app.utlitiy.BusinessUtlities.getCurrentDateTime));
             return DatabaseConnectionHandler.executeInsertDbQuery(insertQueryString, queryParameter);
         }
 
-        public bool updateOrderReturn(OrderReturnProperties updateOrderStatusInfo)
+        public bool updateOrderReturn(OrderReturnProperties updateOrderStatusInfo, string userInfo)
         {
             string updateQueryString = "UPDATE RETURN_ORDER SET RETURN_STATUS=@STATUS,RETURN_DESCRITPION=@RETURN_DESCRIPTION,MODIFIED_BY=@MODIFIED_BY,MODIFIED_DATE=@MODIFIED_DATE WHERE RETURN_ORDER_ID=@RETURN_ORDER_ID";
             List<KeyValuePair<string, string>> tableQueryData = new List<KeyValuePair<string, string>>();

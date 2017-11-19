@@ -31,6 +31,7 @@
             this.panelAddUser = new System.Windows.Forms.Panel();
             this.labelTitle = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.buttonGenerateCreds = new System.Windows.Forms.Button();
             this.textBoxGeneratedPassword = new System.Windows.Forms.TextBox();
             this.textBoxGeneratedUsername = new System.Windows.Forms.TextBox();
             this.labelUsername = new System.Windows.Forms.Label();
@@ -52,7 +53,6 @@
             this.labelAddress = new System.Windows.Forms.Label();
             this.labelContact = new System.Windows.Forms.Label();
             this.labelName = new System.Windows.Forms.Label();
-            this.buttonGenerateCreds = new System.Windows.Forms.Button();
             this.panelAddUser.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -110,6 +110,16 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "NEW USER DETAILS";
             // 
+            // buttonGenerateCreds
+            // 
+            this.buttonGenerateCreds.Location = new System.Drawing.Point(589, 155);
+            this.buttonGenerateCreds.Name = "buttonGenerateCreds";
+            this.buttonGenerateCreds.Size = new System.Drawing.Size(147, 34);
+            this.buttonGenerateCreds.TabIndex = 29;
+            this.buttonGenerateCreds.Text = "&GENERATE CREDS";
+            this.buttonGenerateCreds.UseVisualStyleBackColor = true;
+            this.buttonGenerateCreds.Click += new System.EventHandler(this.buttonGenerateCreds_Click);
+            // 
             // textBoxGeneratedPassword
             // 
             this.textBoxGeneratedPassword.Location = new System.Drawing.Point(845, 110);
@@ -151,9 +161,9 @@
             // 
             this.listBoxRoles.FormattingEnabled = true;
             this.listBoxRoles.ItemHeight = 16;
-            this.listBoxRoles.Location = new System.Drawing.Point(269, 375);
+            this.listBoxRoles.Location = new System.Drawing.Point(270, 372);
             this.listBoxRoles.Name = "listBoxRoles";
-            this.listBoxRoles.Size = new System.Drawing.Size(120, 52);
+            this.listBoxRoles.Size = new System.Drawing.Size(120, 20);
             this.listBoxRoles.TabIndex = 25;
             // 
             // radioButtonIsVendorYes
@@ -296,16 +306,6 @@
             this.labelName.Size = new System.Drawing.Size(47, 17);
             this.labelName.TabIndex = 8;
             this.labelName.Text = "NAME";
-            // 
-            // buttonGenerateCreds
-            // 
-            this.buttonGenerateCreds.Location = new System.Drawing.Point(589, 155);
-            this.buttonGenerateCreds.Name = "buttonGenerateCreds";
-            this.buttonGenerateCreds.Size = new System.Drawing.Size(147, 34);
-            this.buttonGenerateCreds.TabIndex = 29;
-            this.buttonGenerateCreds.Text = "&GENERATE CREDS";
-            this.buttonGenerateCreds.UseVisualStyleBackColor = true;
-            this.buttonGenerateCreds.Click += new System.EventHandler(this.buttonGenerateCreds_Click);
             // 
             // NewUserRegistrationForm
             // 

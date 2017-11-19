@@ -82,7 +82,7 @@ namespace ConsignmentCompanyProject.com.app.utlitiy
         public static string generateNewPassword()
         {
             Random random = new Random();
-            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcedefghijklmnopqrstwxyz@!";
             return new string(Enumerable.Repeat(chars, 8)
               .Select(s => s[random.Next(s.Length)]).ToArray());
         }

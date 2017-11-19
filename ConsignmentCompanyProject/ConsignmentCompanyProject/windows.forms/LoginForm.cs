@@ -14,13 +14,15 @@ namespace ConsignmentCompanyProject
 {
     public partial class Login : Form
     {
-        
+        LoginHandler loginHandler = new LoginHandler();
         SplashScreen splashscreen = new SplashScreen();
 
         public Login()
         {
             InitializeComponent();
-            splashscreen.Show();            
+            splashscreen.Show();
+            textBoxUserName.MaxLength = 11;
+            textBoxPassword.MaxLength = 20;      
         }
 
         private void Login_Load(object sender, EventArgs e)
@@ -38,39 +40,44 @@ namespace ConsignmentCompanyProject
 
         private void buttonLogin_Click(object sender, EventArgs e)
         {
-            UserInformationProperties userSession = new UserInformationProperties();
+            UserInformationProperties _userSession = new UserInformationProperties();
             LoginProperties logindata = new LoginProperties();
+
+            if ((textBoxUserName.Text != null) && (textBoxPassword.Text != null)) { 
             logindata.Username = textBoxUserName.Text;
             logindata.Password = textBoxPassword.Text;
-            //userSession= UserInformationHandler.validateUser(logindata);
+            _userSession = loginHandler.validateUserCredentials(logindata);
             
-            
-            if (userSession!=null)
+
+
+            if (_userSession!=null)
             {
                 splashscreen.Hide();
                 this.Enabled = false;
                 this.Visible = false;
 
-                if (userSession.Role.Equals("MANAGER")) { 
-                ManagerMainWindow managerWindow = new ManagerMainWindow();
-                managerWindow.loadFormData();
+                if (_userSession.Role.Equals("MANAGER")) { 
+                ManagerMainWindow managerWindow = new ManagerMainWindow(_userSession);
+                        managerWindow.Text = _userSession.Name;
                 managerWindow.Show();
-                }else if (userSession.Role.Equals("STAFF"))
+                }else if(_userSession.Role.Equals("VENDOR"))
                 {
-
-                }else if(userSession.Role.Equals("ADMIN")){
-
-
-                }else if(userSession.Role.Equals("VENDOR"))
-                {
-
+                        com.windows.forms.CustomerMainWindow customerWindow = new com.windows.forms.CustomerMainWindow(_userSession);
+                        customerWindow.Text = _userSession.Vendor_Name;
+                        customerWindow.Show();
                 }
             }
             else
             {
-                MessageBox.Show("Invalid Username/Password", "Login failed", MessageBoxButtons.OK);
+                MessageBox.Show("Invalid Username/Password".ToUpper(), "Login failed".ToUpper(), MessageBoxButtons.OK,MessageBoxIcon.Error);
 
-            } 
+            }
+            }
+            else
+            {
+                MessageBox.Show("PLEASE PROVIDE USERNAME AND PASSWORD PROPERLY".ToUpper(), "Login failed".ToUpper(), MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
         }
 
         private void buttonCancel_Click(object sender, EventArgs e)

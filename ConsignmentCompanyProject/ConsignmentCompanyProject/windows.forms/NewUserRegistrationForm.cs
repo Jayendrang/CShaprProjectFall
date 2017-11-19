@@ -14,12 +14,14 @@ namespace ConsignmentCompanyProject.windows.forms
 {
     public partial class NewUserRegistrationForm : Form
     {
-        List<VendorProperties> vendorsList = new List<VendorProperties>();
-        com.app.business.UserInformationHandler userInformationHandler = new com.app.business.UserInformationHandler();
-
-        public NewUserRegistrationForm()
+        private List<CustomerProperties> vendorsList = new List<CustomerProperties>();
+        private com.app.business.UserInformationHandler userInformationHandler = new com.app.business.UserInformationHandler();
+        private UserInformationProperties userSessionInformation;
+        public NewUserRegistrationForm(object sessionData)
         {
             InitializeComponent();
+            userSessionInformation = (UserInformationProperties)sessionData;
+
         }
 
         private void groupBoxNewUser_Enter(object sender, EventArgs e)
@@ -29,11 +31,12 @@ namespace ConsignmentCompanyProject.windows.forms
 
         private void buttonAddUser_Click(object sender, EventArgs e)
         {
+            try{
             UserInformationProperties userInformation = new UserInformationProperties();
-            userInformation.Name = textBoxName.Text;
-            userInformation.Contact = textBoxContact.Text;
-            userInformation.Address = textBoxAddress.Text;
-            userInformation.EMail_Id = textBoxEmailId.Text;
+            userInformation.Name = textBoxName.Text.ToUpper();
+            userInformation.Contact = textBoxContact.Text.ToUpper();
+            userInformation.Address = textBoxAddress.Text.ToUpper();
+            userInformation.EMail_Id = textBoxEmailId.Text.ToUpper();
             userInformation.Status = "ACTIVE";
             userInformation.User_Id = textBoxGeneratedUsername.Text;
             userInformation.Password = textBoxGeneratedPassword.Text;
@@ -44,16 +47,16 @@ namespace ConsignmentCompanyProject.windows.forms
                 listBoxRoles.Enabled = false;
                 userInformation.Is_Vendor = "TRUE";
                 userInformation.Role = "VENDOR";
-                VendorProperties vendorDetails = userInformationHandler.getVendorInfo(comboBoxVendorName.SelectedItem.ToString());
-                userInformation.Vendor_Name = vendorDetails.Vendor_Name;
-                userInformation.Vendor_ID = vendorDetails.Vendor_Id;
+                CustomerProperties vendorDetails = userInformationHandler.getCustomerInfo(comboBoxVendorName.SelectedItem.ToString());
+                userInformation.Vendor_Name = vendorDetails.Vendor_Name.ToUpper();
+                userInformation.Vendor_ID = vendorDetails.Vendor_Id.ToUpper();
             }
             else if (radioButtonIsVendorNo.Checked == true)
             {
                 comboBoxVendorName.Enabled = false;
                 listBoxRoles.Enabled = true;
                 userInformation.Is_Vendor = "FALSE";
-                userInformation.Role = listBoxRoles.SelectedIndex.ToString();
+                userInformation.Role = listBoxRoles.SelectedIndex.ToString().ToUpper();
                 userInformation.Vendor_ID = "N/A";
                 userInformation.Vendor_Name = "N/A";
             }
@@ -63,8 +66,13 @@ namespace ConsignmentCompanyProject.windows.forms
             }
 
             com.app.business.UserInformationHandler userInfoHandler = new com.app.business.UserInformationHandler();
-            userInformationHandler.addNewUser(userInformation, "JaY2234");
-
+                ///*************testing
+                userInformationHandler.addNewUser(userInformation, userSessionInformation.User_Id);
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.StackTrace);                
+            }
 
         }
 
@@ -75,7 +83,8 @@ namespace ConsignmentCompanyProject.windows.forms
 
         private void NewUserRegistrationForm_Load(object sender, EventArgs e)
         {
-            vendorsList = userInformationHandler.getVendorsList();
+            vendorsList = userInformationHandler.getCustomerList();
+            radioButtonIsVendorYes.Checked = true;
 
         }
 
@@ -85,9 +94,9 @@ namespace ConsignmentCompanyProject.windows.forms
             listBoxRoles.Items.Clear();
             if (radioButtonIsVendorNo.Checked)
             {
-                listBoxRoles.Items.Add("STAFF");
+            
                 listBoxRoles.Items.Add("MANAGER");
-                listBoxRoles.Items.Add("ADMIN");
+                
             }
             comboBoxVendorName.Enabled = false;
         }
@@ -98,7 +107,7 @@ namespace ConsignmentCompanyProject.windows.forms
             comboBoxVendorName.Items.Clear();
             if (radioButtonIsVendorYes.Checked)
             {
-                foreach (VendorProperties vendor in vendorsList)
+                foreach (CustomerProperties vendor in vendorsList)
                 {
                     comboBoxVendorName.Items.Add(vendor.Vendor_Name);
                 }

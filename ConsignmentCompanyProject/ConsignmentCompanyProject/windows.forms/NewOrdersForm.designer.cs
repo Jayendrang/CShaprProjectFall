@@ -1,6 +1,6 @@
 ﻿namespace ConsignmentCompanyProject
 {
-    partial class Orders
+    partial class NewOrdersForm
     {
         /// <summary>
         /// Required designer variable.
@@ -131,6 +131,7 @@
             this.groupBoxOrderDetails.Size = new System.Drawing.Size(919, 341);
             this.groupBoxOrderDetails.TabIndex = 83;
             this.groupBoxOrderDetails.TabStop = false;
+            this.groupBoxOrderDetails.Text = "ORDER DETAILS";
             // 
             // textBoxDescription
             // 
@@ -138,7 +139,7 @@
             this.textBoxDescription.Multiline = true;
             this.textBoxDescription.Name = "textBoxDescription";
             this.textBoxDescription.Size = new System.Drawing.Size(174, 58);
-            this.textBoxDescription.TabIndex = 88;
+            this.textBoxDescription.TabIndex = 8;
             // 
             // labelDescription
             // 
@@ -153,8 +154,9 @@
             // 
             this.textBoxItemTotalPrice.Location = new System.Drawing.Point(737, 66);
             this.textBoxItemTotalPrice.Name = "textBoxItemTotalPrice";
+            this.textBoxItemTotalPrice.ReadOnly = true;
             this.textBoxItemTotalPrice.Size = new System.Drawing.Size(113, 22);
-            this.textBoxItemTotalPrice.TabIndex = 86;
+            this.textBoxItemTotalPrice.TabIndex = 5;
             // 
             // labelItemTotalPrice
             // 
@@ -207,7 +209,7 @@
             this.comboBoxProductName.Location = new System.Drawing.Point(212, 192);
             this.comboBoxProductName.Name = "comboBoxProductName";
             this.comboBoxProductName.Size = new System.Drawing.Size(160, 24);
-            this.comboBoxProductName.TabIndex = 80;
+            this.comboBoxProductName.TabIndex = 3;
             this.comboBoxProductName.SelectedIndexChanged += new System.EventHandler(this.comboBoxProductName_SelectedIndexChanged);
             // 
             // lablelProductName
@@ -225,7 +227,7 @@
             this.comboBoxManufacturer.Location = new System.Drawing.Point(212, 152);
             this.comboBoxManufacturer.Name = "comboBoxManufacturer";
             this.comboBoxManufacturer.Size = new System.Drawing.Size(160, 24);
-            this.comboBoxManufacturer.TabIndex = 78;
+            this.comboBoxManufacturer.TabIndex = 2;
             this.comboBoxManufacturer.SelectedIndexChanged += new System.EventHandler(this.comboBoxManufacturer_SelectedIndexChanged);
             // 
             // labelManufacturerName
@@ -244,7 +246,7 @@
             this.comboBoxProductType.Margin = new System.Windows.Forms.Padding(4);
             this.comboBoxProductType.Name = "comboBoxProductType";
             this.comboBoxProductType.Size = new System.Drawing.Size(160, 24);
-            this.comboBoxProductType.TabIndex = 76;
+            this.comboBoxProductType.TabIndex = 1;
             this.comboBoxProductType.SelectedIndexChanged += new System.EventHandler(this.comboBoxProductType_SelectedIndexChanged);
             // 
             // textBoxProductId
@@ -307,8 +309,9 @@
             this.textBoxBalanceAmount.Location = new System.Drawing.Point(737, 226);
             this.textBoxBalanceAmount.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxBalanceAmount.Name = "textBoxBalanceAmount";
+            this.textBoxBalanceAmount.ReadOnly = true;
             this.textBoxBalanceAmount.Size = new System.Drawing.Size(113, 22);
-            this.textBoxBalanceAmount.TabIndex = 50;
+            this.textBoxBalanceAmount.TabIndex = 7;
             // 
             // textBoxPricePerUnit
             // 
@@ -324,8 +327,9 @@
             this.textBoxAdvanceAmount.Location = new System.Drawing.Point(737, 102);
             this.textBoxAdvanceAmount.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxAdvanceAmount.Name = "textBoxAdvanceAmount";
+            this.textBoxAdvanceAmount.ReadOnly = true;
             this.textBoxAdvanceAmount.Size = new System.Drawing.Size(113, 22);
-            this.textBoxAdvanceAmount.TabIndex = 48;
+            this.textBoxAdvanceAmount.TabIndex = 6;
             // 
             // textBoxCount
             // 
@@ -333,7 +337,7 @@
             this.textBoxCount.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxCount.Name = "textBoxCount";
             this.textBoxCount.Size = new System.Drawing.Size(113, 22);
-            this.textBoxCount.TabIndex = 47;
+            this.textBoxCount.TabIndex = 4;
             this.textBoxCount.TextChanged += new System.EventHandler(this.textBoxCount_TextChanged);
             // 
             // labelDiscountId
@@ -460,12 +464,12 @@
             // 
             this.labelFormTitle.AutoSize = true;
             this.labelFormTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelFormTitle.Location = new System.Drawing.Point(473, 30);
+            this.labelFormTitle.Location = new System.Drawing.Point(435, 32);
             this.labelFormTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelFormTitle.Name = "labelFormTitle";
-            this.labelFormTitle.Size = new System.Drawing.Size(126, 29);
+            this.labelFormTitle.Size = new System.Drawing.Size(178, 29);
             this.labelFormTitle.TabIndex = 57;
-            this.labelFormTitle.Text = "ORDERS\r\n";
+            this.labelFormTitle.Text = "NEW ORDER";
             // 
             // buttonAddToCart
             // 
@@ -473,7 +477,7 @@
             this.buttonAddToCart.Margin = new System.Windows.Forms.Padding(4);
             this.buttonAddToCart.Name = "buttonAddToCart";
             this.buttonAddToCart.Size = new System.Drawing.Size(135, 28);
-            this.buttonAddToCart.TabIndex = 56;
+            this.buttonAddToCart.TabIndex = 11;
             this.buttonAddToCart.Text = "&ADD TO CART";
             this.buttonAddToCart.UseVisualStyleBackColor = true;
             this.buttonAddToCart.Click += new System.EventHandler(this.buttonAddToCart_Click);
@@ -484,7 +488,7 @@
             this.buttonCancelOrder.Margin = new System.Windows.Forms.Padding(4);
             this.buttonCancelOrder.Name = "buttonCancelOrder";
             this.buttonCancelOrder.Size = new System.Drawing.Size(121, 28);
-            this.buttonCancelOrder.TabIndex = 55;
+            this.buttonCancelOrder.TabIndex = 10;
             this.buttonCancelOrder.Text = "&CANCEL";
             this.buttonCancelOrder.UseVisualStyleBackColor = true;
             this.buttonCancelOrder.Click += new System.EventHandler(this.buttonCancelOrder_Click);
@@ -495,7 +499,7 @@
             this.buttonSubmitOrder.Margin = new System.Windows.Forms.Padding(4);
             this.buttonSubmitOrder.Name = "buttonSubmitOrder";
             this.buttonSubmitOrder.Size = new System.Drawing.Size(130, 28);
-            this.buttonSubmitOrder.TabIndex = 54;
+            this.buttonSubmitOrder.TabIndex = 9;
             this.buttonSubmitOrder.Text = "SUBMIT &ORDER";
             this.buttonSubmitOrder.UseVisualStyleBackColor = true;
             this.buttonSubmitOrder.Click += new System.EventHandler(this.buttonSubmitOrder_Click);
@@ -503,9 +507,9 @@
             // groupBoxCart
             // 
             this.groupBoxCart.Controls.Add(this.dataGridViewCart);
-            this.groupBoxCart.Location = new System.Drawing.Point(97, 508);
+            this.groupBoxCart.Location = new System.Drawing.Point(66, 508);
             this.groupBoxCart.Name = "groupBoxCart";
-            this.groupBoxCart.Size = new System.Drawing.Size(847, 162);
+            this.groupBoxCart.Size = new System.Drawing.Size(919, 162);
             this.groupBoxCart.TabIndex = 84;
             this.groupBoxCart.TabStop = false;
             this.groupBoxCart.Text = "CART";
@@ -517,17 +521,18 @@
             this.dataGridViewCart.Location = new System.Drawing.Point(3, 18);
             this.dataGridViewCart.Name = "dataGridViewCart";
             this.dataGridViewCart.RowTemplate.Height = 24;
-            this.dataGridViewCart.Size = new System.Drawing.Size(841, 141);
+            this.dataGridViewCart.Size = new System.Drawing.Size(913, 141);
             this.dataGridViewCart.TabIndex = 0;
             // 
-            // Orders
+            // NewOrdersForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1114, 706);
             this.Controls.Add(this.panelOrder);
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "Orders";
+            this.Name = "NewOrdersForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PURCHASE ORDER ";
             this.Load += new System.EventHandler(this.Orders_Load);
             this.panelOrder.ResumeLayout(false);

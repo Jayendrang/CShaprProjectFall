@@ -40,35 +40,35 @@
             // labelUsername
             // 
             this.labelUsername.AutoSize = true;
-            this.labelUsername.Location = new System.Drawing.Point(110, 68);
+            this.labelUsername.Location = new System.Drawing.Point(113, 63);
             this.labelUsername.Name = "labelUsername";
-            this.labelUsername.Size = new System.Drawing.Size(73, 17);
+            this.labelUsername.Size = new System.Drawing.Size(85, 17);
             this.labelUsername.TabIndex = 0;
-            this.labelUsername.Text = "Username";
+            this.labelUsername.Text = "USERNAME";
             // 
             // labelPassword
             // 
             this.labelPassword.AutoSize = true;
             this.labelPassword.Location = new System.Drawing.Point(113, 114);
             this.labelPassword.Name = "labelPassword";
-            this.labelPassword.Size = new System.Drawing.Size(69, 17);
+            this.labelPassword.Size = new System.Drawing.Size(88, 17);
             this.labelPassword.TabIndex = 1;
-            this.labelPassword.Text = "Password";
+            this.labelPassword.Text = "PASSWORD";
             // 
             // textBoxUserName
             // 
             this.textBoxUserName.Location = new System.Drawing.Point(285, 63);
             this.textBoxUserName.Name = "textBoxUserName";
             this.textBoxUserName.Size = new System.Drawing.Size(100, 22);
-            this.textBoxUserName.TabIndex = 2;
+            this.textBoxUserName.TabIndex = 1;
             // 
             // buttonLogin
             // 
             this.buttonLogin.Location = new System.Drawing.Point(177, 164);
             this.buttonLogin.Name = "buttonLogin";
             this.buttonLogin.Size = new System.Drawing.Size(84, 38);
-            this.buttonLogin.TabIndex = 4;
-            this.buttonLogin.Text = "&Login";
+            this.buttonLogin.TabIndex = 3;
+            this.buttonLogin.Text = "&LOGIN";
             this.buttonLogin.UseVisualStyleBackColor = true;
             this.buttonLogin.Click += new System.EventHandler(this.buttonLogin_Click);
             // 
@@ -78,8 +78,8 @@
             this.buttonCancel.Location = new System.Drawing.Point(285, 163);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(83, 39);
-            this.buttonCancel.TabIndex = 5;
-            this.buttonCancel.Text = "&Cancel";
+            this.buttonCancel.TabIndex = 4;
+            this.buttonCancel.Text = "&CANCEL";
             this.buttonCancel.UseVisualStyleBackColor = true;
             this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
             // 
@@ -89,7 +89,7 @@
             this.textBoxPassword.Name = "textBoxPassword";
             this.textBoxPassword.PasswordChar = '*';
             this.textBoxPassword.Size = new System.Drawing.Size(100, 22);
-            this.textBoxPassword.TabIndex = 3;
+            this.textBoxPassword.TabIndex = 2;
             this.textBoxPassword.UseSystemPasswordChar = true;
             // 
             // label1

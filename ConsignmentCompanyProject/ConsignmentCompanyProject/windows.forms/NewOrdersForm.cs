@@ -14,7 +14,7 @@ using ConsignmentCompanyProject.com.app.interfaces;
 
 namespace ConsignmentCompanyProject
 {   
-    public partial class Orders : Form
+    public partial class NewOrdersForm : Form
     {
         private static int _itemNo = 0;
         private double _totalPrice = 0;
@@ -23,15 +23,21 @@ namespace ConsignmentCompanyProject
         private double _discountPrice = 0;
         private double _grossPrice = 0;
         private int _itemCount = 0;
-        private DataGridViewButtonColumn buttonRemoveCartItem = new DataGridViewButtonColumn();
-        private List<ProductProperties> productInformation = new List<ProductProperties>();
-        private Dictionary<int, OrderProperties> listOfOrderItems = new Dictionary<int, OrderProperties>();
+        private DataGridViewButtonColumn _buttonRemoveCartItem = new DataGridViewButtonColumn();
+        private List<ProductProperties> _productList = new List<ProductProperties>();
+        private Dictionary<int, OrderProperties> _listOfOrderItems = new Dictionary<int, OrderProperties>();
+        private UserInformationProperties _userSessionInformation;
+        private OrderHandler _orderHandler;
 
 
-        public Orders()
+        public NewOrdersForm(object session)
         {
             InitializeComponent();
+            _userSessionInformation = (UserInformationProperties)session;
+            _orderHandler = new OrderHandler();
         }
+
+       
 
         private void addToCartDataGrid(OrderProperties orderItems)
         {
@@ -40,11 +46,11 @@ namespace ConsignmentCompanyProject
                 _itemNo++;
                 string [] cartRow = new string[] {_itemNo.ToString(), orderItems.Order_Id.ToString(), orderItems.Manufacturer_Name, orderItems.Product_Name, orderItems.Product_Type, orderItems.Count.ToString(), orderItems.Price_Per_Unit.ToString("c"), orderItems.Total_Price.ToString("c") };
                 dataGridViewCart.Rows.Add(cartRow);
-                dataGridViewCart.Columns.Add(buttonRemoveCartItem);
-                buttonRemoveCartItem.HeaderText = "REMOVE ITEM";
-                buttonRemoveCartItem.Name = "buttonRemoveCartItem";
-                buttonRemoveCartItem.Text = "REMOVE";
-                buttonRemoveCartItem.UseColumnTextForButtonValue = true;
+                dataGridViewCart.Columns.Add(_buttonRemoveCartItem);
+                _buttonRemoveCartItem.HeaderText = "REMOVE ITEM";
+                _buttonRemoveCartItem.Name = "buttonRemoveCartItem";
+                _buttonRemoveCartItem.Text = "REMOVE";
+                _buttonRemoveCartItem.UseColumnTextForButtonValue = true;
                 dataGridViewCart.CellClick += new DataGridViewCellEventHandler(dataGridViewCart_CellClick);
                 
                 }
@@ -58,12 +64,13 @@ namespace ConsignmentCompanyProject
                 
                 dataGridViewCart.Rows.RemoveAt(gridIndex);
                 
+                
                        
             }
             else if(gridIndex==0)
             {
                 dataGridViewCart.Rows.RemoveAt(gridIndex);
-                MessageBox.Show("Message","Cart is empty",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                MessageBox.Show("Message".ToUpper(),"Cart is empty".ToUpper(),MessageBoxButtons.OK,MessageBoxIcon.Information);
                 dataGridViewCart.CellClick -= new DataGridViewCellEventHandler(dataGridViewCart_CellClick);
                 _totalPrice = 0;
                 _minimumAdvancePayment = 0;
@@ -73,30 +80,50 @@ namespace ConsignmentCompanyProject
             }      
             }catch(Exception e)
             {
-                Console.WriteLine("Empty cart click", e.StackTrace);
+                Console.WriteLine("Empty cart click".ToUpper(), e.StackTrace);
             }
         }
         //Event handler for removing item from the cart
         void dataGridViewCart_CellClick(object sender, DataGridViewCellEventArgs btnevent){
+            int orderNumber;
+            try {
+                 orderNumber= Convert.ToInt16(dataGridViewCart.Rows[btnevent.RowIndex].Cells[0].Value.ToString());
 
-            if (btnevent.RowIndex > 0)
+                if (btnevent.RowIndex > 0)
             {
                 removeFromCartDataGrid(btnevent.RowIndex);
             }
-                        
+                Console.WriteLine("Order Index Number {0}");
+                _listOfOrderItems.Remove(orderNumber - 1);
+                refreshOrderDetails();
+            }
+            catch(Exception ex) { Console.WriteLine(ex.StackTrace); }
+            
+
+
+        }
+
+
+        void refreshOrderDetails()
+        {
+            foreach (KeyValuePair<int, OrderProperties> orders in _listOfOrderItems)
+            {
+                OrderProperties orderInCart = orders.Value;
+                _grossPrice = orderInCart.Price_Per_Unit * orderInCart.Count;
+                _discountPrice = (_grossPrice * _discountRate) / 100;
+                _totalPrice = _grossPrice - _discountPrice;
+                _minimumAdvancePayment = (_totalPrice * 70) / 100;
+               
+                textBoxAdvanceAmount.Text = _minimumAdvancePayment.ToString("c");
+                textBoxDiscountId.Text = _discountPrice.ToString("c");
+                textBoxTotalPrice.Text = _totalPrice.ToString("c");
+                textBoxBalanceAmount.Text = (_totalPrice - _minimumAdvancePayment).ToString("c");
+                               
+
+            }
         }
        
-
-        
-        private void panelOrder_Paint(object sender, PaintEventArgs e)
-        {
-            
-        }
-
-        private void groupBoxOrderDetails_Enter(object sender, EventArgs e)
-        {
-
-        }
+     
 
         private void Orders_Load(object sender, EventArgs e)
         {
@@ -104,6 +131,7 @@ namespace ConsignmentCompanyProject
 
             try
             {
+                
                 // Start - Load the grid view column name
                 dataGridViewCart.ColumnCount = 8;
                 dataGridViewCart.Columns[0].Name = "ITEM#";
@@ -124,18 +152,13 @@ namespace ConsignmentCompanyProject
                 dataGridViewCart.Columns[7].ReadOnly = true;
 
                 //**********************************Change while integration
-                textBoxUser.Text = "JaY2234";
-                textBoxVendor.Text = "VEN1120";
+                textBoxUser.Text = _userSessionInformation.User_Id;
+                textBoxVendor.Text = _userSessionInformation.Vendor_ID;
 
-                OrderHandler orderHandler = new OrderHandler();
-                _discountRate = orderHandler.getCustomerDiscountRate();
+               
+                _discountRate = _orderHandler.getCustomerDiscountRate();
 
-                foreach (string typeOfProduct in OrderHandler.getproductTypeList()) {
-
-                    comboBoxProductType.Items.Add(typeOfProduct);
-
-                }
-                // End - Load the grid view column name
+                loadProductTypeComboBox();
 
                 textBoxOrderId.Text = com.app.utlitiy.BusinessUtlities.getNewUniqueID("SALES_ORDER", "ORDER_ID");
                 textBoxOrderDate.Text = com.app.utlitiy.BusinessUtlities.getCurrentDateTime;
@@ -150,7 +173,7 @@ namespace ConsignmentCompanyProject
             if (advanceAmount >= _minimumAdvancePayment)
             {
                 List<OrderProperties> finalListofOrderItems = new List<OrderProperties>();
-                foreach(KeyValuePair<int,OrderProperties> orders in listOfOrderItems) {
+                foreach(KeyValuePair<int,OrderProperties> orders in _listOfOrderItems) {
                     OrderProperties order = orders.Value;
                     order.Balance_Amount = _totalPrice - advanceAmount;
                     order.Order_Status = "NEW ORDER";
@@ -158,13 +181,15 @@ namespace ConsignmentCompanyProject
                     order.Discount_Rate = _discountRate.ToString(); 
                     if (order.Description == null)
                     {
-                        order.Description = "Nill";
+                        order.Description = "NIL";
                     }
                     finalListofOrderItems.Add(order);
 
                     Console.WriteLine("The Balance amount is : {0}",order.Balance_Amount);
                 }
-                if (OrderHandler.submitPurchaseOrder(finalListofOrderItems))
+
+                Console.WriteLine("Final list {0}",finalListofOrderItems.Count);
+                if (_orderHandler.submitPurchaseOrder(finalListofOrderItems))
                 {
 
                     MessageBox.Show("PURCHASE ORDER #" + textBoxOrderId.Text, "ORDER PLACED SUCCESSFULLY", MessageBoxButtons.OK);
@@ -210,14 +235,12 @@ namespace ConsignmentCompanyProject
                 textBoxAdvanceAmount.Text = _minimumAdvancePayment.ToString("c");
                 textBoxTotalPrice.Text = _totalPrice.ToString("c");
                 textBoxDiscountId.Text = _discountPrice.ToString("c");
-                listOfOrderItems.Add(_itemCount++, cartItems);
+                textBoxBalanceAmount.Text = (_totalPrice - _minimumAdvancePayment).ToString("c");
+                _listOfOrderItems.Add(_itemCount++, cartItems);
 
 
             }
-            catch (Exception ex) { Console.WriteLine(ex.StackTrace); }finally
-            {
-                textBoxCount.Text = "";
-            }
+            catch (Exception ex) { Console.WriteLine(ex.StackTrace); }
         }
 
         private void buttonCancelOrder_Click(object sender, EventArgs e)
@@ -230,11 +253,11 @@ namespace ConsignmentCompanyProject
         {
             comboBoxProductName.Items.Clear();
             
-            List<ProductProperties> productsList = OrderHandler.getProductList(comboBoxManufacturer.SelectedItem.ToString(), comboBoxProductType.SelectedItem.ToString());
+            List<ProductProperties> productsList = _orderHandler.getProductList(comboBoxManufacturer.SelectedItem.ToString(), comboBoxProductType.SelectedItem.ToString());
             foreach(ProductProperties products in productsList.Distinct().ToList())
             {
                 comboBoxProductName.Items.Add(products.Product_Name);
-                productInformation.Add(products);
+                _productList.Add(products);
             }
         }
 
@@ -243,7 +266,7 @@ namespace ConsignmentCompanyProject
             comboBoxManufacturer.SelectedText = "";
             comboBoxManufacturer.Items.Clear();
             
-            List<ProductProperties> manufacturerslist = OrderHandler.getManufacturerAndProductList(comboBoxProductType.SelectedItem.ToString());
+            List<ProductProperties> manufacturerslist = _orderHandler.getManufacturerAndProductList(comboBoxProductType.SelectedItem.ToString());
 
             foreach (ProductProperties props in manufacturerslist.Distinct().ToList())
             {
@@ -256,7 +279,7 @@ namespace ConsignmentCompanyProject
 
         private void comboBoxProductName_SelectedIndexChanged(object sender, EventArgs e)
         {try { 
-            ProductProperties singleproductInformations = OrderHandler.getProductInformation(productInformation,comboBoxManufacturer.SelectedItem.ToString(),comboBoxProductType.SelectedItem.ToString(),comboBoxProductName.SelectedItem.ToString());
+            ProductProperties singleproductInformations = _orderHandler.getProductInformation(_productList,comboBoxManufacturer.SelectedItem.ToString(),comboBoxProductType.SelectedItem.ToString(),comboBoxProductName.SelectedItem.ToString());
             textBoxProductId.Text = singleproductInformations.Product_Id.ToString();
             textBoxPricePerUnit.Text = singleproductInformations.Price_Per_Unit.ToString();
             }catch(Exception ex) { MessageBox.Show("WRONG SELECTION, PLEASE SELECT RIGHT MANUFACTURER AND PRODUCT", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -273,6 +296,29 @@ namespace ConsignmentCompanyProject
                 textBoxItemTotalPrice.Text = totalCount.ToString("c");
             }
             }catch(Exception ex) { Console.WriteLine(ex.Message); }
+        }
+
+        private void loadProductTypeComboBox()
+        {
+            try {
+                _productList = _orderHandler.getproductTypeList();
+                
+            foreach (ProductProperties props in _productList)
+            {
+             if (comboBoxProductType.Items != null) { 
+                if (!comboBoxProductType.Items.Contains(props.Product_Type)) { 
+                comboBoxProductType.Items.Add(props.Product_Type);
+                }
+                    }else
+                    {
+                        comboBoxProductType.Items.Add(props.Product_Type);
+                    }
+
+                }
+            }catch(Exception ex)
+            {
+                Console.WriteLine(ex.StackTrace);
+            }
         }
     }
     public class ItemRemovedEventArgs : EventArgs

@@ -1,6 +1,6 @@
 ﻿namespace ConsignmentCompanyProject
 {
-    partial class VendorForm
+    partial class CustomerManagementForm
     {
         /// <summary>
         /// Required designer variable.
@@ -35,9 +35,9 @@
             this.labelVendorContact = new System.Windows.Forms.Label();
             this.labelDiscountId = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.textBoxVendorName = new System.Windows.Forms.TextBox();
-            this.labelVendorID = new System.Windows.Forms.Label();
-            this.textBoxVendorId = new System.Windows.Forms.TextBox();
+            this.textBoxCustomerName = new System.Windows.Forms.TextBox();
+            this.labelCustomerID = new System.Windows.Forms.Label();
+            this.textBoxCustomerId = new System.Windows.Forms.TextBox();
             this.textBoxAddress = new System.Windows.Forms.TextBox();
             this.textBoxContact = new System.Windows.Forms.TextBox();
             this.textBoxMailId = new System.Windows.Forms.TextBox();
@@ -46,14 +46,18 @@
             this.buttonDynamicButton = new System.Windows.Forms.Button();
             this.buttonCancelVender = new System.Windows.Forms.Button();
             this.groupBoxVendorIfo = new System.Windows.Forms.GroupBox();
+            this.labelStatus = new System.Windows.Forms.Label();
+            this.buttonSearchVendor = new System.Windows.Forms.Button();
             this.radioButtonDeleteVendor = new System.Windows.Forms.RadioButton();
             this.radioButtonModifyVendor = new System.Windows.Forms.RadioButton();
             this.radioButtonAddNewVendor = new System.Windows.Forms.RadioButton();
             this.groupBoxSearchVendor = new System.Windows.Forms.GroupBox();
-            this.dataGridViewVendorInformation = new System.Windows.Forms.DataGridView();
-            this.radioButtonStatusActive = new System.Windows.Forms.RadioButton();
-            this.radioButtonStatusInActive = new System.Windows.Forms.RadioButton();
             this.labelVendorStatus = new System.Windows.Forms.Label();
+            this.radioButtonStatusInActive = new System.Windows.Forms.RadioButton();
+            this.radioButtonStatusActive = new System.Windows.Forms.RadioButton();
+            this.dataGridViewVendorInformation = new System.Windows.Forms.DataGridView();
+            this.textBoxStatus = new System.Windows.Forms.TextBox();
+            this.listBoxStatus = new System.Windows.Forms.ListBox();
             this.groupBoxVendorIfo.SuspendLayout();
             this.groupBoxSearchVendor.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewVendorInformation)).BeginInit();
@@ -66,9 +70,9 @@
             this.label1.Location = new System.Drawing.Point(347, 9);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(222, 20);
+            this.label1.Size = new System.Drawing.Size(247, 20);
             this.label1.TabIndex = 0;
-            this.label1.Text = "VENDOR MANAGEMENT";
+            this.label1.Text = "CUSTOMER MANAGEMENT";
             // 
             // labelVendorName
             // 
@@ -76,9 +80,9 @@
             this.labelVendorName.Location = new System.Drawing.Point(104, 97);
             this.labelVendorName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelVendorName.Name = "labelVendorName";
-            this.labelVendorName.Size = new System.Drawing.Size(110, 17);
+            this.labelVendorName.Size = new System.Drawing.Size(47, 17);
             this.labelVendorName.TabIndex = 1;
-            this.labelVendorName.Text = "VENDOR NAME";
+            this.labelVendorName.Text = "NAME";
             // 
             // labelAddress
             // 
@@ -130,33 +134,33 @@
             this.label9.TabIndex = 8;
             this.label9.Text = "DISCOUNT RATE";
             // 
-            // textBoxVendorName
+            // textBoxCustomerName
             // 
-            this.textBoxVendorName.Location = new System.Drawing.Point(232, 94);
-            this.textBoxVendorName.Margin = new System.Windows.Forms.Padding(4);
-            this.textBoxVendorName.Name = "textBoxVendorName";
-            this.textBoxVendorName.Size = new System.Drawing.Size(179, 22);
-            this.textBoxVendorName.TabIndex = 9;
-            this.textBoxVendorName.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.textBoxCustomerName.Location = new System.Drawing.Point(232, 94);
+            this.textBoxCustomerName.Margin = new System.Windows.Forms.Padding(4);
+            this.textBoxCustomerName.Name = "textBoxCustomerName";
+            this.textBoxCustomerName.Size = new System.Drawing.Size(179, 22);
+            this.textBoxCustomerName.TabIndex = 9;
+            this.textBoxCustomerName.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
-            // labelVendorID
+            // labelCustomerID
             // 
-            this.labelVendorID.AutoSize = true;
-            this.labelVendorID.Location = new System.Drawing.Point(448, 99);
-            this.labelVendorID.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelVendorID.Name = "labelVendorID";
-            this.labelVendorID.Size = new System.Drawing.Size(84, 17);
-            this.labelVendorID.TabIndex = 10;
-            this.labelVendorID.Text = "VENDOR ID";
+            this.labelCustomerID.AutoSize = true;
+            this.labelCustomerID.Location = new System.Drawing.Point(448, 99);
+            this.labelCustomerID.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelCustomerID.Name = "labelCustomerID";
+            this.labelCustomerID.Size = new System.Drawing.Size(103, 17);
+            this.labelCustomerID.TabIndex = 10;
+            this.labelCustomerID.Text = "CUSTOMER ID";
             // 
-            // textBoxVendorId
+            // textBoxCustomerId
             // 
-            this.textBoxVendorId.Location = new System.Drawing.Point(576, 96);
-            this.textBoxVendorId.Margin = new System.Windows.Forms.Padding(4);
-            this.textBoxVendorId.Name = "textBoxVendorId";
-            this.textBoxVendorId.ReadOnly = true;
-            this.textBoxVendorId.Size = new System.Drawing.Size(132, 22);
-            this.textBoxVendorId.TabIndex = 11;
+            this.textBoxCustomerId.Location = new System.Drawing.Point(576, 96);
+            this.textBoxCustomerId.Margin = new System.Windows.Forms.Padding(4);
+            this.textBoxCustomerId.Name = "textBoxCustomerId";
+            this.textBoxCustomerId.ReadOnly = true;
+            this.textBoxCustomerId.Size = new System.Drawing.Size(132, 22);
+            this.textBoxCustomerId.TabIndex = 11;
             // 
             // textBoxAddress
             // 
@@ -208,9 +212,9 @@
             this.buttonDynamicButton.Name = "buttonDynamicButton";
             this.buttonDynamicButton.Size = new System.Drawing.Size(137, 28);
             this.buttonDynamicButton.TabIndex = 18;
-            this.buttonDynamicButton.Text = "&ADD VENDOR";
+            this.buttonDynamicButton.Text = "&ADD CUSTOMER";
             this.buttonDynamicButton.UseVisualStyleBackColor = true;
-            this.buttonDynamicButton.Click += new System.EventHandler(this.button1_Click);
+            this.buttonDynamicButton.Click += new System.EventHandler(this.buttonDynamicButton_Click);
             // 
             // buttonCancelVender
             // 
@@ -225,6 +229,10 @@
             // 
             // groupBoxVendorIfo
             // 
+            this.groupBoxVendorIfo.Controls.Add(this.listBoxStatus);
+            this.groupBoxVendorIfo.Controls.Add(this.textBoxStatus);
+            this.groupBoxVendorIfo.Controls.Add(this.labelStatus);
+            this.groupBoxVendorIfo.Controls.Add(this.buttonSearchVendor);
             this.groupBoxVendorIfo.Controls.Add(this.radioButtonDeleteVendor);
             this.groupBoxVendorIfo.Controls.Add(this.radioButtonModifyVendor);
             this.groupBoxVendorIfo.Controls.Add(this.radioButtonAddNewVendor);
@@ -235,9 +243,9 @@
             this.groupBoxVendorIfo.Controls.Add(this.textBoxMailId);
             this.groupBoxVendorIfo.Controls.Add(this.textBoxContact);
             this.groupBoxVendorIfo.Controls.Add(this.textBoxAddress);
-            this.groupBoxVendorIfo.Controls.Add(this.textBoxVendorId);
-            this.groupBoxVendorIfo.Controls.Add(this.labelVendorID);
-            this.groupBoxVendorIfo.Controls.Add(this.textBoxVendorName);
+            this.groupBoxVendorIfo.Controls.Add(this.textBoxCustomerId);
+            this.groupBoxVendorIfo.Controls.Add(this.labelCustomerID);
+            this.groupBoxVendorIfo.Controls.Add(this.textBoxCustomerName);
             this.groupBoxVendorIfo.Controls.Add(this.label9);
             this.groupBoxVendorIfo.Controls.Add(this.labelDiscountId);
             this.groupBoxVendorIfo.Controls.Add(this.labelVendorContact);
@@ -251,15 +259,34 @@
             this.groupBoxVendorIfo.TabStop = false;
             this.groupBoxVendorIfo.Text = "VENDOR INFO";
             // 
+            // labelStatus
+            // 
+            this.labelStatus.AutoSize = true;
+            this.labelStatus.Location = new System.Drawing.Point(451, 261);
+            this.labelStatus.Name = "labelStatus";
+            this.labelStatus.Size = new System.Drawing.Size(63, 17);
+            this.labelStatus.TabIndex = 24;
+            this.labelStatus.Text = "STATUS";
+            // 
+            // buttonSearchVendor
+            // 
+            this.buttonSearchVendor.Location = new System.Drawing.Point(733, 94);
+            this.buttonSearchVendor.Name = "buttonSearchVendor";
+            this.buttonSearchVendor.Size = new System.Drawing.Size(101, 24);
+            this.buttonSearchVendor.TabIndex = 23;
+            this.buttonSearchVendor.Text = "&SEARCH";
+            this.buttonSearchVendor.UseVisualStyleBackColor = true;
+            this.buttonSearchVendor.Click += new System.EventHandler(this.buttonSearchVendor_Click);
+            // 
             // radioButtonDeleteVendor
             // 
             this.radioButtonDeleteVendor.AutoSize = true;
             this.radioButtonDeleteVendor.Location = new System.Drawing.Point(576, 40);
             this.radioButtonDeleteVendor.Name = "radioButtonDeleteVendor";
-            this.radioButtonDeleteVendor.Size = new System.Drawing.Size(207, 21);
+            this.radioButtonDeleteVendor.Size = new System.Drawing.Size(226, 21);
             this.radioButtonDeleteVendor.TabIndex = 22;
             this.radioButtonDeleteVendor.TabStop = true;
-            this.radioButtonDeleteVendor.Text = "DELETE VENDOR DETAILS";
+            this.radioButtonDeleteVendor.Text = "DELETE CUSTOMER DETAILS";
             this.radioButtonDeleteVendor.UseVisualStyleBackColor = true;
             this.radioButtonDeleteVendor.CheckedChanged += new System.EventHandler(this.radioButtonDeleteVendor_CheckedChanged);
             // 
@@ -268,10 +295,10 @@
             this.radioButtonModifyVendor.AutoSize = true;
             this.radioButtonModifyVendor.Location = new System.Drawing.Point(319, 40);
             this.radioButtonModifyVendor.Name = "radioButtonModifyVendor";
-            this.radioButtonModifyVendor.Size = new System.Drawing.Size(205, 21);
+            this.radioButtonModifyVendor.Size = new System.Drawing.Size(224, 21);
             this.radioButtonModifyVendor.TabIndex = 21;
             this.radioButtonModifyVendor.TabStop = true;
-            this.radioButtonModifyVendor.Text = "MODIFY VENDOR DETAILS";
+            this.radioButtonModifyVendor.Text = "MODIFY CUSTOMER DETAILS";
             this.radioButtonModifyVendor.UseVisualStyleBackColor = true;
             this.radioButtonModifyVendor.CheckedChanged += new System.EventHandler(this.radioButtonModifyVendor_CheckedChanged);
             // 
@@ -280,10 +307,10 @@
             this.radioButtonAddNewVendor.AutoSize = true;
             this.radioButtonAddNewVendor.Location = new System.Drawing.Point(107, 40);
             this.radioButtonAddNewVendor.Name = "radioButtonAddNewVendor";
-            this.radioButtonAddNewVendor.Size = new System.Drawing.Size(121, 21);
+            this.radioButtonAddNewVendor.Size = new System.Drawing.Size(176, 21);
             this.radioButtonAddNewVendor.TabIndex = 20;
             this.radioButtonAddNewVendor.TabStop = true;
-            this.radioButtonAddNewVendor.Text = "ADD VENDOR";
+            this.radioButtonAddNewVendor.Text = "ADD NEW CUSTOMER";
             this.radioButtonAddNewVendor.UseVisualStyleBackColor = true;
             this.radioButtonAddNewVendor.CheckedChanged += new System.EventHandler(this.radioButtonAddNewVendor_CheckedChanged);
             // 
@@ -298,7 +325,40 @@
             this.groupBoxSearchVendor.Size = new System.Drawing.Size(874, 240);
             this.groupBoxSearchVendor.TabIndex = 21;
             this.groupBoxSearchVendor.TabStop = false;
-            this.groupBoxSearchVendor.Text = "SEARCH VENDOR";
+            this.groupBoxSearchVendor.Text = "SEARCH CUSTOMER";
+            // 
+            // labelVendorStatus
+            // 
+            this.labelVendorStatus.AutoSize = true;
+            this.labelVendorStatus.Location = new System.Drawing.Point(383, 25);
+            this.labelVendorStatus.Name = "labelVendorStatus";
+            this.labelVendorStatus.Size = new System.Drawing.Size(63, 17);
+            this.labelVendorStatus.TabIndex = 3;
+            this.labelVendorStatus.Text = "STATUS";
+            // 
+            // radioButtonStatusInActive
+            // 
+            this.radioButtonStatusInActive.AutoSize = true;
+            this.radioButtonStatusInActive.Location = new System.Drawing.Point(603, 22);
+            this.radioButtonStatusInActive.Name = "radioButtonStatusInActive";
+            this.radioButtonStatusInActive.Size = new System.Drawing.Size(90, 21);
+            this.radioButtonStatusInActive.TabIndex = 2;
+            this.radioButtonStatusInActive.TabStop = true;
+            this.radioButtonStatusInActive.Text = "INACTIVE";
+            this.radioButtonStatusInActive.UseVisualStyleBackColor = true;
+            this.radioButtonStatusInActive.CheckedChanged += new System.EventHandler(this.radioButtonStatusInActive_CheckedChanged);
+            // 
+            // radioButtonStatusActive
+            // 
+            this.radioButtonStatusActive.AutoSize = true;
+            this.radioButtonStatusActive.Location = new System.Drawing.Point(491, 21);
+            this.radioButtonStatusActive.Name = "radioButtonStatusActive";
+            this.radioButtonStatusActive.Size = new System.Drawing.Size(77, 21);
+            this.radioButtonStatusActive.TabIndex = 1;
+            this.radioButtonStatusActive.TabStop = true;
+            this.radioButtonStatusActive.Text = "ACTIVE";
+            this.radioButtonStatusActive.UseVisualStyleBackColor = true;
+            this.radioButtonStatusActive.CheckedChanged += new System.EventHandler(this.radioButtonStatusActive_CheckedChanged);
             // 
             // dataGridViewVendorInformation
             // 
@@ -313,40 +373,27 @@
             this.dataGridViewVendorInformation.Size = new System.Drawing.Size(862, 172);
             this.dataGridViewVendorInformation.TabIndex = 0;
             // 
-            // radioButtonStatusActive
+            // textBoxStatus
             // 
-            this.radioButtonStatusActive.AutoSize = true;
-            this.radioButtonStatusActive.Location = new System.Drawing.Point(434, 22);
-            this.radioButtonStatusActive.Name = "radioButtonStatusActive";
-            this.radioButtonStatusActive.Size = new System.Drawing.Size(77, 21);
-            this.radioButtonStatusActive.TabIndex = 1;
-            this.radioButtonStatusActive.TabStop = true;
-            this.radioButtonStatusActive.Text = "ACTIVE";
-            this.radioButtonStatusActive.UseVisualStyleBackColor = true;
-            this.radioButtonStatusActive.CheckedChanged += new System.EventHandler(this.radioButtonStatusActive_CheckedChanged);
+            this.textBoxStatus.Location = new System.Drawing.Point(576, 255);
+            this.textBoxStatus.Name = "textBoxStatus";
+            this.textBoxStatus.ReadOnly = true;
+            this.textBoxStatus.Size = new System.Drawing.Size(132, 22);
+            this.textBoxStatus.TabIndex = 25;
             // 
-            // radioButtonStatusInActive
+            // listBoxStatus
             // 
-            this.radioButtonStatusInActive.AutoSize = true;
-            this.radioButtonStatusInActive.Location = new System.Drawing.Point(603, 22);
-            this.radioButtonStatusInActive.Name = "radioButtonStatusInActive";
-            this.radioButtonStatusInActive.Size = new System.Drawing.Size(90, 21);
-            this.radioButtonStatusInActive.TabIndex = 2;
-            this.radioButtonStatusInActive.TabStop = true;
-            this.radioButtonStatusInActive.Text = "INACTIVE";
-            this.radioButtonStatusInActive.UseVisualStyleBackColor = true;
-            this.radioButtonStatusInActive.CheckedChanged += new System.EventHandler(this.radioButtonStatusInActive_CheckedChanged);
+            this.listBoxStatus.FormattingEnabled = true;
+            this.listBoxStatus.ItemHeight = 16;
+            this.listBoxStatus.Items.AddRange(new object[] {
+            "ACTIVE",
+            "INACTIVE"});
+            this.listBoxStatus.Location = new System.Drawing.Point(576, 255);
+            this.listBoxStatus.Name = "listBoxStatus";
+            this.listBoxStatus.Size = new System.Drawing.Size(132, 36);
+            this.listBoxStatus.TabIndex = 26;
             // 
-            // labelVendorStatus
-            // 
-            this.labelVendorStatus.AutoSize = true;
-            this.labelVendorStatus.Location = new System.Drawing.Point(319, 22);
-            this.labelVendorStatus.Name = "labelVendorStatus";
-            this.labelVendorStatus.Size = new System.Drawing.Size(63, 17);
-            this.labelVendorStatus.TabIndex = 3;
-            this.labelVendorStatus.Text = "STATUS";
-            // 
-            // VendorForm
+            // CustomerManagementForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -355,8 +402,8 @@
             this.Controls.Add(this.groupBoxVendorIfo);
             this.Controls.Add(this.label1);
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "VendorForm";
-            this.Text = "Vender";
+            this.Name = "CustomerManagementForm";
+            this.Text = "CUSTOMER MANAGEMENT";
             this.Load += new System.EventHandler(this.VendorForm_Load);
             this.groupBoxVendorIfo.ResumeLayout(false);
             this.groupBoxVendorIfo.PerformLayout();
@@ -377,9 +424,9 @@
         private System.Windows.Forms.Label labelVendorContact;
         private System.Windows.Forms.Label labelDiscountId;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox textBoxVendorName;
-        private System.Windows.Forms.Label labelVendorID;
-        private System.Windows.Forms.TextBox textBoxVendorId;
+        private System.Windows.Forms.TextBox textBoxCustomerName;
+        private System.Windows.Forms.Label labelCustomerID;
+        private System.Windows.Forms.TextBox textBoxCustomerId;
         private System.Windows.Forms.TextBox textBoxAddress;
         private System.Windows.Forms.TextBox textBoxContact;
         private System.Windows.Forms.TextBox textBoxMailId;
@@ -396,5 +443,9 @@
         private System.Windows.Forms.Label labelVendorStatus;
         private System.Windows.Forms.RadioButton radioButtonStatusInActive;
         private System.Windows.Forms.RadioButton radioButtonStatusActive;
+        private System.Windows.Forms.Button buttonSearchVendor;
+        private System.Windows.Forms.Label labelStatus;
+        private System.Windows.Forms.TextBox textBoxStatus;
+        private System.Windows.Forms.ListBox listBoxStatus;
     }
 }
