@@ -71,8 +71,9 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="com.app.business\LoginException.cs" />
+    <Compile Include="com.app.business\BusinessExceptions.cs" />
     <Compile Include="com.app.business\MainWIndowFormHandler.cs" />
+    <Compile Include="com.app.utilities\FormValidationUtilities.cs" />
     <Compile Include="windows.forms\AboutBox.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -106,7 +107,6 @@
     <Compile Include="com.app.model\UserDBProcessHandler.cs" />
     <Compile Include="com.app.model\CustomerDBProcessHandler.cs" />
     <Compile Include="com.app.utilities\BusinessUtlities.cs" />
-    <Compile Include="com.app.utilities\FormValidationUtility.cs" />
     <Compile Include="windows.forms\CustomerMainWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -240,7 +240,6 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="bin\" />
     <Folder Include="com.app.reports\" />
   </ItemGroup>
   <ItemGroup>

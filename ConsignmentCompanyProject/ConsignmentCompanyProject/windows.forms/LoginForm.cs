@@ -8,10 +8,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ConsignmentCompanyProject.com.app.utlitiy;
+using ConsignmentCompanyProject.com.app.utilities;
 using ConsignmentCompanyProject.com.app.business;
 using ConsignmentCompanyProject.com.app.dataobjects;
+
 namespace ConsignmentCompanyProject
 {
+    /*
+     * Created by Jayendran Gurumoorthy
+     * */
+
     public partial class Login : Form
     {
         LoginHandler loginHandler = new LoginHandler();
@@ -33,24 +39,28 @@ namespace ConsignmentCompanyProject
             this.label1.Text = BusinessUtlities.getCurrentDateTime;
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-
+        
+        //Validate the user Credentials and load the user session information
         private void buttonLogin_Click(object sender, EventArgs e)
         {
+            try { 
             UserInformationProperties _userSession = new UserInformationProperties();
             LoginProperties logindata = new LoginProperties();
 
-            if ((textBoxUserName.Text != null) && (textBoxPassword.Text != null)) { 
-            logindata.Username = textBoxUserName.Text;
-            logindata.Password = textBoxPassword.Text;
+            if ((FormValidationUtilities.fieldsMaxLength(textBoxUserName.Text, 12)) && (FormValidationUtilities.fieldsMaxLength(textBoxPassword.Text, 21))){ 
+            if ((!FormValidationUtilities.nullCheck(textBoxUserName.Text)) && (!FormValidationUtilities.nullCheck(textBoxPassword.Text))) { 
+                
+            
+
+            logindata.Username = textBoxUserName.Text.Trim();
+            logindata.Password = textBoxPassword.Text.Trim();
+            
+                    // validating the userinformation in database and loading session data
             _userSession = loginHandler.validateUserCredentials(logindata);
             
 
 
-            if (_userSession!=null)
+            if (_userSession.User_Id!=null)
             {
                 splashscreen.Hide();
                 this.Enabled = false;
@@ -58,31 +68,44 @@ namespace ConsignmentCompanyProject
 
                 if (_userSession.Role.Equals("MANAGER")) { 
                 ManagerMainWindow managerWindow = new ManagerMainWindow(_userSession);
-                        managerWindow.Text = _userSession.Name;
+                        managerWindow.Text = "MANAGER DATASHBORD- "+_userSession.Name;
                 managerWindow.Show();
                 }else if(_userSession.Role.Equals("VENDOR"))
                 {
                         com.windows.forms.CustomerMainWindow customerWindow = new com.windows.forms.CustomerMainWindow(_userSession);
-                        customerWindow.Text = _userSession.Vendor_Name;
+                        customerWindow.Text = _userSession.Vendor_Name="-"+_userSession.Name;
                         customerWindow.Show();
                 }
-            }
+                        cancelErrorProvider();
+               }
             else
             {
-                MessageBox.Show("Invalid Username/Password".ToUpper(), "Login failed".ToUpper(), MessageBoxButtons.OK,MessageBoxIcon.Error);
-
+                        MessageBox.Show("Invalid Username/Password".ToUpper(), "Login failed".ToUpper(), MessageBoxButtons.OK,MessageBoxIcon.Error);
+                        cancelErrorProvider();
             }
             }
-            else
+           
+            }else
             {
-                MessageBox.Show("PLEASE PROVIDE USERNAME AND PASSWORD PROPERLY".ToUpper(), "Login failed".ToUpper(), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                errorProviderLogin.SetError(textBoxUserName, "Username should be less than 11 characters");    
+            }
+            }catch(BusinessExceptions loginException)
+            {
 
+                MessageBox.Show("INVALID USERNAME OR PASSWORD", "ERROR", MessageBoxButtons.RetryCancel, MessageBoxIcon.Hand);
+                Console.WriteLine(loginException.Message);
             }
         }
 
         private void buttonCancel_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void cancelErrorProvider()
+        {
+            errorProviderLogin.SetError(textBoxUserName, "");
+            errorProviderLogin.SetError(textBoxPassword, "");
         }
     }
 }

@@ -423,18 +423,24 @@ namespace ConsignmentCompanyProject
         private void iNVENTORYMANAGEMENTToolStripMenuItem_Click(object sender, EventArgs e)
         {
             InventoryManagementForm inventoryManagementForm = new InventoryManagementForm(_userSessionInformation);
+            //inventoryManagementForm.MdiParent = this;
+            inventoryManagementForm.ImeMode = this.ImeModeBase;
             inventoryManagementForm.Show();
         }
 
         private void cUSTOMERMANAGEMENTToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ConsignmentCompanyProject.CustomerManagementForm customerManagementForm = new CustomerManagementForm(_userSessionInformation);
+           // customerManagementForm.MdiParent = this;
+            customerManagementForm.ImeMode = this.ImeModeBase;
             customerManagementForm.Show();
         }
 
         private void eXITToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             windows.forms.UserProfileChangeForm userProfile = new windows.forms.UserProfileChangeForm(_userSessionInformation);
+           // userProfile.MdiParent = this;
+            userProfile.ImeMode = this.ImeModeBase;
             userProfile.Show();
 
         }
@@ -442,8 +448,18 @@ namespace ConsignmentCompanyProject
         private void aDDNEWUSERToolStripMenuItem_Click(object sender, EventArgs e)
         {
             windows.forms.NewUserRegistrationForm newUserRegistration = new windows.forms.NewUserRegistrationForm(_userSessionInformation);
+           // newUserRegistration.MdiParent = this;
+            newUserRegistration.ImeMode = this.ImeModeBase;
             newUserRegistration.Show();
             
+        }
+
+        private void aBOToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AboutBoxCustomer aboutBoxManager = new AboutBoxCustomer();
+          //  aboutBoxManager.MdiParent = this;
+            aboutBoxManager.ImeMode = this.ImeModeBase;
+            aboutBoxManager.Show();
         }
     }
 }

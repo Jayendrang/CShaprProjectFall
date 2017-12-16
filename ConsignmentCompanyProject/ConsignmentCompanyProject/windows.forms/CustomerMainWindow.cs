@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ConsignmentCompanyProject.com.app.dataobjects;
 using ConsignmentCompanyProject.com.app.model;
+using ConsignmentCompanyProject.com.app.utilities;
+using ConsignmentCompanyProject.com.app.business;
 
 
 namespace ConsignmentCompanyProject.com.windows.forms
@@ -32,7 +34,7 @@ namespace ConsignmentCompanyProject.com.windows.forms
             {
                 ConsignmentCompanyProject.NewOrdersForm purchaseOrderForm = new NewOrdersForm(_currentUserSessionInformation);
                 //purchaseOrderForm.MdiParent = this;
-                purchaseOrderForm.ImeMode = this.ImeModeBase;
+                purchaseOrderForm.ImeMode = this.DefaultImeMode;
                 purchaseOrderForm.Show();
             }
             catch (Exception ex)
@@ -126,6 +128,7 @@ namespace ConsignmentCompanyProject.com.windows.forms
             bool result = false;
             try
             {
+                if (!FormValidationUtilities.nullCheck(textBoxCancelOrderId.Text) && textBoxCancelOrderId.Text.StartsWith("ORD") && !FormValidationUtilities.nullCheck(textBoxCancelDescription.Text)) {
                 OrderProperties cancelOrderProperties = new OrderProperties();
                 cancelOrderProperties.Order_Id = textBoxCancelOrderId.Text;
                 cancelOrderProperties.Description = textBoxCancelDescription.Text;
@@ -142,11 +145,21 @@ namespace ConsignmentCompanyProject.com.windows.forms
                 else
                 {
                     MessageBox.Show("ORDER CANCELLED ALREADY! ", "ORDERS", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    throw new OrderException("ORDER CANCELLED ALREADY");
+                }
+                }
+                else{
+
+                    errorProviderCustomerWindow.SetError(textBoxCancelOrderId,"Wrong order ID".ToUpper());
+
                 }
             }
-            catch(Exception exp)
+            catch (BusinessExceptions exp)
             {
                 Console.WriteLine(exp.StackTrace);
+               
+                MessageBox.Show("PLEASE PROIVDE ORDER ID TO CANCEL", "ORDER", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
             }
         }
 
@@ -172,8 +185,9 @@ namespace ConsignmentCompanyProject.com.windows.forms
         {
             try { 
             ConsignmentCompanyProject.windows.forms.OrderReturnForm orderReturnForm = new ConsignmentCompanyProject.windows.forms.OrderReturnForm(_currentUserSessionInformation);
-            orderReturnForm.ImeMode = this.ImeMode;
-            orderReturnForm.Show();
+               // orderReturnForm.MdiParent = this;
+                orderReturnForm.ImeMode = this.ImeModeBase;
+                orderReturnForm.Show();
             }catch(Exception exp)
             {
                 Console.WriteLine(exp.StackTrace);
@@ -183,6 +197,8 @@ namespace ConsignmentCompanyProject.com.windows.forms
         private void aBOUTToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AboutBoxCustomer customerAbout = new AboutBoxCustomer();
+           // customerAbout.MdiParent = this;
+            customerAbout.ImeMode = this.ImeModeBase;
             customerAbout.Show();
                 
         }
@@ -195,7 +211,15 @@ namespace ConsignmentCompanyProject.com.windows.forms
         private void uSERPROFILEToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ConsignmentCompanyProject.windows.forms.UserProfileChangeForm userProfileChange = new ConsignmentCompanyProject.windows.forms.UserProfileChangeForm(_currentUserSessionInformation);
+           // userProfileChange.MdiParent = this;
+            userProfileChange.ImeMode = this.ImeModeBase;
             userProfileChange.Show();
+            
+        }
+
+        private void textBoxCancelOrderId_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

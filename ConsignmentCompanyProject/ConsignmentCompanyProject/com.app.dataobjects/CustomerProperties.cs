@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace ConsignmentCompanyProject.com.app.dataobjects
 {
+    // CREATED BY JAYENDRAN GURUMOORTHY
     //This class holds vendor information with their respective discount properties
     class CustomerProperties 
     {

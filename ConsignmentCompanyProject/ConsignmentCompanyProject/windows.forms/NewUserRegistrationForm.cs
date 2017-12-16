@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using ConsignmentCompanyProject.com.app.dataobjects;
 using ConsignmentCompanyProject.com.app.model;
 using System.Data.SqlClient;
+using ConsignmentCompanyProject.com.app.utilities;
 namespace ConsignmentCompanyProject.windows.forms
 {
     public partial class NewUserRegistrationForm : Form
@@ -31,12 +32,30 @@ namespace ConsignmentCompanyProject.windows.forms
 
         private void buttonAddUser_Click(object sender, EventArgs e)
         {
+            bool result = false;
             try{
             UserInformationProperties userInformation = new UserInformationProperties();
             userInformation.Name = textBoxName.Text.ToUpper();
-            userInformation.Contact = textBoxContact.Text.ToUpper();
-            userInformation.Address = textBoxAddress.Text.ToUpper();
-            userInformation.EMail_Id = textBoxEmailId.Text.ToUpper();
+                if (FormValidationUtilities.mobileCheck(textBoxContact.Text))
+                {
+                    userInformation.Contact = textBoxContact.Text.ToUpper();
+                }
+                else
+                {
+                    MessageBox.Show("INVALID CONTACT NUMBER", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+
+                }
+
+                userInformation.Address = textBoxAddress.Text.ToUpper();
+                if (FormValidationUtilities.emailCheck(textBoxEmailId.Text)) {
+                    userInformation.EMail_Id = textBoxEmailId.Text.ToUpper();
+                }else
+                {
+                    MessageBox.Show("INVALID EMAIL ID", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            
             userInformation.Status = "ACTIVE";
             userInformation.User_Id = textBoxGeneratedUsername.Text;
             userInformation.Password = textBoxGeneratedPassword.Text;
@@ -67,11 +86,17 @@ namespace ConsignmentCompanyProject.windows.forms
 
             com.app.business.UserInformationHandler userInfoHandler = new com.app.business.UserInformationHandler();
                 ///*************testing
-                userInformationHandler.addNewUser(userInformation, userSessionInformation.User_Id);
+               result= userInformationHandler.addNewUser(userInformation, userSessionInformation.User_Id);
+
+                if (result)
+                {
+                    MessageBox.Show( "NEW USER ADDED SUCESSFULLY","USER", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
             catch(Exception ex)
             {
-                Console.WriteLine(ex.StackTrace);                
+                Console.WriteLine(ex.StackTrace);
+                MessageBox.Show("PLEASE FILL THE DETAILS PROPERLY","ERROR",MessageBoxButtons.OK,MessageBoxIcon.Error);          
             }
 
         }
@@ -117,10 +142,13 @@ namespace ConsignmentCompanyProject.windows.forms
 
         private void buttonGenerateCreds_Click(object sender, EventArgs e)
         {
-            if ((!textBoxName.Text.Equals(null)) && (!textBoxContact.Text.Equals(null)))
+            if ((!textBoxName.Text.Equals(null)) && (textBoxContact.Text.Length>0))
             {
                 textBoxGeneratedUsername.Text = com.app.utlitiy.BusinessUtlities.generateNewUserName(textBoxName.Text, textBoxContact.Text);
                 textBoxGeneratedPassword.Text = com.app.utlitiy.BusinessUtlities.generateNewPassword();
+            }else
+            {
+                MessageBox.Show("PLEASE FILL THE REGISTRATION FORM","ERROR",MessageBoxButtons.OK,MessageBoxIcon.Asterisk);
             }
         }
     }

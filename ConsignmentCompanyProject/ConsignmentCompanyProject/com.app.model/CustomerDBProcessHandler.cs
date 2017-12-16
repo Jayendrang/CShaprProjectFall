@@ -9,7 +9,7 @@ using ConsignmentCompanyProject.com.app.dataobjects;
 namespace ConsignmentCompanyProject.com.app.model
 {
     /*
-     * Created by Jayendran Gurumoorthy
+     * Created by Jubril Bakare
      * */
     class CustomerDBProcessHandler : IAppCustomer<CustomerProperties>
     {

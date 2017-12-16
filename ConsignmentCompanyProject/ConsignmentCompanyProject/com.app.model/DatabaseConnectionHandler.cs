@@ -12,7 +12,7 @@ using ConsignmentCompanyProject.com.app.dataobjects;
 
 namespace ConsignmentCompanyProject.com.app.model
 {
-    /* Creted by Jayendran Gurumoorthy
+    /* Creted by Ankeeth Patnaik and Jayendran Gurumoorthy
      * This class handles all database operations. 
      */
     //This class handles the db query requsets from different classes in static
@@ -54,6 +54,7 @@ namespace ConsignmentCompanyProject.com.app.model
             
         }
 
+        //EXECUTE THE INSERT QUERY
         public static bool executeInsertDbQuery(string insertQuery, List<KeyValuePair<string, string>> tableParamsValues) {
             int numberOfRowsAffected = 0;
             try {
@@ -74,7 +75,7 @@ namespace ConsignmentCompanyProject.com.app.model
           }
 
 
-
+        //Method to execute the update queries
         public static bool executeUpdateQuery(string updateQuery, List<KeyValuePair<string, string>> tableParamsValues)
         {
             int numberofRowsUpdated=0;
@@ -95,6 +96,7 @@ namespace ConsignmentCompanyProject.com.app.model
             return numberofRowsUpdated <= 0 ? false : true; 
         }
 
+        // METHOD TO EXECUTE THE DELETE QUERY
         public static bool executeDeleteQuery(string deleteQuery, List<KeyValuePair<string,string>> tableParamValues)
         {
             int numberofRowsDeleted = 0;
@@ -113,6 +115,7 @@ namespace ConsignmentCompanyProject.com.app.model
 
         }
       
+        //METHOD TO EXECUTE THE SELECT QUERY
         public static DataSet executeSelectQuery(string queryString, List<KeyValuePair<string,string>> tableParams)
         {
             DataSet resultSet = new DataSet();
@@ -133,10 +136,11 @@ namespace ConsignmentCompanyProject.com.app.model
 
                     }
                 }
-               // connection.Open();
+               
                 connectionAdapter = new SqlDataAdapter(command);
-                connectionAdapter.Fill(resultSet);
-               // connection.Close();
+                
+               connectionAdapter.Fill(resultSet);
+              
                 
             }catch(Exception exception) { Console.WriteLine(exception.StackTrace); }
             
@@ -146,34 +150,7 @@ namespace ConsignmentCompanyProject.com.app.model
         }
 
 
-        //Test function delete it during depolyement
-        protected static List<object> returnSetWithProperties (DataSet dataset, object dataObjectType)
-        {
-            List<object> resultProperties = new List<object>();
-            
-            
-            if (dataObjectType is ManufacturerProperties)
-            {
-                
-                List<ProductProperties> listOfPropperties = new List<ProductProperties>();
-                foreach(DataRow row in dataset.Tables[0].Rows)
-                {
-                    ProductProperties propertyvalue = new ProductProperties();
-                    propertyvalue.Product_Id = row["Product_Id"].ToString();
-                    propertyvalue.Product_Type = row["Product_Id"].ToString();
-                    propertyvalue.Product_Name = row["Product_Name"].ToString();
-                    propertyvalue.Price_Per_Unit = double.Parse(row["Price_Per_Unit"].ToString());
-                    propertyvalue.Product_Current_Count = int.Parse(row["Product_Current_Count"].ToString());
-                    propertyvalue.Manufacturer_Name = row["Manufacturer_Name"].ToString();
-                    propertyvalue.Manufacturer_Id = row["Manufacturer_Id"].ToString();    
-                    
-                  resultProperties.Add(propertyvalue);      
-                }
-                
-            }
-
-            return resultProperties;
-        }
+      
 
     }
 }
