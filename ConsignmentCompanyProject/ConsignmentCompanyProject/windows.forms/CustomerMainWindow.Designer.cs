@@ -28,18 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.labelDate = new System.Windows.Forms.Label();
             this.labelVendorName = new System.Windows.Forms.Label();
             this.labelUserName = new System.Windows.Forms.Label();
             this.menuStripCustomer = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.eXITToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.uSERPROFILEToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.oRDERSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemCustomer = new System.Windows.Forms.ToolStripMenuItem();
             this.cANCELORDERToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.oRDERRETURNSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rEPORTSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tOTALBALANCEToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pURCHASEREPORTToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aBOUTToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.labelSessionUser = new System.Windows.Forms.Label();
             this.labelSessionVendor = new System.Windows.Forms.Label();
@@ -60,12 +61,11 @@
             this.textBoxSessionUser = new System.Windows.Forms.TextBox();
             this.textBoxSessionVendor = new System.Windows.Forms.TextBox();
             this.textBoxCurrentDate = new System.Windows.Forms.TextBox();
-            this.errorProviderCustomerWindow = new System.Windows.Forms.ErrorProvider(this.components);
+            this.uSERPROFILEToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripCustomer.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCustomerOrders)).BeginInit();
             this.groupBoxCancelOrder.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProviderCustomerWindow)).BeginInit();
             this.SuspendLayout();
             // 
             // labelDate
@@ -101,6 +101,7 @@
             this.menuStripCustomer.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.oRDERSToolStripMenuItem,
+            this.rEPORTSToolStripMenuItem,
             this.aBOUTToolStripMenuItem});
             this.menuStripCustomer.Location = new System.Drawing.Point(0, 0);
             this.menuStripCustomer.Name = "menuStripCustomer";
@@ -111,8 +112,8 @@
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.uSERPROFILEToolStripMenuItem,
-            this.eXITToolStripMenuItem});
+            this.eXITToolStripMenuItem,
+            this.uSERPROFILEToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(47, 24);
             this.fileToolStripMenuItem.Text = "&FILE";
@@ -123,13 +124,6 @@
             this.eXITToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.eXITToolStripMenuItem.Text = "&EXIT";
             this.eXITToolStripMenuItem.Click += new System.EventHandler(this.eXITToolStripMenuItem_Click);
-            // 
-            // uSERPROFILEToolStripMenuItem
-            // 
-            this.uSERPROFILEToolStripMenuItem.Name = "uSERPROFILEToolStripMenuItem";
-            this.uSERPROFILEToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
-            this.uSERPROFILEToolStripMenuItem.Text = "&USER PROFILE";
-            this.uSERPROFILEToolStripMenuItem.Click += new System.EventHandler(this.uSERPROFILEToolStripMenuItem_Click);
             // 
             // oRDERSToolStripMenuItem
             // 
@@ -161,6 +155,27 @@
             this.oRDERRETURNSToolStripMenuItem.Size = new System.Drawing.Size(199, 26);
             this.oRDERRETURNSToolStripMenuItem.Text = "ORDER &RETURNS";
             this.oRDERRETURNSToolStripMenuItem.Click += new System.EventHandler(this.oRDERRETURNSToolStripMenuItem_Click);
+            // 
+            // rEPORTSToolStripMenuItem
+            // 
+            this.rEPORTSToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tOTALBALANCEToolStripMenuItem,
+            this.pURCHASEREPORTToolStripMenuItem});
+            this.rEPORTSToolStripMenuItem.Name = "rEPORTSToolStripMenuItem";
+            this.rEPORTSToolStripMenuItem.Size = new System.Drawing.Size(81, 24);
+            this.rEPORTSToolStripMenuItem.Text = "&REPORTS";
+            // 
+            // tOTALBALANCEToolStripMenuItem
+            // 
+            this.tOTALBALANCEToolStripMenuItem.Name = "tOTALBALANCEToolStripMenuItem";
+            this.tOTALBALANCEToolStripMenuItem.Size = new System.Drawing.Size(253, 26);
+            this.tOTALBALANCEToolStripMenuItem.Text = "OUTSTANDING &BALANCE";
+            // 
+            // pURCHASEREPORTToolStripMenuItem
+            // 
+            this.pURCHASEREPORTToolStripMenuItem.Name = "pURCHASEREPORTToolStripMenuItem";
+            this.pURCHASEREPORTToolStripMenuItem.Size = new System.Drawing.Size(253, 26);
+            this.pURCHASEREPORTToolStripMenuItem.Text = "PURCHASE &REPORT";
             // 
             // aBOUTToolStripMenuItem
             // 
@@ -298,7 +313,6 @@
             this.textBoxCancelOrderId.Name = "textBoxCancelOrderId";
             this.textBoxCancelOrderId.Size = new System.Drawing.Size(100, 22);
             this.textBoxCancelOrderId.TabIndex = 1;
-            this.textBoxCancelOrderId.TextChanged += new System.EventHandler(this.textBoxCancelOrderId_TextChanged);
             // 
             // labelCancel
             // 
@@ -357,31 +371,34 @@
             this.textBoxCurrentDate.Size = new System.Drawing.Size(100, 22);
             this.textBoxCurrentDate.TabIndex = 29;
             // 
-            // errorProviderCustomerWindow
+            // uSERPROFILEToolStripMenuItem
             // 
-            this.errorProviderCustomerWindow.ContainerControl = this;
+            this.uSERPROFILEToolStripMenuItem.Name = "uSERPROFILEToolStripMenuItem";
+            this.uSERPROFILEToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.uSERPROFILEToolStripMenuItem.Text = "&USER PROFILE";
+            this.uSERPROFILEToolStripMenuItem.Click += new System.EventHandler(this.uSERPROFILEToolStripMenuItem_Click);
             // 
             // CustomerMainWindow
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(1273, 724);
-            this.Controls.Add(this.menuStripCustomer);
-            this.Controls.Add(this.labelSessionDate);
-            this.Controls.Add(this.labelSessionVendor);
-            this.Controls.Add(this.labelSessionUser);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.textBoxCurrentDate);
+            this.Controls.Add(this.textBoxSessionVendor);
+            this.Controls.Add(this.textBoxSessionUser);
+            this.Controls.Add(this.radioButtonAllOrder);
+            this.Controls.Add(this.radioButtonCancelled);
             this.Controls.Add(this.groupBoxCancelOrder);
             this.Controls.Add(this.radioButtonActive);
             this.Controls.Add(this.radioButtonCompleted);
-            this.Controls.Add(this.radioButtonCancelled);
-            this.Controls.Add(this.radioButtonAllOrder);
-            this.Controls.Add(this.labelUserName);
-            this.Controls.Add(this.labelVendorName);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.labelSessionDate);
+            this.Controls.Add(this.labelSessionVendor);
+            this.Controls.Add(this.labelSessionUser);
+            this.Controls.Add(this.menuStripCustomer);
             this.Controls.Add(this.labelDate);
-            this.Controls.Add(this.textBoxSessionUser);
-            this.Controls.Add(this.textBoxSessionVendor);
-            this.Controls.Add(this.textBoxCurrentDate);
+            this.Controls.Add(this.labelVendorName);
+            this.Controls.Add(this.labelUserName);
             this.IsMdiContainer = true;
             this.Name = "CustomerMainWindow";
             this.Text = "CUSTOMER WINDOW";
@@ -392,7 +409,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCustomerOrders)).EndInit();
             this.groupBoxCancelOrder.ResumeLayout(false);
             this.groupBoxCancelOrder.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProviderCustomerWindow)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -409,6 +425,9 @@
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemCustomer;
         private System.Windows.Forms.ToolStripMenuItem cANCELORDERToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem oRDERRETURNSToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem rEPORTSToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tOTALBALANCEToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pURCHASEREPORTToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aBOUTToolStripMenuItem;
         private System.Windows.Forms.Label labelSessionUser;
         private System.Windows.Forms.Label labelSessionVendor;
@@ -430,6 +449,5 @@
         private System.Windows.Forms.TextBox textBoxSessionVendor;
         private System.Windows.Forms.TextBox textBoxCurrentDate;
         private System.Windows.Forms.ToolStripMenuItem uSERPROFILEToolStripMenuItem;
-        private System.Windows.Forms.ErrorProvider errorProviderCustomerWindow;
     }
 }

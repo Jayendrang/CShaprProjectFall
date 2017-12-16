@@ -35,7 +35,7 @@ namespace ConsignmentCompanyProject.com.app.model
         {
             System.Data.DataSet dataset = new System.Data.DataSet();
             List<DiscountProperties> discountList = new List<DiscountProperties>();
-            string selectQueryString = "SELECT DISCOUNT_ID,DISCOUNT_RATE,CREATED_BY,CREATED_DATE,MODIFY_BY,MODIFY_DATE FROM DISCOUNT";
+            string selectQueryString = "SELECT DISCOUNT_ID,DISCOUNT_RATE,CREATED_BY,CREATED_DATE,MODIFY_BY,MODIFY_DATE FROM DISOCUNT";
             dataset = DatabaseConnectionHandler.executeSelectQuery(selectQueryString, null);
 
             if (dataset != null)
@@ -57,7 +57,6 @@ namespace ConsignmentCompanyProject.com.app.model
             return discountList;
         }
 
-        //REMOVE THE DISCOUNT DATA FROM TABLE
         public bool removeDiscountData(string discountId)
         {
             bool result=false;
@@ -71,16 +70,13 @@ namespace ConsignmentCompanyProject.com.app.model
             }
             return result;
         }
-
-        //RETRIVE THE CUSTOMER DISCOUNT PROPERTIES
         public static DiscountProperties getDiscountOfCustomer(string vendor_Discount_Id)
         {
             System.Data.DataSet dataset = new System.Data.DataSet();
             DiscountProperties discount = new DiscountProperties();
-            string selectQueryString = "SELECT DISCOUNT_RATE,DISCOUNT_ID FROM DISCOUNT WHERE DISCOUNT_ID=@DISCOUNT_ID ;";
+            string selectQueryString = "SELECT DISCOUNT_RATE,DISCOUNT_ID FROM DISCOUNT WHERE DISCOUNT_ID=@DISCOUNT_ID;";
             List<KeyValuePair<string, string>> parameters = new List<KeyValuePair<string, string>>();
             parameters.Add(new KeyValuePair<string, string>("@DISCOUNT_ID",vendor_Discount_Id));
-           
 
             dataset = DatabaseConnectionHandler.executeSelectQuery(selectQueryString, parameters);
             if (dataset != null)

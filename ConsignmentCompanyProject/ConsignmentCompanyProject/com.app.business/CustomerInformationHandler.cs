@@ -7,10 +7,6 @@ using ConsignmentCompanyProject.com.app.dataobjects;
 using ConsignmentCompanyProject.com.app.model;
 namespace ConsignmentCompanyProject.com.app.business
 {
-    /*
-    * created by JUBRIL BAKARE
-    * */
-
     class CustomerInformationHandler
     {
         private static CustomerDBProcessHandler vendorDbProcessHandler = new CustomerDBProcessHandler();

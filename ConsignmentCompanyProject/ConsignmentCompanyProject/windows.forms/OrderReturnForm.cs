@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Forms;
-using ConsignmentCompanyProject.com.app.utilities;
 
 namespace ConsignmentCompanyProject.windows.forms
 {
@@ -184,7 +183,8 @@ namespace ConsignmentCompanyProject.windows.forms
 
         private void textBoxCount_Validated(object sender, EventArgs e)
         {
-         }
+            
+        }
 
         private void textBoxCount_Validating(object sender, CancelEventArgs e)
         {

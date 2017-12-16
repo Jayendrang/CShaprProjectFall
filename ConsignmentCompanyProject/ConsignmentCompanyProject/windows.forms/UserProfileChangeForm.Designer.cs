@@ -36,16 +36,16 @@
             this.labelVendor = new System.Windows.Forms.Label();
             this.labelStatus = new System.Windows.Forms.Label();
             this.groupBoxProfileDetails = new System.Windows.Forms.GroupBox();
-            this.textBoxStatus = new System.Windows.Forms.TextBox();
-            this.textBoxVendorName = new System.Windows.Forms.TextBox();
-            this.textBoxUserId = new System.Windows.Forms.TextBox();
-            this.textBoxEmail = new System.Windows.Forms.TextBox();
-            this.textBoxAddress = new System.Windows.Forms.TextBox();
-            this.textBoxContact = new System.Windows.Forms.TextBox();
-            this.textBoxnName = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.buttonUpdate = new System.Windows.Forms.Button();
             this.labelTitle = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.textBoxnName = new System.Windows.Forms.TextBox();
+            this.textBoxContact = new System.Windows.Forms.TextBox();
+            this.textBoxAddress = new System.Windows.Forms.TextBox();
+            this.textBoxEmail = new System.Windows.Forms.TextBox();
+            this.textBoxUserId = new System.Windows.Forms.TextBox();
+            this.textBoxVendorName = new System.Windows.Forms.TextBox();
+            this.textBoxStatus = new System.Windows.Forms.TextBox();
             this.groupBoxProfileDetails.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -122,7 +122,7 @@
             this.groupBoxProfileDetails.Controls.Add(this.textBoxContact);
             this.groupBoxProfileDetails.Controls.Add(this.textBoxnName);
             this.groupBoxProfileDetails.Controls.Add(this.button2);
-            this.groupBoxProfileDetails.Controls.Add(this.buttonUpdate);
+            this.groupBoxProfileDetails.Controls.Add(this.button1);
             this.groupBoxProfileDetails.Controls.Add(this.labelTitle);
             this.groupBoxProfileDetails.Controls.Add(this.labelUserId);
             this.groupBoxProfileDetails.Controls.Add(this.labelStatus);
@@ -139,59 +139,25 @@
             this.groupBoxProfileDetails.Text = "PROFILE DETAILS";
             this.groupBoxProfileDetails.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
-            // textBoxStatus
+            // labelTitle
             // 
-            this.textBoxStatus.Location = new System.Drawing.Point(682, 196);
-            this.textBoxStatus.Name = "textBoxStatus";
-            this.textBoxStatus.ReadOnly = true;
-            this.textBoxStatus.Size = new System.Drawing.Size(117, 22);
-            this.textBoxStatus.TabIndex = 18;
+            this.labelTitle.AutoSize = true;
+            this.labelTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTitle.Location = new System.Drawing.Point(355, 18);
+            this.labelTitle.Name = "labelTitle";
+            this.labelTitle.Size = new System.Drawing.Size(243, 25);
+            this.labelTitle.TabIndex = 8;
+            this.labelTitle.Text = "USER PROFILE DETAILS";
             // 
-            // textBoxVendorName
+            // button1
             // 
-            this.textBoxVendorName.Location = new System.Drawing.Point(682, 158);
-            this.textBoxVendorName.Name = "textBoxVendorName";
-            this.textBoxVendorName.ReadOnly = true;
-            this.textBoxVendorName.Size = new System.Drawing.Size(117, 22);
-            this.textBoxVendorName.TabIndex = 17;
-            // 
-            // textBoxUserId
-            // 
-            this.textBoxUserId.Location = new System.Drawing.Point(682, 115);
-            this.textBoxUserId.Name = "textBoxUserId";
-            this.textBoxUserId.ReadOnly = true;
-            this.textBoxUserId.Size = new System.Drawing.Size(116, 22);
-            this.textBoxUserId.TabIndex = 15;
-            // 
-            // textBoxEmail
-            // 
-            this.textBoxEmail.Location = new System.Drawing.Point(224, 264);
-            this.textBoxEmail.Name = "textBoxEmail";
-            this.textBoxEmail.Size = new System.Drawing.Size(167, 22);
-            this.textBoxEmail.TabIndex = 14;
-            // 
-            // textBoxAddress
-            // 
-            this.textBoxAddress.Location = new System.Drawing.Point(224, 199);
-            this.textBoxAddress.Multiline = true;
-            this.textBoxAddress.Name = "textBoxAddress";
-            this.textBoxAddress.Size = new System.Drawing.Size(167, 54);
-            this.textBoxAddress.TabIndex = 13;
-            // 
-            // textBoxContact
-            // 
-            this.textBoxContact.Location = new System.Drawing.Point(224, 161);
-            this.textBoxContact.Name = "textBoxContact";
-            this.textBoxContact.Size = new System.Drawing.Size(133, 22);
-            this.textBoxContact.TabIndex = 12;
-            // 
-            // textBoxnName
-            // 
-            this.textBoxnName.Location = new System.Drawing.Point(224, 115);
-            this.textBoxnName.Name = "textBoxnName";
-            this.textBoxnName.ReadOnly = true;
-            this.textBoxnName.Size = new System.Drawing.Size(133, 22);
-            this.textBoxnName.TabIndex = 11;
+            this.button1.Location = new System.Drawing.Point(307, 350);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(102, 28);
+            this.button1.TabIndex = 9;
+            this.button1.Text = "&UPDATE";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
@@ -202,25 +168,59 @@
             this.button2.Text = "&CANCEL";
             this.button2.UseVisualStyleBackColor = true;
             // 
-            // buttonUpdate
+            // textBoxnName
             // 
-            this.buttonUpdate.Location = new System.Drawing.Point(307, 350);
-            this.buttonUpdate.Name = "buttonUpdate";
-            this.buttonUpdate.Size = new System.Drawing.Size(102, 28);
-            this.buttonUpdate.TabIndex = 9;
-            this.buttonUpdate.Text = "&UPDATE";
-            this.buttonUpdate.UseVisualStyleBackColor = true;
-            this.buttonUpdate.Click += new System.EventHandler(this.buttonUpdate_Click);
+            this.textBoxnName.Location = new System.Drawing.Point(224, 115);
+            this.textBoxnName.Name = "textBoxnName";
+            this.textBoxnName.ReadOnly = true;
+            this.textBoxnName.Size = new System.Drawing.Size(133, 22);
+            this.textBoxnName.TabIndex = 11;
             // 
-            // labelTitle
+            // textBoxContact
             // 
-            this.labelTitle.AutoSize = true;
-            this.labelTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTitle.Location = new System.Drawing.Point(355, 18);
-            this.labelTitle.Name = "labelTitle";
-            this.labelTitle.Size = new System.Drawing.Size(243, 25);
-            this.labelTitle.TabIndex = 8;
-            this.labelTitle.Text = "USER PROFILE DETAILS";
+            this.textBoxContact.Location = new System.Drawing.Point(224, 161);
+            this.textBoxContact.Name = "textBoxContact";
+            this.textBoxContact.Size = new System.Drawing.Size(133, 22);
+            this.textBoxContact.TabIndex = 12;
+            // 
+            // textBoxAddress
+            // 
+            this.textBoxAddress.Location = new System.Drawing.Point(224, 199);
+            this.textBoxAddress.Multiline = true;
+            this.textBoxAddress.Name = "textBoxAddress";
+            this.textBoxAddress.Size = new System.Drawing.Size(167, 54);
+            this.textBoxAddress.TabIndex = 13;
+            // 
+            // textBoxEmail
+            // 
+            this.textBoxEmail.Location = new System.Drawing.Point(224, 264);
+            this.textBoxEmail.Name = "textBoxEmail";
+            this.textBoxEmail.Size = new System.Drawing.Size(167, 22);
+            this.textBoxEmail.TabIndex = 14;
+            // 
+            // textBoxUserId
+            // 
+            this.textBoxUserId.Location = new System.Drawing.Point(682, 115);
+            this.textBoxUserId.Name = "textBoxUserId";
+            this.textBoxUserId.ReadOnly = true;
+            this.textBoxUserId.Size = new System.Drawing.Size(116, 22);
+            this.textBoxUserId.TabIndex = 15;
+            // 
+            // textBoxVendorName
+            // 
+            this.textBoxVendorName.Location = new System.Drawing.Point(682, 158);
+            this.textBoxVendorName.Name = "textBoxVendorName";
+            this.textBoxVendorName.ReadOnly = true;
+            this.textBoxVendorName.Size = new System.Drawing.Size(117, 22);
+            this.textBoxVendorName.TabIndex = 17;
+            // 
+            // textBoxStatus
+            // 
+            this.textBoxStatus.Location = new System.Drawing.Point(682, 196);
+            this.textBoxStatus.Name = "textBoxStatus";
+            this.textBoxStatus.ReadOnly = true;
+            this.textBoxStatus.Size = new System.Drawing.Size(117, 22);
+            this.textBoxStatus.TabIndex = 18;
             // 
             // UserProfileChangeForm
             // 
@@ -255,7 +255,7 @@
         private System.Windows.Forms.TextBox textBoxContact;
         private System.Windows.Forms.TextBox textBoxnName;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button buttonUpdate;
+        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label labelTitle;
     }
 }

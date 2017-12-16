@@ -13,11 +13,7 @@ using ConsignmentCompanyProject.com.app.business;
 using ConsignmentCompanyProject.com.app.interfaces;
 
 namespace ConsignmentCompanyProject
-{
-    /*
-     * Created by Jayendran Gurumoorthy, Ankeet Patnaik and Jubril Bakare
-     *  */
-
+{   
     public partial class NewOrdersForm : Form
     {
         private static int _itemNo = 0;
@@ -82,9 +78,9 @@ namespace ConsignmentCompanyProject
                 _grossPrice = 0;
 
             }      
-            }catch(OrderException exception)
+            }catch(Exception e)
             {
-                Console.WriteLine("Empty cart click".ToUpper(), exception.StackTrace);
+                Console.WriteLine("Empty cart click".ToUpper(), e.StackTrace);
             }
         }
         //Event handler for removing item from the cart
@@ -110,7 +106,6 @@ namespace ConsignmentCompanyProject
 
         void refreshOrderDetails()
         {
-            try { 
             foreach (KeyValuePair<int, OrderProperties> orders in _listOfOrderItems)
             {
                 OrderProperties orderInCart = orders.Value;
@@ -125,10 +120,6 @@ namespace ConsignmentCompanyProject
                 textBoxBalanceAmount.Text = (_totalPrice - _minimumAdvancePayment).ToString("c");
                                
 
-            }
-            }catch(OrderException orderException)
-            {
-                Console.WriteLine(orderException.StackTrace);
             }
         }
        
@@ -234,9 +225,6 @@ namespace ConsignmentCompanyProject
                 if (textBoxDescription.Text.Length>0)
                 {
                     cartItems.Description = textBoxDescription.Text;
-                }else
-                {
-                    cartItems.Description = "NIL";
                 }
 
                 addToCartDataGrid(cartItems);

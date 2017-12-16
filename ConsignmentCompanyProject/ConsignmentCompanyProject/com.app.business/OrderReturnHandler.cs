@@ -5,9 +5,6 @@ using ConsignmentCompanyProject.com.app.dataobjects;
 using ConsignmentCompanyProject.com.app.model;
 namespace ConsignmentCompanyProject.com.app.business
 {
-    /*
-     * Created by Ankeet patnaik
-     *  */
     class OrderReturnHandler 
     {
         private static Dictionary<string, List<OrderProperties>> processedOrderDictionary = new Dictionary<string, List<OrderProperties>>();
@@ -50,7 +47,7 @@ namespace ConsignmentCompanyProject.com.app.business
         public void getCustomerData(string vendorId)
         {
             //***************testing
-            getProcessedOrder(vendorId, "COMPLETED");
+            getProcessedOrder(vendorId, "NEW ORDER");
         }
         public List<OrderGridFields> getGridData()
         {

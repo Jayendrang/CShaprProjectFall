@@ -10,12 +10,8 @@ namespace ConsignmentCompanyProject.com.app.utilities
 {
     class FormValidationUtilities
     {
-        /*
-         * Created by Ankeet Patnaik
-         * */
-
         //To validate maxfields in text fields
-        public static bool fieldsMaxLength(string str, int length)
+        public bool fieldsMaxLength(string str, int length)
         {
             if (str.Length < length)
             {
@@ -29,7 +25,7 @@ namespace ConsignmentCompanyProject.com.app.utilities
         }
 
         //To validate maxfields in text fields
-        public static bool nullCheck(string str)
+        public bool nullCheck(string str)
         {
             if (str == "")
             {
@@ -42,7 +38,7 @@ namespace ConsignmentCompanyProject.com.app.utilities
         }
         ////To validate email text fields
 
-        public static bool emailCheck(string str)
+        public bool emailCheck(string str)
         {
             string pattern = @"\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*";
             if (Regex.IsMatch(str, pattern))
@@ -58,9 +54,9 @@ namespace ConsignmentCompanyProject.com.app.utilities
 
         //To validate mobilenumber format in text fields
 
-        public static bool mobileCheck(string str)
+        public bool mobileCheck(string str)
         {
-            string pattern = "[0-9]";
+            string pattern = "[^0-9]";
             if (Regex.IsMatch(str, pattern))
             {
                 return true;
@@ -73,7 +69,7 @@ namespace ConsignmentCompanyProject.com.app.utilities
 
         //To validate the fields contains only text
 
-        public static bool stringCheck(string str)
+        public bool stringCheck(string str)
         {
             string pattern = "[^a-zA-Z]";
             if (Regex.IsMatch(str, pattern))
@@ -86,7 +82,7 @@ namespace ConsignmentCompanyProject.com.app.utilities
             }
         }
 
-        public static bool numberCheck(string str)
+        public bool numberCheck(string str)
         {
             string pattern = "[^0-9]";
             if (Regex.IsMatch(str, pattern))
