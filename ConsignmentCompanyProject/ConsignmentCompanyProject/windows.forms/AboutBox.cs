@@ -13,6 +13,7 @@ namespace ConsignmentCompanyProject
     {
         public AboutBoxCustomer()
         {
+		//Initializing form components
             InitializeComponent();
             this.Text = String.Format("About {0}", AssemblyTitle);
             this.labelProductName.Text = AssemblyProduct;
