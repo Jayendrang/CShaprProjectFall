@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 using ConsignmentCompanyProject.com.app.dataobjects;
 using ConsignmentCompanyProject.com.app.model;
 namespace ConsignmentCompanyProject.com.app.business
-{
+{ /*
+     * created by Jayendran Gurumoorthy
+     * */
     class CustomerMainWindowHandler
     {
         OrderDBProcessHandler customerOrderDataHandler = new OrderDBProcessHandler();

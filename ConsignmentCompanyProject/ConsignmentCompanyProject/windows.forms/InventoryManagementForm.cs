@@ -10,9 +10,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ConsignmentCompanyProject.com.app.utilities;
 namespace ConsignmentCompanyProject
 {
     public partial class InventoryManagementForm : Form
+
+        /**
+         * created by Jayendran Gurumoorthy
+         *  */
     {
         private InvetoryManagementHandler inventoryManagementHandler;
         private List<ProductProperties> _PRODUCT_LIST_COMMMON = new List<ProductProperties>();
@@ -92,20 +97,22 @@ namespace ConsignmentCompanyProject
 
         }
 
+        //Add/Remove/Modify manufacturer details
         private void buttonAddManufacturer_Click(object sender, EventArgs e)
         {
             bool result = false;
 
             //************************ TESTING DATA
             string userInfo = _userSessionInformation.User_Id;
-
+           
             try
             {
+                if (!FormValidationUtilities.nullCheck(textBoxManufacturerName.Text) && !FormValidationUtilities.nullCheck(textBoxManfacturerDescriptions.Text)) { 
                 if (radioButtonAddNewManufacturer.Checked)
                 {
                     ManufacturerProperties manufacturerProperties = new ManufacturerProperties();
 
-
+                   
                     try
                     {
                         manufacturerProperties.Manufacturer_Id = textBoxManufactureId.Text;
@@ -115,7 +122,7 @@ namespace ConsignmentCompanyProject
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("PLEASE PROVIDE APPROPRIATE VALUES", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                       
                         Console.WriteLine(ex.StackTrace);
                     }
                     result = inventoryManagementHandler.addNewManufacturer(manufacturerProperties, userInfo);
@@ -126,15 +133,22 @@ namespace ConsignmentCompanyProject
                         refreshProductList();
                         loadManufacturerGridView();
                         loadManufacturersComboBox();
-                        
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("PLEASE PROVIDE PROPER VALUE", "MANUFACTURER", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 else if (radioButtonRemoveManufacturer.Checked)
                 {
+
                     ManufacturerProperties manufacturerProperties = new ManufacturerProperties();
-                    try
+                   try
                     {
-                        manufacturerProperties.Manufacturer_Id = textBoxManufactureId.Text;
+                            if (!FormValidationUtilities.nullCheck(textBoxManufacturerName.Text) && !FormValidationUtilities.nullCheck(textBoxManfacturerDescriptions.Text)) { 
+
+                                manufacturerProperties.Manufacturer_Id = textBoxManufactureId.Text;
                         manufacturerProperties.Manufacturer_Name = textBoxManufacturerName.Text;
                         manufacturerProperties.Manufacturer_Detail = textBoxManfacturerDescriptions.Text;
                         manufacturerProperties.Manufacturer_Status = comboBoxStatus.SelectedItem.ToString();
@@ -146,18 +160,26 @@ namespace ConsignmentCompanyProject
                             loadManufacturerGridView();
                             loadManufacturersComboBox();
                         }
-                    }
+                            }else
+                            {
+                                MessageBox.Show("PLEASE ENTER THE MANUFACTURER ID", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("PLEASE ENTER THE MANUFACTURER ID", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        
 
                         Console.WriteLine(ex.StackTrace);
 
                     }
                 }
 
+                }else
+                {
+                    MessageBox.Show("PLEASE PROVIDE APPROPRIATE VALUES", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
-            catch (Exception ex) { Console.WriteLine("Validation exception occured", ex.StackTrace); }
+            catch (Exception ex) { Console.WriteLine("Validation exception occured".ToUpper(), ex.StackTrace); }
         }
 
         private void radioButtonAddNewManufacturer_CheckedChanged(object sender, EventArgs e)
@@ -520,9 +542,12 @@ namespace ConsignmentCompanyProject
                         }
                         else
                         {
-                            MessageBox.Show("INVALID COUNT");
+                            MessageBox.Show("INVALID COUNT","INVENTORY",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
                         }
-                       
+
+                    }else
+                    {
+                        MessageBox.Show("PLEASE SELECT THE MANUFACTUER,PRODUCT TYPE AND PRODUCT","INVENTORY",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
                     }
 
 
@@ -538,6 +563,7 @@ namespace ConsignmentCompanyProject
             {
                 try
                 {
+
                     double existingProductPrice = 0.0, newPrice=0.0;
                     int existingProductCount = 0, newUnitsCount=0;
                     ProductProperties updateProducts = new ProductProperties();
