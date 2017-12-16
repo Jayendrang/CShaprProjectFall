@@ -32,7 +32,6 @@
             this.menuStripManager = new System.Windows.Forms.MenuStrip();
             this.orderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.eXITToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.eXITToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.inventoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.iNVENTORYMANAGEMENTToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.vendorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -49,7 +48,7 @@
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.dataGridViewOrderReturns = new System.Windows.Forms.DataGridView();
             this.buttonRefersh = new System.Windows.Forms.Button();
-            this.aBOToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.eXITToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripManager.SuspendLayout();
             this.tabControlDashBoard.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -78,8 +77,7 @@
             this.orderToolStripMenuItem,
             this.inventoryToolStripMenuItem,
             this.vendorToolStripMenuItem,
-            this.reportsToolStripMenuItem,
-            this.aBOToolStripMenuItem});
+            this.reportsToolStripMenuItem});
             this.menuStripManager.Location = new System.Drawing.Point(0, 0);
             this.menuStripManager.Name = "menuStripManager";
             this.menuStripManager.Padding = new System.Windows.Forms.Padding(7, 2, 0, 2);
@@ -103,12 +101,6 @@
             this.eXITToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.eXITToolStripMenuItem.Text = "&USER PROFILE";
             this.eXITToolStripMenuItem.Click += new System.EventHandler(this.eXITToolStripMenuItem_Click_1);
-            // 
-            // eXITToolStripMenuItem1
-            // 
-            this.eXITToolStripMenuItem1.Name = "eXITToolStripMenuItem1";
-            this.eXITToolStripMenuItem1.Size = new System.Drawing.Size(181, 26);
-            this.eXITToolStripMenuItem1.Text = "E&XIT";
             // 
             // inventoryToolStripMenuItem
             // 
@@ -268,7 +260,7 @@
             // 
             // buttonRefersh
             // 
-            this.buttonRefersh.Location = new System.Drawing.Point(958, 181);
+            this.buttonRefersh.Location = new System.Drawing.Point(958, 191);
             this.buttonRefersh.Name = "buttonRefersh";
             this.buttonRefersh.Size = new System.Drawing.Size(117, 28);
             this.buttonRefersh.TabIndex = 3;
@@ -276,24 +268,22 @@
             this.buttonRefersh.UseVisualStyleBackColor = true;
             this.buttonRefersh.Click += new System.EventHandler(this.buttonRefersh_Click);
             // 
-            // aBOToolStripMenuItem
+            // eXITToolStripMenuItem1
             // 
-            this.aBOToolStripMenuItem.Name = "aBOToolStripMenuItem";
-            this.aBOToolStripMenuItem.Size = new System.Drawing.Size(69, 24);
-            this.aBOToolStripMenuItem.Text = "&ABOUT";
-            this.aBOToolStripMenuItem.Click += new System.EventHandler(this.aBOToolStripMenuItem_Click);
+            this.eXITToolStripMenuItem1.Name = "eXITToolStripMenuItem1";
+            this.eXITToolStripMenuItem1.Size = new System.Drawing.Size(181, 26);
+            this.eXITToolStripMenuItem1.Text = "E&XIT";
             // 
             // ManagerMainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1133, 630);
-            this.Controls.Add(this.labelUserName);
-            this.Controls.Add(this.menuStripManager);
             this.Controls.Add(this.buttonRefersh);
             this.Controls.Add(this.tabControlDashBoard);
+            this.Controls.Add(this.labelUserName);
+            this.Controls.Add(this.menuStripManager);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStripManager;
             this.Name = "ManagerMainWindow";
             this.Text = "DASHBOARD";
@@ -338,6 +328,5 @@
         private System.Windows.Forms.Button buttonRefersh;
         private System.Windows.Forms.ToolStripMenuItem aDDNEWUSERToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem eXITToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem aBOToolStripMenuItem;
     }
 }

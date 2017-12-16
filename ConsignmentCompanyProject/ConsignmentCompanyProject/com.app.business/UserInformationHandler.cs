@@ -7,9 +7,6 @@ using ConsignmentCompanyProject.com.app.dataobjects;
 using ConsignmentCompanyProject.com.app.model;
 namespace ConsignmentCompanyProject.com.app.business
 {
-    /*
-     * Created by Jayendran Gurumoorthy and Anketh Patnaik
-     *  */
     class UserInformationHandler
     {
         private static UserDBProcessHandler userDataHandler = new UserDBProcessHandler();
@@ -22,10 +19,10 @@ namespace ConsignmentCompanyProject.com.app.business
             return vendorLists;
         }
 
-        public  bool addNewUser(UserInformationProperties userInformation, string currentUser)
+        public  void addNewUser(UserInformationProperties userInformation, string currentUser)
         {
             com.app.model.UserDBProcessHandler userDbHandler = new UserDBProcessHandler();
-            return userDbHandler.addUser(userInformation,currentUser);
+            userDbHandler.addUser(userInformation,currentUser);
         }
         public  CustomerProperties getCustomerInfo(string vendorName)
         {

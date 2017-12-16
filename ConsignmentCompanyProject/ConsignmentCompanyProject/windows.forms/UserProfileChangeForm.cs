@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ConsignmentCompanyProject.com.app.dataobjects;
 using ConsignmentCompanyProject.com.app.business;
-using ConsignmentCompanyProject.com.app.utilities;
 
 namespace ConsignmentCompanyProject.windows.forms
 {
@@ -59,9 +58,7 @@ namespace ConsignmentCompanyProject.windows.forms
 
         }
 
-      
-
-        private void buttonUpdate_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
             UserInformationProperties userInformation = new UserInformationProperties();
             modifyInformationDelegate<UserInformationProperties> modifyProfileInformation = new modifyInformationDelegate<UserInformationProperties>(UserInformationHandler.updateUserInformation);
@@ -69,31 +66,17 @@ namespace ConsignmentCompanyProject.windows.forms
             try
             {
                 userInformation.User_Id = textBoxUserId.Text;
-                if (FormValidationUtilities.mobileCheck(textBoxContact.Text))
-                {
-                    userInformation.Contact = textBoxContact.Text;
-
-                }
-                else
-                {
-                    MessageBox.Show("INVALID MOBILE NUMBER", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                userInformation.Contact = textBoxContact.Text;
                 userInformation.Address = textBoxAddress.Text.ToUpper();
-                if (FormValidationUtilities.emailCheck(textBoxEmail.Text)) { userInformation.EMail_Id = textBoxEmail.Text.ToUpper(); }
-                else
-                {
-                    MessageBox.Show("INVALID EMAIL ID", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-
+                userInformation.EMail_Id = textBoxEmail.Text.ToUpper();
                 result = modifyProfileInformation.Invoke(userInformation);
                 if (result)
                 {
-                    MessageBox.Show("Profile updated successfully".ToUpper(), "Profile", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                    MessageBox.Show("Profile updated successfully","Profile",MessageBoxButtons.OK,MessageBoxIcon.Asterisk);
                 }
-            }
-            catch (Exception ex)
+            }catch(Exception ex)
             {
-                Console.WriteLine("Please enter appropriate values to the fields".ToUpper(), ex.StackTrace);
+                Console.WriteLine("Please enter appropriate values to the fields",ex.StackTrace);
             }
         }
     }

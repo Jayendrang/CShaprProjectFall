@@ -15,7 +15,6 @@ namespace ConsignmentCompanyProject.com.app.model
      */ 
     class OrderDBProcessHandler : IAppOrder<OrderProperties>
     {
-        //CANCEL THE ORDER
         public bool cancelOrder(OrderProperties cancelorderInfo)
         {
             string deleteQueryString = "UPDATE SALES_ORDER SET ORDER_STATUS='CANCELLED',DESCRIPTION=@DESCRIPTION,MODIFY_BY=@MODIFIED_BY,MODIFY_DATE=@MODIFIED_DATE WHERE ORDER_ID=@ORDER_ID AND VENDOR_ID=@VENDOR_ID AND ORDER_STATUS=@ORDER_STATUS;";
@@ -30,7 +29,6 @@ namespace ConsignmentCompanyProject.com.app.model
             return result; 
         }
 
-        //RETRIEVE THE MULTIPLE ORDER FROM DATABASE
         public List<OrderProperties> getMultipleOrdersInfo(string vendorInfo,string orderStatus)
         {
             DataSet dataset = new DataSet();
@@ -86,7 +84,6 @@ namespace ConsignmentCompanyProject.com.app.model
             return listOfOrders;
         }
 
-        //SUMBIT THE ORDER IN DATABASE
         public bool submitOrder(List<OrderProperties> purchaseOrderInfo)
         {
             int numberOfRowsInserted = 0;
@@ -141,7 +138,6 @@ namespace ConsignmentCompanyProject.com.app.model
             return result;
         }
 
-        //UPDATE THE ORDER STATUS
         public bool updateOrderStatus(OrderProperties updateorderInfo)
         {
             bool result = false;

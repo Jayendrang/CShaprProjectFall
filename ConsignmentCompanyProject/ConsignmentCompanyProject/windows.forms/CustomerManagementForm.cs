@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ConsignmentCompanyProject.com.app.dataobjects;
 using ConsignmentCompanyProject.com.app.business;
-using ConsignmentCompanyProject.com.app.utilities;
 namespace ConsignmentCompanyProject
 {
     /*
@@ -175,7 +174,7 @@ namespace ConsignmentCompanyProject
             searchVendorDelegate<CustomerProperties> searchVendor = new searchVendorDelegate<CustomerProperties>(CustomerInformationHandler.searchVendor);
             searchVendorDelegate<DiscountProperties> discountInfoVendor = new searchVendorDelegate<DiscountProperties>(CustomerInformationHandler.getVendorDiscountInfo);
             
-            if ((!textBoxCustomerId.Text.Equals(null) && (textBoxCustomerId.Text.Length > 0)))
+            if ((!textBoxCustomerId.Text.Equals(null)) && (textBoxCustomerId.Text.Length > 0))
             {
                 fieldValues = searchVendor.Invoke(textBoxCustomerId.Text.ToUpper());
                 if (fieldValues.Vendor_Id!=null) { 
@@ -232,38 +231,31 @@ namespace ConsignmentCompanyProject
                 bool result = false;
                 try
                 {
-                        if (!FormValidationUtilities.nullCheck(textBoxCustomerName.Text) && FormValidationUtilities.nullCheck(textBoxMailId.Text) && !FormValidationUtilities.emailCheck(textBoxMailId.Text) && FormValidationUtilities.mobileCheck(textBoxContact.Text))
-                        {
-                            newVendorData.Vendor_Id = textBoxCustomerId.Text.ToUpper();
-                            newVendorData.Vendor_Name = textBoxCustomerName.Text.ToUpper();
-                            newVendorData.Vendor_Contact = textBoxContact.Text.ToUpper();
-                            newVendorData.Vendor_EMail_Id = textBoxMailId.Text.ToUpper();
-                            newVendorData.Vendor_Address = textBoxAddress.Text.ToUpper();
-                            newVendorData.Vendor_Discount_ID = textBoxDiscountId.Text;
-                            newVendorData.Vendor_Balance_Amount = Convert.ToDouble("00.0");
-                            newVendorData.Vendor_Status = textBoxStatus.Text.ToUpper();
-                            //******************* testing
-                            //delegate invoked
-                            result = addVendor.Invoke(newVendorData, _userSessionInformation.User_Id);
-                            if (result == true)
-                            {
-                                MessageBox.Show("New Vendor successfully".ToUpper(), "CUSTOMER", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                loadGridView();
-                            }
-                            else
-                            {
-                                MessageBox.Show("Please provide the correct vendor details".ToUpper(), "CUSTOMER", MessageBoxButtons.OK, MessageBoxIcon.Question);
-                            }
-                        }else
-                        {
-                            MessageBox.Show("INVALID FIELD VALUES","ERROR",MessageBoxButtons.OK,MessageBoxIcon.Error);
-                        }
+                    newVendorData.Vendor_Id = textBoxCustomerId.Text.ToUpper();
+                    newVendorData.Vendor_Name = textBoxCustomerName.Text.ToUpper();
+                    newVendorData.Vendor_Contact = textBoxContact.Text.ToUpper();
+                    newVendorData.Vendor_EMail_Id = textBoxMailId.Text.ToUpper();
+                    newVendorData.Vendor_Address = textBoxAddress.Text.ToUpper();
+                    newVendorData.Vendor_Discount_ID = textBoxDiscountId.Text;
+                    newVendorData.Vendor_Balance_Amount = Convert.ToDouble("00.0");
+                    newVendorData.Vendor_Status = textBoxStatus.Text.ToUpper();
+                    //******************* testing
+                    //delegate invoked
+                    result = addVendor.Invoke(newVendorData, _userSessionInformation.User_Id);
+                    if (result == true)
+                    {
+                        MessageBox.Show("New Vendor successfully".ToUpper(), "CUSTOMER", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            loadGridView();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Please provide the correct vendor details".ToUpper(), "CUSTOMER", MessageBoxButtons.OK, MessageBoxIcon.Question);
+                    }
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show("Provide Appropriate values".ToUpper(), "CUSTOMER", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     Console.WriteLine(ex.StackTrace);
-                        new BusinessExceptions("WRONG VENDOR NAME");
                 }
 
 
@@ -286,13 +278,12 @@ namespace ConsignmentCompanyProject
                     result = modifyVendor.Invoke(existingVendorData, _userSessionInformation.User_Id);
                     if (result == true)
                     {
-                        MessageBox.Show("Vendor details updated successfully".ToUpper(), "CUSTOMER", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            clearFormContent();
+                        MessageBox.Show("Vendor details updated successfully", "CUSTOMER", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             loadGridView();
                         }
                     else
                     {
-                        MessageBox.Show("Please provide the correct vendor details".ToUpper(), "CUSTOMER", MessageBoxButtons.OK, MessageBoxIcon.Question);
+                        MessageBox.Show("Please provide the correct vendor details", "CUSTOMER", MessageBoxButtons.OK, MessageBoxIcon.Question);
                     }
                 }
                 catch (Exception ex)

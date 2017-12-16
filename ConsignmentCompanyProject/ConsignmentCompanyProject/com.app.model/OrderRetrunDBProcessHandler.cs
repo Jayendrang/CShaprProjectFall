@@ -8,13 +8,9 @@ using ConsignmentCompanyProject.com.app.interfaces;
 using ConsignmentCompanyProject.com.app.dataobjects;
 namespace ConsignmentCompanyProject.com.app.model
 {
-    /**
-     *  CREATED BY ANKEET PATNAIK
-     * */
     class OrderRetrunDBProcessHandler : IAppReturnOrder<OrderReturnProperties>
     {
       
-        //CANCEL THE ACTIVE ORDER
         public bool cancelOrderReturn(OrderReturnProperties cancelOrderReturnInfo)
         {
             string updateQueryString = "UPDATE RETURN_ORDER SET RETURN_STATUS='CANCELLED' WHERE RETURN_ORDER_ID=@RETURN_ORDER_ID";
@@ -26,7 +22,6 @@ namespace ConsignmentCompanyProject.com.app.model
             return result ;
         }
 
-        //RETRIEVE MULTIPLE ORDER BASED ON STATUS
         public List<OrderReturnProperties> getMultipleReturnOrderInfo(string status)
         {
             DataSet dataset = new DataSet();
@@ -59,7 +54,7 @@ namespace ConsignmentCompanyProject.com.app.model
         }
 
      
-        //SUBMIT THE ORDER 
+
         public bool submitOrderReturn(OrderReturnProperties saveOrderReturnInfo)
         {
             string insertQueryString = "INSERT INTO RETURN_ORDER(RETURN_ORDER_ID,ORDER_ID,VENDOR_ID,USER_ID,PRODUCT_ID,PRODUCT_TYPE,COUNT,PRICE_PER_UNIT,RETURN_DESCRIPTION,RETURN_STATUS,CREATED_BY,CREATED_DATE,MODIFIED_BY,MODIFIED_DATE) VALUES(@RETURN_ORDER_ID,@ORDER_ID,@VENDOR_ID,@USER_ID,@PRODUCT_ID,@PRODUCT_TYPE,@COUNT,@PRICE_PER_UNIT,@RETURN_DESCRIPTION,@RETURN_STATUS,@CREATED_BY,@CREATED_DATE,@MODIFIED_BY,@MODIFIED_DATE)";
@@ -81,7 +76,6 @@ namespace ConsignmentCompanyProject.com.app.model
             return DatabaseConnectionHandler.executeInsertDbQuery(insertQueryString, queryParameter);
         }
 
-        //UPDATE THE ORDER  RETURN
         public bool updateOrderReturn(OrderReturnProperties updateOrderStatusInfo, string userInfo)
         {
             string updateQueryString = "UPDATE RETURN_ORDER SET RETURN_STATUS=@STATUS,RETURN_DESCRITPION=@RETURN_DESCRIPTION,MODIFIED_BY=@MODIFIED_BY,MODIFIED_DATE=@MODIFIED_DATE WHERE RETURN_ORDER_ID=@RETURN_ORDER_ID";

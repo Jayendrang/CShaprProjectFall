@@ -10,12 +10,8 @@ namespace ConsignmentCompanyProject.com.app.business
 {
     class OrderHandler
     {
-   /*
-    * created by Jayendran Gurumoorthy and Jubril Bakare
-    * */
-        private List<ProductProperties> _current_product_list = new List<ProductProperties>();
+        private  List<ProductProperties> _current_product_list = new List<ProductProperties>();
 
-        //Loading the control properties
        public OrderHandler(){
             
             com.app.model.InventoryDBProcessHandler productsList = new model.InventoryDBProcessHandler();
@@ -23,8 +19,6 @@ namespace ConsignmentCompanyProject.com.app.business
             _current_product_list = InventoryDBProcessHandler._product_list;
             
             }
-
-        //get manufacturer and thier product types from db
         public  List<ProductProperties> getManufacturerAndProductList(string productType)
         {
             List<ProductProperties> manufacturer = new List<ProductProperties>();
@@ -41,7 +35,6 @@ namespace ConsignmentCompanyProject.com.app.business
             return manufacturer;
         }
 
-        //get products based on manager and product type
         public  List<ProductProperties> getProductList(string manfacturername, string productType)
         {
             List<ProductProperties> listofproducts = new List<ProductProperties>();
@@ -57,8 +50,6 @@ namespace ConsignmentCompanyProject.com.app.business
             }
             return listofproducts;
         }
-
-        //get product information 
         public  ProductProperties getProductInformation(List<ProductProperties> productDetails,string manufacturer,string productType,string productName)
         {
             ProductProperties selectedProductInfo = new ProductProperties();
@@ -74,8 +65,6 @@ namespace ConsignmentCompanyProject.com.app.business
             return selectedProductInfo;
 
         }
-        
-        //Retrieve the product type
         public  List<ProductProperties> getproductTypeList()
         {
             List<ProductProperties> productType = new List<ProductProperties>();
@@ -94,7 +83,6 @@ namespace ConsignmentCompanyProject.com.app.business
             return productType;
         }
 
-        //Submit the purchase order
         public  bool submitPurchaseOrder(List<OrderProperties> purchaseOrders)
         {
             bool result = false;
@@ -104,11 +92,9 @@ namespace ConsignmentCompanyProject.com.app.business
             return result;
         }
 
-        //get the custome discount rate from database
         public int  getCustomerDiscountRate()
         {
             DiscountProperties discount= DiscountDBProcessHandler.getDiscountOfCustomer("DIS1");
-
             return  Convert.ToInt16(discount.Discount_Rate);
         }
 
